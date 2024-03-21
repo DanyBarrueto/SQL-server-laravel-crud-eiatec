@@ -1,0 +1,31 @@
+
+/*Estilos animaciones botones
+*/
+
+#boton_enviar:hover, #boton_guardar_cambios:hover{
+    background-color: #ff5e00;
+    color: #ffffff;
+    transform: scale(1.1);
+    transition: all 0.4s linear;
+}
+
+#boton_descargar:hover{
+    background-color: #7700ff;
+    color: #ffffff;
+    transform: scale(1.1);
+    transition: all 0.4s linear;
+}
+
+#boton_limpiar:hover, #boton_cerrar:hover{
+    background-color: #000000;
+    color: #ffffff;
+    transform: scale(1.1);
+    transition: all 0.4s linear;
+}
+
+#boton_buscar:hover{
+    background-color: #0be076;
+    color: #ffffff;
+    transform: scale(1.1);
+    transition: all 0.4s linear;
+}
