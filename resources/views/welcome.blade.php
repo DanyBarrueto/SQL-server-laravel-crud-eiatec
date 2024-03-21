@@ -1102,7 +1102,6 @@
                             <option value="1066">Zipaquirá</option>
                             <option value="1067">Zona Bananera</option>
                             <option value="1068">Colombia</option>
-                            <option value="1069">Cambiarlo</option>
                             <option value="1070">Chima</option>
                             <option value="1071">Putumayo</option>
                         </select>
@@ -1138,7 +1137,6 @@
                             <option value="19">Madeline Ossa</option>
                             <option value="20">Carlos Galan</option>
                             <option value="21">Ninguno</option>
-                            <option value="22">Cambiarlo</option>
                         </select>
                     </div>
 
@@ -1316,7 +1314,6 @@
                             <option value="168">Tecnólogo Geólogo</option>
                             <option value="169">Tecnologo Social</option>
                             <option value="170">Tesoreria</option>
-                            <option value="171">Cambiarlo</option>
                         </select>
                     </div>
 
@@ -1351,7 +1348,6 @@
                             <option value="10">Puente Nacional</option>
                             <option value="11">Tunja</option>
                             <option value="12">Villavicencio</option>
-                            <option value="13">Cambiarlo</option>
                         </select>                        
                         <br>
                     </div>
@@ -1388,7 +1384,6 @@
                             <option value="1">Mesa</option>
                             <option value="2">Portatil</option>
                             <option value="3">All in one</option>
-                            <option value="4">Cambiarlo</option>
                             <option value="5">Personal</option>
                         </select>
                     </div>
@@ -1406,74 +1401,66 @@
                             <option value="7">Dell</option>
                             <option value="8">Toshiba</option>
                             <option value="9">Alienware</option>
-                            <option value="10">Cambiarlo</option>
                         </select>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="modelo" class="form-label fw-bold" style="color: #7ab82c;">Modelo:</label>
                         <input type="text" id="modelo" name="modelo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de serie:</label>
                         <input type="text" id="numero_serie" name="numero_serie" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id producto:</label>
                         <input type="text" id="id_producto" name="id_producto" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <label for="tipo_sistema" class="form-label fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
                         <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                             <option value=""></option>
-                            <option value="Windows10 home">Windows 10 home</option>
-                            <option value="Windows10 home single">Windows 10 home single</option>
-                            <option value="Windows10 home single language">Windows 10 home single language</option>
-                            <option value="Windows10 pro">Windows 10 pro</option>
-                            <option value="windows11 home">windows 11 home</option>
-                            <option value="windows11 home single">windows 11 home single</option>
-                            <option value="windows11 home single language">windows 11 home single language</option>
-                            <option value="windows11 pro">windows 11 pro</option>
+                            <option value="1">Windows 10</option>
+                            <option value="2">Windows 11</option>
                         </select>
                     </div>
 
-                    <div class="col-md-9">
-                        <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
-                        <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                    <div class="col-md-3">
+                        <label for="licensia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
+                        <select id="licensia" name="licensia" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                            <option value=""></option>
+                            <option value="1">Home</option>
+                            <option value="2">Pro</option>
+                            <option value="3">Home Single Language</option>
+                            <option value="4">Server</option>
+                        </select>
                     </div>
 
                     <div class="col-md-1">
                         <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
                         <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                             <option value=""></option>
+                            <option value="4Gb">4Gb</option>
                             <option value="8Gb">8Gb</option>
                             <option value="12Gb">12Gb</option>
                             <option value="16Gb">16Gb</option>
                             <option value="24Gb">24Gb</option>
                             <option value="32Gb">32Gb</option>
+                            <option value="48Gb">48Gb</option>                            
                             <option value="64Gb">64Gb</option>
                         </select>
                     </div>
 
-                    <div class="col-md-2">
-                        <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
-                        <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="128Gb">128 Gb</option>
-                            <option value="250Gb">250 Gb</option>
-                            <option value="500Gb">500 Gb</option>
-                            <option value="1TB">1 TB</option>
-                            <option value="1Tb+250Gb">1 TB + 250Gb</option>
-                            <option value="1Tb+500Gb">1 TB + 500Gb</option>
-                            <option value="1Tb+1Tb">1 TB + 1TB</option>
-                        </select>
+                    <div class="col-md-6">
+                        <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
+                        <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <div class="col-md-5">
-                        <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu:</label>
+                    <div class="col-md-6">
+                        <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu/Apu:</label>
                         <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
@@ -1497,7 +1484,76 @@
                             <option value="14  FHD">14 FHD</option>
                             <option value="15,6  HD">15,6 HD</option>
                         </select>
-                        <br>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
+                        <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                            <option value=""></option>
+                            <option value="128Gb">128 Gb</option>
+                            <option value="250Gb">250 Gb</option>
+                            <option value="512Gb">512 Gb</option>
+                            <option value="1Tb">1 TB</option>
+                            <option value="1Tb+128Gb">1 TB + 128 GB</option>
+                            <option value="1Tb+250Gb">1 TB + 250 Gb</option>
+                            <option value="1Tb+512Gb">1 TB + 512 Gb</option>
+                            <option value="1Tb+1Tb">1 TB + 1 TB</option>
+                            <option value="2Tb">2 TB</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="anydesk" class="form-label fw-bold" style="color: #7ab82c;">Anydesk:</label>
+                        <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="ubicacion_equipo" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
+                        <select id="ubicacion_equipo" name="ubicacion_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                            <option value=""></option>
+                            <option value="1">Bogotá</option>
+                            <option value="2">Riohacha</option>
+                            <option value="3">Neiva</option>
+                            <option value="4">Vencia</option>
+                            <option value="5">Valledupar </option>
+                            <option value="6">Ibague</option>
+                            <option value="7">Santa Marta</option>
+                            <option value="8">Uribia</option>
+                            <option value="9">Sogamoso</option>
+                            <option value="10">Puente Nacional</option>
+                            <option value="11">Tunja</option>
+                            <option value="12">Villavicencio</option>
+                        </select>                        
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="oficina" class="form-label fw-bold" style="color: #7ab82c;">Oficina:</label>
+                        <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                            <option value=""></option>
+                            <option value="1">Adm</option>
+                            <option value="2">Rio</option>
+                            <option value="3">Nei</option>
+                            <option value="4">Téc</option>
+                            <option value="5">Hof</option>
+                            <option value="6">Home_Office</option>
+                            <option value="8">Uri</option>
+                        </select>                        
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <label for="direccion" class="form-label fw-bold" style="color: #7ab82c;">Dirección:</label>
+                        <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                            <option value=""></option>
+                            <option value="1">Norte</option>
+                            <option value="2">Centro</option>
+                            <option value="3">Sur</option>
+                            <option value="4">Local</option>                            
+                        </select>                        
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="clave_equipo" class="form-label fw-bold" style="color: #7ab82c;">Clave:</label>
+                        <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
                     <hr>
