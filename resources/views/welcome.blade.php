@@ -1372,279 +1372,292 @@
                         <br>
                     </div>
 
+                    <div>
+                        <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
+                    </div>
                     <hr>
-                    
-    <!--Aca empieza la parte para ingresar los datos del equipo asignado en el formulario principal-->
-                    <h2 class="fw-bold">
-                        Datos del equipo:
-                    </h2>
-
-                    <!--lista desplegable para elegir el estado de asignacion del equipo-->
-
-                    <div class="col-md-2">
-                        <label for="estado" class="form-label fw-bold" style="color: #7ab82c;">Estado:</label>
-                        <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="De_baja">De baja</option>
-                            <option value="Disponible">Disponible</option>
-                            <option value="En_garantia">En garantia</option>
-                            <option value="Ilocalizado">Ilocalizado</option>
-                            <option value="No_aplica">No aplica</option>
-                            <option value="Pendiente">Pendiente</option>
-                        </select>                    
-                    </div>
-
-                    <!--campo para ingresar el codigo designado al equipo-->
-
-                    <div class="col-md-2">
-                        <label for="codigo" class="form-label fw-bold" style="color: #7ab82c;">Codigo:</label>
-                        <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" required />
-                    </div>
-
-                    <!--lista desplegable para elegir el tipo de computador (portatil,mesa,etc)-->
-
-                    <div class="col-md-2">
-                        <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de computador:</label>
-                        <select id="tipo_computador" name="tipo_computador" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Mesa</option>
-                            <option value="2">Portatil</option>
-                            <option value="3">All in one</option>
-                            <option value="5">Personal</option>
-                        </select>
-                    </div>
-
-                    <!--lista desplegable para elegir la marca del equipo (HP,DELL,etc)-->
-    
-                    <div class="col-md-2">
-                        <label for="marca" class="form-label fw-bold" style="color: #7ab82c;">Marca:</label>
-                        <select id="marca" name="marca" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Acer</option>
-                            <option value="2">Asus</option>
-                            <option value="3">Lenovo</option>
-                            <option value="4">Huawei</option>
-                            <option value="5">HP</option>
-                            <option value="6">Apple</option>
-                            <option value="7">Dell</option>
-                            <option value="8">Toshiba</option>
-                            <option value="9">Alienware</option>
-                        </select>
-                    </div>
-
-                    <!--campo para ingresar el modelo del equipo-->
-
-                    <div class="col-md-4">
-                        <label for="modelo" class="form-label fw-bold" style="color: #7ab82c;">Modelo:</label>
-                        <input type="text" id="modelo" name="modelo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--campo para ingresar el numero de serie del equipo-->
-
-                    <div class="col-md-3">
-                        <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de serie:</label>
-                        <input type="text" id="numero_serie" name="numero_serie" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--campo para ingresar el id del producto-->
-
-                    <div class="col-md-3">
-                        <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id producto:</label>
-                        <input type="text" id="id_producto" name="id_producto" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--lista desplegable para ingresar el sistema operativo-->
-
-                    <div class="col-md-2">
-                        <label for="tipo_sistema" class="form-label fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
-                        <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="Windows10">Windows 10</option>
-                            <option value="Windows11">Windows 11</option>
-                        </select>
-                    </div>
-
-                    <!--lista desplegable para ingresar la licensia (osea si tiene windows home, pro, etc)-->
-
-                    <div class="col-md-3">
-                        <label for="licensia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
-                        <select id="licensia" name="licensia" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Home</option>
-                            <option value="2">Pro</option>
-                            <option value="3">Home Single Language</option>
-                            <option value="4">Server</option>
-                        </select>
-                    </div>
-
-                    <!--lista deplegable para elegir la capacidad de la Ram-->
-
-                    <div class="col-md-1">
-                        <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
-                        <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="4Gb">4Gb</option>
-                            <option value="8Gb">8Gb</option>
-                            <option value="12Gb">12Gb</option>
-                            <option value="16Gb">16Gb</option>
-                            <option value="24Gb">24Gb</option>
-                            <option value="32Gb">32Gb</option>
-                            <option value="48Gb">48Gb</option>                            
-                            <option value="64Gb">64Gb</option>
-                        </select>
-                    </div>
-
-                    <!--campo para ingresar el nombre del procesador-->
-
-                    <div class="col-md-6">
-                        <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
-                        <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--campo para ingresar la grafica o controlador grafico del equipo-->
-
-                    <div class="col-md-6">
-                        <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu/Apu:</label>
-                        <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--lista desplegable para elegir la pantalla del equipo-->
-
-                    <div class="col-md-2">
-                        <label for="display" class="form-label fw-bold" style="color: #7ab82c;">Display:</label>
-                        <select id="display" name="display" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="16  FHD">16 FHD</option>
-                            <option value="14  HD">14 HD</option>
-                            <option value="15,6 FHD">15,6 FHD</option>
-                            <option value="14  IPS">14 IPS</option>
-                            <option value="14  HD Display">14 HD</option>
-                            <option value="17 ,3  FHD">17 ,3 FHD</option>
-                            <option value="15,6  HD">15,6 HD</option>
-                            <option value="14  FHD">14 FHD</option>
-                            <option value="14  HD">14 HD</option>
-                            <option value="15,6 LCD">15,6 LCD</option>
-                            <option value="14 FHD">14 FHD</option>
-                            <option value="15  Full HD">15 Full HD</option>
-                            <option value="15,6  FHD">15,6 FHD</option>
-                            <option value="14  FHD">14 FHD</option>
-                            <option value="15,6  HD">15,6 HD</option>
-                        </select>
-                    </div>
-
-                    <!--lista desplegable para elegir la cantidad de almacenamiento del disco duro-->
-
-                    <div class="col-md-2">
-                        <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
-                        <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="128Gb">128 Gb</option>
-                            <option value="250Gb">250 Gb</option>
-                            <option value="512Gb">512 Gb</option>
-                            <option value="1Tb">1 TB</option>
-                            <option value="1Tb+128Gb">1 TB + 128 GB</option>
-                            <option value="1Tb+250Gb">1 TB + 250 Gb</option>
-                            <option value="1Tb+512Gb">1 TB + 512 Gb</option>
-                            <option value="1Tb+1Tb">1 TB + 1 TB</option>
-                            <option value="2Tb">2 TB</option>
-                        </select>
-                    </div>
-
-                    <!--campo para ingresar el codigo del anydesk para conectarse-->
-
-                    <div class="col-md-2">
-                        <label for="anydesk" class="form-label fw-bold" style="color: #7ab82c;">Anydesk:</label>
-                        <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--lista desplegable para elegir la ubicacion de donde se encuentra el equipo-->
-
-                    <div class="col-md-2">
-                        <label for="ubicacion_equipo" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
-                        <select id="ubicacion_equipo" name="ubicacion_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Bogotá</option>
-                            <option value="2">Riohacha</option>
-                            <option value="3">Neiva</option>
-                            <option value="4">Vencia</option>
-                            <option value="5">Valledupar </option>
-                            <option value="6">Ibague</option>
-                            <option value="7">Santa Marta</option>
-                            <option value="8">Uribia</option>
-                            <option value="9">Sogamoso</option>
-                            <option value="10">Puente Nacional</option>
-                            <option value="11">Tunja</option>
-                            <option value="12">Villavicencio</option>
-                        </select>                        
-                    </div>
-
-                    <!--lista desplegable para elegir la oficina donde se encuentra-->
-
-                    <div class="col-md-2">
-                        <label for="oficina" class="form-label fw-bold" style="color: #7ab82c;">Oficina:</label>
-                        <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Adm</option>
-                            <option value="2">Rio</option>
-                            <option value="3">Nei</option>
-                            <option value="4">Téc</option>
-                            <option value="5">Hof</option>
-                            <option value="6">Home_Office</option>
-                            <option value="8">Uri</option>
-                        </select>                        
-                    </div>
-
-                    <!--lista desplegable para elegir la direccion de la oficina (norte,sur,centro,local)-->
-
-                    <div class="col-md-2">
-                        <label for="direccion" class="form-label fw-bold" style="color: #7ab82c;">Dirección:</label>
-                        <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Norte</option>
-                            <option value="2">Centro</option>
-                            <option value="3">Sur</option>
-                            <option value="4">Local</option>                            
-                        </select>                        
-                    </div>
-                    
-                    <!--campo para la clave del equipo asignado-->
-
-                    <div class="col-md-2">
-                        <label for="clave_equipo" class="form-label fw-bold" style="color: #7ab82c;">Clave:</label>
-                        <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <hr>
-    <!--Parte para ingresar el historial del equipo en el formulario principal-->
-                    <h2 class="fw-bold">
-                        Historial:
-                    </h2>
-
-                    <!--campo para el historial de las asignacion del equipo-->
-
-                    <div class="col-md-12">
-                        <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
-                        <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--campo para los procesos que se le deben hacer al equipo-->
-
-                    <div class="col-md-12">
-                        <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
-                        <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
-                    </div>
-
-                    <!--campo para las observaciones adicionales que se tengan sobre el equipo en cuestion -->
-
-                    <div class="col-md-12">
-                        <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Observaciones:</label>
-                        <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
-                    </div>
-                </div>
-                <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
-                <hr>
+                </div>    
             </form>
         </div>
+    <!--Aca empieza la parte para ingresar los datos del equipo asignado en el formulario principal-->
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
+                            <div class="row">
+                                <h2 class="fw-bold">
+                                    Datos del equipo:
+                                </h2>
+
+                                <!--lista desplegable para elegir el estado de asignacion del equipo-->
+
+                                <div class="col-md-2">
+                                    <label for="estado" class="form-label fw-bold" style="color: #7ab82c;">Estado:</label>
+                                    <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="De_baja">De baja</option>
+                                        <option value="Disponible">Disponible</option>
+                                        <option value="En_garantia">En garantia</option>
+                                        <option value="Ilocalizado">Ilocalizado</option>
+                                        <option value="No_aplica">No aplica</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                    </select>                    
+                                </div>
+
+                                <!--campo para ingresar el codigo designado al equipo-->
+
+                                <div class="col-md-2">
+                                    <label for="codigo" class="form-label fw-bold" style="color: #7ab82c;">Codigo:</label>
+                                    <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" required />
+                                </div>
+
+                                <!--lista desplegable para elegir el tipo de computador (portatil,mesa,etc)-->
+
+                                <div class="col-md-2">
+                                    <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de computador:</label>
+                                    <select id="tipo_computador" name="tipo_computador" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="1">Mesa</option>
+                                        <option value="2">Portatil</option>
+                                        <option value="3">All in one</option>
+                                        <option value="5">Personal</option>
+                                    </select>
+                                </div>
+
+                                <!--lista desplegable para elegir la marca del equipo (HP,DELL,etc)-->
+                
+                                <div class="col-md-2">
+                                    <label for="marca" class="form-label fw-bold" style="color: #7ab82c;">Marca:</label>
+                                    <select id="marca" name="marca" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="1">Acer</option>
+                                        <option value="2">Asus</option>
+                                        <option value="3">Lenovo</option>
+                                        <option value="4">Huawei</option>
+                                        <option value="5">HP</option>
+                                        <option value="6">Apple</option>
+                                        <option value="7">Dell</option>
+                                        <option value="8">Toshiba</option>
+                                        <option value="9">Alienware</option>
+                                    </select>
+                                </div>
+
+                                <!--campo para ingresar el modelo del equipo-->
+
+                                <div class="col-md-4">
+                                    <label for="modelo" class="form-label fw-bold" style="color: #7ab82c;">Modelo:</label>
+                                    <input type="text" id="modelo" name="modelo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <!--campo para ingresar el numero de serie del equipo-->
+
+                                <div class="col-md-3">
+                                    <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de serie:</label>
+                                    <input type="text" id="numero_serie" name="numero_serie" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <!--campo para ingresar el id del producto-->
+
+                                <div class="col-md-3">
+                                    <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id producto:</label>
+                                    <input type="text" id="id_producto" name="id_producto" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <!--lista desplegable para ingresar el sistema operativo-->
+
+                                <div class="col-md-2">
+                                    <label for="tipo_sistema" class="form-label fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
+                                    <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="Windows10">Windows 10</option>
+                                        <option value="Windows11">Windows 11</option>
+                                    </select>
+                                </div>
+
+                                <!--lista desplegable para ingresar la licensia (osea si tiene windows home, pro, etc)-->
+
+                                <div class="col-md-3">
+                                    <label for="licensia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
+                                    <select id="licensia" name="licensia" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="1">Home</option>
+                                        <option value="2">Pro</option>
+                                        <option value="3">Home Single Language</option>
+                                        <option value="4">Server</option>
+                                    </select>
+                                </div>
+
+                                <!--lista deplegable para elegir la capacidad de la Ram-->
+
+                                <div class="col-md-1">
+                                    <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
+                                    <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="4Gb">4Gb</option>
+                                        <option value="8Gb">8Gb</option>
+                                        <option value="12Gb">12Gb</option>
+                                        <option value="16Gb">16Gb</option>
+                                        <option value="24Gb">24Gb</option>
+                                        <option value="32Gb">32Gb</option>
+                                        <option value="48Gb">48Gb</option>                            
+                                        <option value="64Gb">64Gb</option>
+                                    </select>
+                                </div>
+
+                                <!--campo para ingresar el nombre del procesador-->
+
+                                <div class="col-md-6">
+                                    <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
+                                    <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <!--campo para ingresar la grafica o controlador grafico del equipo-->
+
+                                <div class="col-md-6">
+                                    <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu/Apu:</label>
+                                    <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <!--lista desplegable para elegir la pantalla del equipo-->
+
+                                <div class="col-md-2">
+                                    <label for="display" class="form-label fw-bold" style="color: #7ab82c;">Display:</label>
+                                    <select id="display" name="display" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="16  FHD">16 FHD</option>
+                                        <option value="14  HD">14 HD</option>
+                                        <option value="15,6 FHD">15,6 FHD</option>
+                                        <option value="14  IPS">14 IPS</option>
+                                        <option value="14  HD Display">14 HD</option>
+                                        <option value="17 ,3  FHD">17 ,3 FHD</option>
+                                        <option value="15,6  HD">15,6 HD</option>
+                                        <option value="14  FHD">14 FHD</option>
+                                        <option value="14  HD">14 HD</option>
+                                        <option value="15,6 LCD">15,6 LCD</option>
+                                        <option value="14 FHD">14 FHD</option>
+                                        <option value="15  Full HD">15 Full HD</option>
+                                        <option value="15,6  FHD">15,6 FHD</option>
+                                        <option value="14  FHD">14 FHD</option>
+                                        <option value="15,6  HD">15,6 HD</option>
+                                    </select>
+                                </div>
+
+                                <!--lista desplegable para elegir la cantidad de almacenamiento del disco duro-->
+
+                                <div class="col-md-2">
+                                    <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
+                                    <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="128Gb">128 Gb</option>
+                                        <option value="250Gb">250 Gb</option>
+                                        <option value="512Gb">512 Gb</option>
+                                        <option value="1Tb">1 TB</option>
+                                        <option value="1Tb+128Gb">1 TB + 128 GB</option>
+                                        <option value="1Tb+250Gb">1 TB + 250 Gb</option>
+                                        <option value="1Tb+512Gb">1 TB + 512 Gb</option>
+                                        <option value="1Tb+1Tb">1 TB + 1 TB</option>
+                                        <option value="2Tb">2 TB</option>
+                                    </select>
+                                </div>
+
+                                <!--campo para ingresar el codigo del anydesk para conectarse-->
+
+                                <div class="col-md-2">
+                                    <label for="anydesk" class="form-label fw-bold" style="color: #7ab82c;">Anydesk:</label>
+                                    <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <!--lista desplegable para elegir la ubicacion de donde se encuentra el equipo-->
+
+                                <div class="col-md-2">
+                                    <label for="ubicacion_equipo" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
+                                    <select id="ubicacion_equipo" name="ubicacion_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="1">Bogotá</option>
+                                        <option value="2">Riohacha</option>
+                                        <option value="3">Neiva</option>
+                                        <option value="4">Vencia</option>
+                                        <option value="5">Valledupar </option>
+                                        <option value="6">Ibague</option>
+                                        <option value="7">Santa Marta</option>
+                                        <option value="8">Uribia</option>
+                                        <option value="9">Sogamoso</option>
+                                        <option value="10">Puente Nacional</option>
+                                        <option value="11">Tunja</option>
+                                        <option value="12">Villavicencio</option>
+                                    </select>                        
+                                </div>
+
+                                <!--lista desplegable para elegir la oficina donde se encuentra-->
+
+                                <div class="col-md-2">
+                                    <label for="oficina" class="form-label fw-bold" style="color: #7ab82c;">Oficina:</label>
+                                    <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="1">Adm</option>
+                                        <option value="2">Rio</option>
+                                        <option value="3">Nei</option>
+                                        <option value="4">Téc</option>
+                                        <option value="5">Hof</option>
+                                        <option value="6">Home_Office</option>
+                                        <option value="8">Uri</option>
+                                    </select>                        
+                                </div>
+
+                                <!--lista desplegable para elegir la direccion de la oficina (norte,sur,centro,local)-->
+
+                                <div class="col-md-2">
+                                    <label for="direccion" class="form-label fw-bold" style="color: #7ab82c;">Dirección:</label>
+                                    <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        <option value=""></option>
+                                        <option value="1">Norte</option>
+                                        <option value="2">Centro</option>
+                                        <option value="3">Sur</option>
+                                        <option value="4">Local</option>                            
+                                    </select>                        
+                                </div>
+                                
+                                <!--campo para la clave del equipo asignado-->
+
+                                <div class="col-md-2">
+                                    <label for="clave_equipo" class="form-label fw-bold" style="color: #7ab82c;">Clave:</label>
+                                    <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <hr>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Aca va la parte para registrar datos del historial-->
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <form class="col-md-1" action="{{route("example-app.create")}}" method="post" style="width: 200vh;"> 
+                            <div class="row"> 
+                                <h2 class="fw-bold">
+                                    Historial:
+                                </h2>
+
+                                <div class="col-md-12">
+                                    <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
+                                    <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
+                                    <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Observaciones:</label>
+                                    <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
+                                </div>
+                            </div>    
+                        </form>
+                    </div>
+                </div>
+                <hr>
     </div>
 
 <!--Aca es todo lo referente a poder ver,consultar y modificar los datos de la BDD-->
