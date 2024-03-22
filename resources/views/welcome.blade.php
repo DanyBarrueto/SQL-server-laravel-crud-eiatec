@@ -13,14 +13,14 @@
 </head>
 <body>
 
-<!--Logo empresa-->
+<!--Logo de la empresa en el encabezado-->
     <header style="background-color:aquamarine; border-radius:10px; ">
         <div>
             <img src="{{ asset('img/Logo_eiatec.png') }}" class="img-responsive" style="width: 20%; height: auto; margin-left:15vh ">
             </div>
     </header>
 
-<!--Mensajes para indicar si el dato se guardo o actualizo bien-->
+<!--Mensajes para notificar si el dato se guardo o actualizo bien o si fallo en el proceso-->
     @if (session("Correcto"))
     <div class="alert alert-success fw-bold fs-5 ">{{session("Correcto")}}</div>
     @endif
@@ -29,24 +29,25 @@
     <div class="alert alert-danger fw-bold fs-5">{{session("Incorrecto")}}</div>
     @endif
 
-<!--Formulario principal para poder ingresar los datos-->
+<!--Formulario principal para poder ingresar los datos en la BDD-->
     <div class="container">
         <br>
-    <!--Formulario principal, parte de datos personales--> 
+    <!--Formulario principal, registro de los datos personales--> 
         <h2 class="fw-bold" >Datos personales del usuario:</h2>
+
         <div class="row justify-content-center">
             <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
                 @csrf
                 <div class="row">
 
-                    <!--campo cedula-->
+                    <!--campo para insertar la cedula-->
 
                     <div class="col-md-2">
                         <label for="cedula" class="form-label fw-bold" style="color: #7ab82c;">Cédula:</label>
                         <input type="text" id="cedula" name="cedula" class="form-control border-dark  text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" title="Por favor ingresa solo números" required />
                     </div>
 
-                    <!--campo de la expedicion de la cedula-->
+                    <!--lista desplegable para elegir el lugar de la expedicion de la cedula-->
 
                     <div class="col-md-3">
                         <label for="ID_expedicion" class="form-label fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
@@ -1112,14 +1113,14 @@
                         </select>
                     </div>
 
-                    <!--campo nombre-->
+                    <!--campo para insertar el nombre-->
 
                     <div class="col-md-7">
                         <label for="nombre" class="form-label fw-bold" style="color: #7ab82c;">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" required />
                     </div>
 
-                    <!--campo de los coordinadores-->
+                    <!--lista desplegable para elegir a uno de los coordinadores-->
 
                     <div class="col-md-4">
                         <label for="coordinador" class="form-label fw-bold" style="color: #7ab82c;">Coordinador:</label>
@@ -1149,7 +1150,7 @@
                         </select>
                     </div>
 
-                    <!--campo cargo-->
+                    <!--lista desplegable para elegir uno de los cargos-->
 
                     <div class="col-md-8">
                         <label for="cargo" class="form-label fw-bold" style="color: #7ab82c;">Cargo:</label>
@@ -1328,28 +1329,28 @@
                         </select>
                     </div>
 
-                    <!--campo cuenta-->
+                    <!--campo para insertar la cuenta de correo electonico-->
 
                     <div class="col-md-4">
                         <label for="cuenta" class="form-label fw-bold" style="color: #7ab82c;">Cuenta:</label>
                         <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo contraseña de la cuenta-->
+                    <!--campo para insertar la contraseña de la cuenta-->
 
                     <div class="col-md-3">
                         <label for="contraseña" class="form-label fw-bold" style="color: #7ab82c;">Contraseña:</label>
                         <input type="text" id="contraseña" name="contraseña" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo telefono-->
+                    <!--campo para insertar el numero de telefono-->
 
                     <div class="col-md-2">
                         <label for="telefono" class="form-label fw-bold" style="color: #7ab82c;">Telefono:</label>
                         <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo ubicacion-->
+                    <!--lista desplegable para elegir la ubicacion-->
 
                     <div class="col-md-3">
                         <label for="ubicacion" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
@@ -1378,7 +1379,7 @@
                         Datos del equipo:
                     </h2>
 
-                    <!--campo estado de asignacion del equipo-->
+                    <!--lista desplegable para elegir el estado de asignacion del equipo-->
 
                     <div class="col-md-2">
                         <label for="estado" class="form-label fw-bold" style="color: #7ab82c;">Estado:</label>
@@ -1393,14 +1394,14 @@
                         </select>                    
                     </div>
 
-                    <!--campo del codigo designado al equipo-->
+                    <!--campo para ingresar el codigo designado al equipo-->
 
                     <div class="col-md-2">
                         <label for="codigo" class="form-label fw-bold" style="color: #7ab82c;">Codigo:</label>
                         <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" required />
                     </div>
 
-                    <!--campo para tipo de computador (portatil,mesa,etc)-->
+                    <!--lista desplegable para elegir el tipo de computador (portatil,mesa,etc)-->
 
                     <div class="col-md-2">
                         <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de computador:</label>
@@ -1413,7 +1414,7 @@
                         </select>
                     </div>
 
-                    <!--campo marca (HP,DELL,etc)-->
+                    <!--lista desplegable para elegir la marca del equipo (HP,DELL,etc)-->
     
                     <div class="col-md-2">
                         <label for="marca" class="form-label fw-bold" style="color: #7ab82c;">Marca:</label>
@@ -1431,28 +1432,28 @@
                         </select>
                     </div>
 
-                    <!--campo para modelo del equipo-->
+                    <!--campo para ingresar el modelo del equipo-->
 
                     <div class="col-md-4">
                         <label for="modelo" class="form-label fw-bold" style="color: #7ab82c;">Modelo:</label>
                         <input type="text" id="modelo" name="modelo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo para el numero de serie del equipo-->
+                    <!--campo para ingresar el numero de serie del equipo-->
 
                     <div class="col-md-3">
                         <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de serie:</label>
                         <input type="text" id="numero_serie" name="numero_serie" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo para el id del producto-->
+                    <!--campo para ingresar el id del producto-->
 
                     <div class="col-md-3">
                         <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id producto:</label>
                         <input type="text" id="id_producto" name="id_producto" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo insertar el sistema operativo-->
+                    <!--lista desplegable para ingresar el sistema operativo-->
 
                     <div class="col-md-2">
                         <label for="tipo_sistema" class="form-label fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
@@ -1463,7 +1464,7 @@
                         </select>
                     </div>
 
-                    <!--campo licensia (osea si tiene windows home, pro, etc)-->
+                    <!--lista desplegable para ingresar la licensia (osea si tiene windows home, pro, etc)-->
 
                     <div class="col-md-3">
                         <label for="licensia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
@@ -1476,7 +1477,7 @@
                         </select>
                     </div>
 
-                    <!--campo Ram-->
+                    <!--lista deplegable para elegir la capacidad de la Ram-->
 
                     <div class="col-md-1">
                         <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
@@ -1493,21 +1494,21 @@
                         </select>
                     </div>
 
-                    <!--campo procesador-->
+                    <!--campo para ingresar el nombre del procesador-->
 
                     <div class="col-md-6">
                         <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
                         <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo para la grafica o controlador grafico del equipo-->
+                    <!--campo para ingresar la grafica o controlador grafico del equipo-->
 
                     <div class="col-md-6">
                         <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu/Apu:</label>
                         <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo para la pantalla del equipo-->
+                    <!--lista desplegable para elegir la pantalla del equipo-->
 
                     <div class="col-md-2">
                         <label for="display" class="form-label fw-bold" style="color: #7ab82c;">Display:</label>
@@ -1531,7 +1532,7 @@
                         </select>
                     </div>
 
-                    <!--campo para la cantidad de almacenamiento del disco duro-->
+                    <!--lista desplegable para elegir la cantidad de almacenamiento del disco duro-->
 
                     <div class="col-md-2">
                         <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
@@ -1549,14 +1550,14 @@
                         </select>
                     </div>
 
-                    <!--campo para el codigo del anydesk para conectarse-->
+                    <!--campo para ingresar el codigo del anydesk para conectarse-->
 
                     <div class="col-md-2">
                         <label for="anydesk" class="form-label fw-bold" style="color: #7ab82c;">Anydesk:</label>
                         <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
-                    <!--campo para la ubicacion de donde se encuentra el equipo-->
+                    <!--lista desplegable para elegir la ubicacion de donde se encuentra el equipo-->
 
                     <div class="col-md-2">
                         <label for="ubicacion_equipo" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
@@ -1577,7 +1578,7 @@
                         </select>                        
                     </div>
 
-                    <!--campo para la oficina donde se encuentra-->
+                    <!--lista desplegable para elegir la oficina donde se encuentra-->
 
                     <div class="col-md-2">
                         <label for="oficina" class="form-label fw-bold" style="color: #7ab82c;">Oficina:</label>
@@ -1593,7 +1594,7 @@
                         </select>                        
                     </div>
 
-                    <!--campo para la direccion de la oficina (norte,sur,centro,local)-->
+                    <!--lista desplegable para elegir la direccion de la oficina (norte,sur,centro,local)-->
 
                     <div class="col-md-2">
                         <label for="direccion" class="form-label fw-bold" style="color: #7ab82c;">Dirección:</label>
