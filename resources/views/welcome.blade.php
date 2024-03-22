@@ -38,10 +38,15 @@
             <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
                 @csrf
                 <div class="row">
+
+                    <!--campo cedula-->
+
                     <div class="col-md-2">
                         <label for="cedula" class="form-label fw-bold" style="color: #7ab82c;">Cédula:</label>
                         <input type="text" id="cedula" name="cedula" class="form-control border-dark  text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" title="Por favor ingresa solo números" required />
                     </div>
+
+                    <!--campo de la expedicion de la cedula-->
 
                     <div class="col-md-3">
                         <label for="ID_expedicion" class="form-label fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
@@ -1107,10 +1112,14 @@
                         </select>
                     </div>
 
+                    <!--campo nombre-->
+
                     <div class="col-md-7">
                         <label for="nombre" class="form-label fw-bold" style="color: #7ab82c;">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" required />
                     </div>
+
+                    <!--campo de los coordinadores-->
 
                     <div class="col-md-4">
                         <label for="coordinador" class="form-label fw-bold" style="color: #7ab82c;">Coordinador:</label>
@@ -1139,6 +1148,8 @@
                             <option value="21">Ninguno</option>
                         </select>
                     </div>
+
+                    <!--campo cargo-->
 
                     <div class="col-md-8">
                         <label for="cargo" class="form-label fw-bold" style="color: #7ab82c;">Cargo:</label>
@@ -1317,20 +1328,28 @@
                         </select>
                     </div>
 
+                    <!--campo cuenta-->
+
                     <div class="col-md-4">
                         <label for="cuenta" class="form-label fw-bold" style="color: #7ab82c;">Cuenta:</label>
                         <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
+
+                    <!--campo contraseña de la cuenta-->
 
                     <div class="col-md-3">
                         <label for="contraseña" class="form-label fw-bold" style="color: #7ab82c;">Contraseña:</label>
                         <input type="text" id="contraseña" name="contraseña" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
 
+                    <!--campo telefono-->
+
                     <div class="col-md-2">
                         <label for="telefono" class="form-label fw-bold" style="color: #7ab82c;">Telefono:</label>
                         <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
+
+                    <!--campo ubicacion-->
 
                     <div class="col-md-3">
                         <label for="ubicacion" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
@@ -1359,6 +1378,8 @@
                         Datos del equipo:
                     </h2>
 
+                    <!--campo estado de asignacion del equipo-->
+
                     <div class="col-md-2">
                         <label for="estado" class="form-label fw-bold" style="color: #7ab82c;">Estado:</label>
                         <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
@@ -1372,10 +1393,14 @@
                         </select>                    
                     </div>
 
+                    <!--campo del codigo designado al equipo-->
+
                     <div class="col-md-2">
                         <label for="codigo" class="form-label fw-bold" style="color: #7ab82c;">Codigo:</label>
                         <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" required />
                     </div>
+
+                    <!--campo para tipo de computador (portatil,mesa,etc)-->
 
                     <div class="col-md-2">
                         <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de computador:</label>
@@ -1388,6 +1413,8 @@
                         </select>
                     </div>
 
+                    <!--campo marca (HP,DELL,etc)-->
+    
                     <div class="col-md-2">
                         <label for="marca" class="form-label fw-bold" style="color: #7ab82c;">Marca:</label>
                         <select id="marca" name="marca" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
@@ -1404,29 +1431,39 @@
                         </select>
                     </div>
 
+                    <!--campo para modelo del equipo-->
+
                     <div class="col-md-4">
                         <label for="modelo" class="form-label fw-bold" style="color: #7ab82c;">Modelo:</label>
                         <input type="text" id="modelo" name="modelo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
+
+                    <!--campo para el numero de serie del equipo-->
 
                     <div class="col-md-3">
                         <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de serie:</label>
                         <input type="text" id="numero_serie" name="numero_serie" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
+                    <!--campo para el id del producto-->
+
                     <div class="col-md-3">
                         <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id producto:</label>
                         <input type="text" id="id_producto" name="id_producto" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
+                    <!--campo insertar el sistema operativo-->
+
                     <div class="col-md-2">
                         <label for="tipo_sistema" class="form-label fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
                         <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                             <option value=""></option>
-                            <option value="1">Windows 10</option>
-                            <option value="2">Windows 11</option>
+                            <option value="Windows10">Windows 10</option>
+                            <option value="Windows11">Windows 11</option>
                         </select>
                     </div>
+
+                    <!--campo licensia (osea si tiene windows home, pro, etc)-->
 
                     <div class="col-md-3">
                         <label for="licensia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
@@ -1438,6 +1475,8 @@
                             <option value="4">Server</option>
                         </select>
                     </div>
+
+                    <!--campo Ram-->
 
                     <div class="col-md-1">
                         <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
@@ -1454,15 +1493,21 @@
                         </select>
                     </div>
 
+                    <!--campo procesador-->
+
                     <div class="col-md-6">
                         <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
                         <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
+                    <!--campo para la grafica o controlador grafico del equipo-->
+
                     <div class="col-md-6">
                         <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu/Apu:</label>
                         <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
+
+                    <!--campo para la pantalla del equipo-->
 
                     <div class="col-md-2">
                         <label for="display" class="form-label fw-bold" style="color: #7ab82c;">Display:</label>
@@ -1486,6 +1531,8 @@
                         </select>
                     </div>
 
+                    <!--campo para la cantidad de almacenamiento del disco duro-->
+
                     <div class="col-md-2">
                         <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
                         <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
@@ -1502,10 +1549,14 @@
                         </select>
                     </div>
 
+                    <!--campo para el codigo del anydesk para conectarse-->
+
                     <div class="col-md-2">
                         <label for="anydesk" class="form-label fw-bold" style="color: #7ab82c;">Anydesk:</label>
                         <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
+
+                    <!--campo para la ubicacion de donde se encuentra el equipo-->
 
                     <div class="col-md-2">
                         <label for="ubicacion_equipo" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
@@ -1526,6 +1577,8 @@
                         </select>                        
                     </div>
 
+                    <!--campo para la oficina donde se encuentra-->
+
                     <div class="col-md-2">
                         <label for="oficina" class="form-label fw-bold" style="color: #7ab82c;">Oficina:</label>
                         <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
@@ -1539,7 +1592,9 @@
                             <option value="8">Uri</option>
                         </select>                        
                     </div>
-                    
+
+                    <!--campo para la direccion de la oficina (norte,sur,centro,local)-->
+
                     <div class="col-md-2">
                         <label for="direccion" class="form-label fw-bold" style="color: #7ab82c;">Dirección:</label>
                         <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
@@ -1550,6 +1605,8 @@
                             <option value="4">Local</option>                            
                         </select>                        
                     </div>
+                    
+                    <!--campo para la clave del equipo asignado-->
 
                     <div class="col-md-2">
                         <label for="clave_equipo" class="form-label fw-bold" style="color: #7ab82c;">Clave:</label>
@@ -1557,20 +1614,26 @@
                     </div>
 
                     <hr>
-                    <!--Parte para ingresar el historial del equipo en el formulario principal-->
+    <!--Parte para ingresar el historial del equipo en el formulario principal-->
                     <h2 class="fw-bold">
                         Historial:
                     </h2>
+
+                    <!--campo para el historial de las asignacion del equipo-->
 
                     <div class="col-md-12">
                         <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
                         <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
 
+                    <!--campo para los procesos que se le deben hacer al equipo-->
+
                     <div class="col-md-12">
                         <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
                         <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
                     </div>
+
+                    <!--campo para las observaciones adicionales que se tengan sobre el equipo en cuestion -->
 
                     <div class="col-md-12">
                         <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Observaciones:</label>
@@ -1583,14 +1646,14 @@
         </div>
     </div>
 
-<!--Tabla para los datos de la BDD-->
+<!--Aca es todo lo referente a poder ver,consultar y modificar los datos de la BDD-->
 
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
                 <h2 class="mt-3 text-dark fw-bold" >Tabla de trabajadores:</h2>
 
-                <!--Buscador para encontrar registros en especifico-->
+                <!--Aca se declara la parte para permitir las busquedas-->
                 <div class="row">
                     <div class="col-xl-12">
                         <form action="{{route('example-app.buscar')}}" method="GET">
@@ -1616,7 +1679,7 @@
 
                 <br>
 
-                <!--Encabezaco de la tabla para los datos de la BDD-->
+                <!--Encabezado de la tabla para los datos de la BDD-->
                 <div class="table-responsive overflow-auto" style="max-height:45vh;">
                     <table class="table table-light ">
                         <thead class="table-success table-responsive ">
@@ -1650,7 +1713,8 @@
                         </thead>
                         <tbody>
                             
-                            <!--Conexion con BDD con el proposito de mostrar los datos registrados haya -->
+                            <!--Conexion con BDD para permitir mostrar los datos registrados
+                                en la tabla recien creada-->
                             @foreach ($datos as $item)
                             <tr>
                                 <td>{{$item->ID}}</td>
@@ -1697,29 +1761,40 @@
                                                     @csrf
 
                                                     <div class="row">
-                                                        
+
+                                                    <!--Desde aca se editan los datos personales del trabajador-->
+
                                                         <h2 class="fw-bold">
                                                             Datos personales:
                                                         </h2>
+
+                                                        <!--campo para mostrar el ID del registro (NO es editable)-->
 
                                                         <div class="col-md-1">
                                                             <label for="id" class="form-label fw-bold">ID</label>
                                                             <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID}}" readonly >
                                                         </div>
 
+                                                        <!--campo para editar la cedula-->
+
                                                         <div class="col-md-2">
                                                             <label for="cedula" class="form-label fw-bold">Cédula:</label>
                                                             <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
                                                         </div>
+
+                                                        <!--campo para editar el nombre -->
+
                                                         <div class="col-md-7">
                                                             <label for="nombre" class="form-label fw-bold">Nombre:</label>
                                                             <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
                                                         </div>
 
-                                                        <!--
-                                                            Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
-                                                            se incluyo la parte donde en ves de coger los datos compara el dato puesto con las opciones y las muestra
-                                                        -->
+                                                    <!--
+                                                        Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
+                                                        se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
+                                                        halla coincidencia hace que las muestre
+                                                    -->
+
                                                         <div class="col-md-2">
                                                             <label for="oficina" class="form-label fw-bold">Oficina:</label>
                                                             <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #33ccff;" >
@@ -1735,6 +1810,8 @@
                                                             </select>
                                                         </div>
                                                         
+                                                        <!--campo para editar el area -->
+
                                                         <div class="col-md-2">
                                                             <label for="area" class="form-label fw-bold">Area:</label>
                                                             <select id="area" name="area" class="form-select border-dark text-white" style="background-color: #33ccff;" >
@@ -1747,6 +1824,8 @@
                                                                 <option value="Gerencia" {{ $item->Area == 'Gerencia' ? 'selected' : '' }}>Gerencia</option>
                                                             </select>
                                                         </div>
+
+                                                        <!--campo para editar el cargo del trabajador-->
 
                                                         <div class="col-md-6">
                                                             <label for="cargo" class="form-label fw-bold">Cargo:</label>
@@ -1803,10 +1882,14 @@
                                                             </select>
                                                         </div>
                                                         
+                                                        <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
+
                                                         <div class="col-md-4">
                                                             <label for="cuenta" class="form-label fw-bold">Cuenta:</label>
                                                             <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Cuenta}}"  />
                                                         </div>
+
+                                                        <!--campo para editar la region-->
 
                                                         <div class="col-md-2">
                                                             <label for="region" class="form-label fw-bold">Región:</label>
@@ -1818,21 +1901,27 @@
                                                             </select>                                                    
                                                         </div>
 
+                                                        <!--campo para editar la ubicacion-->
+
                                                         <div class="col-md-3">
                                                             <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
                                                             <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
                                                             <br>
                                                         </div>
                                                         
-                                                        <!--Aca empieza la parte de los datos del equipo en el modal-->
+                                                    <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
                                                         <h2 class="fw-bold">
                                                             Datos del equipo:
                                                         </h2>
                                     
+                                                        <!--campo para editar el codigo asignado al equipo-->
+
                                                         <div class="col-md-2">
                                                             <label for="codigo" class="form-label fw-bold">Codigo:</label>
                                                             <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Codigo}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
                                                         </div>
+
+                                                        <!--campo para editar el sistema operativo que se utiliza en el equipo-->
 
                                                         <div class="col-md-6">
                                                             <label for="tipo_sistema" class="form-label fw-bold">Tipo de sistema:</label>
@@ -1849,7 +1938,8 @@
                                                             </select>
                                                         </div>
                                                         
-                                    
+                                                        <!--campo para editar la cantidad de ram asignado a um equipo-->
+
                                                         <div class="col-md-2">
                                                             <label for="ram" class="form-label fw-bold">Ram:</label>
                                                             <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #33ccff;" >
@@ -1862,6 +1952,8 @@
                                                                 <option value="64Gb" {{ $item->Ram == '64Gb' ? 'selected' : '' }}>64Gb</option>
                                                             </select>
                                                         </div>
+
+                                                        <!--campo para editar la capacidad de disco duro en el equipo-->
                                                         
                                                         <div class="col-md-2">
                                                             <label for="disco_duro" class="form-label fw-bold">Disco duro:</label>
@@ -1878,28 +1970,37 @@
                                                             <br>
                                                         </div>
                                                         
-                                                        <!--Aca empieza la parte del historial del equipo en el modal-->
+                                                        <!--Aca empieza la parte donde se edita el historico del equipo-->
 
                                                         <h2 class="fw-bold">
                                                             Historial:
                                                         </h2>
-                                    
+
+                                                        <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
+
                                                         <div class="col-md-12">
                                                             <label for="historial_asignacion" class="form-label fw-bold">Historial asignacion:</label>
                                                             <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color:  #33ccff;" value="{{$item->Historial_asignacion}}"  />
                                                         </div>
                                     
+                                                        <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
+
                                                         <div class="col-md-12">
                                                             <label for="procesos_ejecutar" class="form-label fw-bold">Procesos a ejecutar:</label>
                                                             <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color:  #33ccff;" value="{{$item->Procesos_a_ejecutar}}"  />
                                                         </div>
-                                    
+                                
+                                                        <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
+
                                                         <div class="col-md-12">
                                                             <label for="observaciones" class="form-label fw-bold">Observaciones:</label>
                                                             <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #33ccff;" >{{$item->Observaciones}}</textarea>
                                                         </div>
                                                         
                                                         <br><br>
+
+                                                        <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
+                                                        en los datos -->
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal" id="boton_cerrar">Cerrar</button>
