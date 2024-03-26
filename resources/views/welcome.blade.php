@@ -12,7 +12,7 @@
     <title>Eiatec</title>
 </head>
 <body>
-
+    
 <!--Logo de la empresa en el encabezado-->
     <header style="background-color:aquamarine; border-radius:10px; ">
         <div>
@@ -33,7 +33,7 @@
     <div class="container">
         <br>
     <!--Formulario principal, registro de los datos personales--> 
-        <h2 class="fw-bold" >Datos personales del usuario:</h2>
+        <h2 class="fw-bold" >Datos personales del trabajador:</h2>
 
         <div class="row justify-content-center">
             <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
@@ -1372,9 +1372,13 @@
                         <br>
                     </div>
 
+                    <!--Boton para enviar los datos del trabajador a la base de datos-->
+
                     <div class="col-md-1">
                         <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
                     </div>
+
+                    <!--Boton para limpiar los datos de los campos de la parte del trabajador-->
 
                     <div class="col-md-1">
                         <input type="submit" class="btn btn-lg btn-info mt-2 fw-bold" id="boton_limpiar" value="Limpiar" formaction="{{ route('example-app.index') }}">
@@ -1719,34 +1723,19 @@
                 <br>
 
                 <!--Encabezado de la tabla para los datos de la BDD-->
-                <div class="table-responsive overflow-auto" style="max-height:45vh;">
+                <div class="table-responsive overflow-auto" style="max-height:30vh;">
                     <table class="table table-light ">
                         <thead class="table-success table-responsive ">
                           <tr>
                             <th>#</th>
-                            <th>Nombre</th>
                             <th>Cédula</th>
-                            <th>Cuenta</th>
-                            <th>Ubicación</th>
-                            <th>Area</th>
+                            <th>Nombre</th>
                             <th>Cargo</th>
-                            <th>Codigo</th>
-                            <th>Región</th>
-                            <th>Oficina</th>
-                            <th>Tipo de computador</th>
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Número de serie</th>
-                            <th>Id producto</th>
-                            <th>Procesador</th>
-                            <th>Ram</th>
-                            <th>Disco duro</th>
-                            <th>Gpu</th>
-                            <th>Tipo de sistema</th>
-                            <th>Display</th>
-                            <th>Historial asignación</th>
-                            <th>Procesos a ejecutar</th>
-                            <th>Observaciones</th>
+                            <th>Cuenta</th>
+                            <th>Contraseña</th>
+                            <th>Ubicacion</th>
+                            <th>Telefono</th>
+                            <th>Coordinador</th>
                             <th>Editar</th>
                           </tr>
                         </thead>
@@ -1757,29 +1746,14 @@
                             @foreach ($datos as $item)
                             <tr>
                                 <td>{{$item->ID}}</td>
-                                <td>{{$item->Nombre}}</td>
                                 <td>{{$item->Cedula}}</td>
-                                <td>{{$item->Cuenta}}</td>
-                                <td>{{$item->Ubicacion}}</td>
-                                <td>{{$item->Area}}</td>
+                                <td>{{$item->Nombre}}</td>
                                 <td>{{$item->Cargo}}</td>
+                                <td>{{$item->Cuenta}}</td>
+                                <td>{{$item->Area}}</td>
+                                <td>{{$item->Ubicacion}}</td>
                                 <td>{{$item->Codigo}}</td>
                                 <td>{{$item->Region}}</td>
-                                <td>{{$item->Oficina}}</td>
-                                <td>{{$item->Tipo_de_computador}}</td>
-                                <td>{{$item->Marca}}</td>
-                                <td>{{$item->Modelo}}</td>
-                                <td>{{$item->Numero_de_serie}}</td>
-                                <td>{{$item->Id_producto}}</td>
-                                <td>{{$item->Procesador}}</td>
-                                <td>{{$item->Ram}}</td>
-                                <td>{{$item->Disco_duro}}</td>
-                                <td>{{$item->Gpu}}</td>
-                                <td>{{$item->Tipo_de_sistema}}</td>
-                                <td>{{$item->Display}}</td>
-                                <td>{{$item->Historial_asignacion}}</td>
-                                <td>{{$item->Procesos_a_ejecutar}}</td>
-                                <td>{{$item->Observaciones}}</td>
                                 <td>
                                   <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
@@ -2055,7 +2029,9 @@
                           
                         </tbody>
                       </table>
-                    </div>             
+                      
+                    </div>
+
                   </div>
                 </div>
     </div>
