@@ -1372,9 +1372,15 @@
                         <br>
                     </div>
 
-                    <div>
+                    <div class="col-md-1">
                         <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
                     </div>
+
+                    <div class="col-md-1">
+                        <input type="submit" class="btn btn-lg btn-info mt-2 fw-bold" id="boton_limpiar" value="Limpiar" formaction="{{ route('example-app.index') }}">
+                    </div>
+
+                    <br> <br> <br>
                     <hr>
                 </div>    
             </form>
@@ -1382,7 +1388,7 @@
     <!--Aca empieza la parte para ingresar los datos del equipo asignado en el formulario principal-->
                 <div class="container">
                     <div class="row justify-content-center">
-                        <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
+                        <form class="col-md-8" action="{{route("example-app.create2")}}" method="post" style="width: 200vh;">
                             <div class="row">
                                 <h2 class="fw-bold">
                                     Datos del equipo:
@@ -1623,21 +1629,35 @@
                                     <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
 
+                                <div>
+                                    <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
+
+                                    <input type="submit" class="btn btn-lg btn-info mt-2 fw-bold" id="boton_limpiar" value="Limpiar" formaction="{{ route('example-app.index') }}">
+
+                                </div>
+
+                                <br> <br> <br>
                                 <hr>
+                                
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <!--Aca va la parte para registrar datos del historial-->
+    <!--Aca va la parte para registrar datos del historial-->
 
                 <div class="container">
                     <div class="row justify-content-center">
-                        <form class="col-md-1" action="{{route("example-app.create")}}" method="post" style="width: 200vh;"> 
+                        <form class="col-md-1" action="{{route("example-app.create3")}}" method="post" style="width: 200vh;"> 
                             <div class="row"> 
                                 <h2 class="fw-bold">
                                     Historial:
                                 </h2>
+
+                                <div class="col-md-3">
+                                    <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">ID del equipo</label>
+                                    <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
+                                </div>
 
                                 <div class="col-md-12">
                                     <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
@@ -1653,7 +1673,12 @@
                                     <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Observaciones:</label>
                                     <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
                                 </div>
-                            </div>    
+                            </div>
+        
+                            <div>
+                                <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
+                            </div>
+
                         </form>
                     </div>
                 </div>
