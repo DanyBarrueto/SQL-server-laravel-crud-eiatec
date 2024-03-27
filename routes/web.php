@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Ruta para poder 
-
+//Ruta para poder ver los datos de las tablas principales (trabajadores,equipos,historico)
 
     Route::get('/', [CrudController::class, "index"])->name("example-app.index");
 

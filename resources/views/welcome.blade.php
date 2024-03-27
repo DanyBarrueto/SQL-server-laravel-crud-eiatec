@@ -1332,7 +1332,7 @@
                     <!--campo para insertar la cuenta de correo electonico-->
 
                     <div class="col-md-4">
-                        <label for="cuenta" class="form-label fw-bold" style="color: #7ab82c;">Cuenta:</label>
+                        <label for="cuenta" class="form-label fw-bold" style="color: #7ab82c;">Correo:</label>
                         <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
 
@@ -1729,9 +1729,10 @@
                           <tr>
                             <th>#</th>
                             <th>Cédula</th>
+                            <th>Expedicion</th>
                             <th>Nombre</th>
                             <th>Cargo</th>
-                            <th>Cuenta</th>
+                            <th>Correo</th>
                             <th>Contraseña</th>
                             <th>Ubicacion</th>
                             <th>Telefono</th>
@@ -1743,23 +1744,24 @@
                             
                             <!--Conexion con BDD para permitir mostrar los datos registrados
                                 en la tabla recien creada-->
-                            @foreach ($datos as $item)
+                            @foreach ($trabajadores as $item)
                             <tr>
-                                <td>{{$item->ID}}</td>
+                                <td>{{$item->ID_trabajador}}</td>
                                 <td>{{$item->Cedula}}</td>
+                                <td>{{$item->ID_expedicion}}</td>
                                 <td>{{$item->Nombre}}</td>
-                                <td>{{$item->Cargo}}</td>
-                                <td>{{$item->Cuenta}}</td>
-                                <td>{{$item->Area}}</td>
-                                <td>{{$item->Ubicacion}}</td>
-                                <td>{{$item->Codigo}}</td>
-                                <td>{{$item->Region}}</td>
+                                <td>{{$item->ID_cargo}}</td>
+                                <td>{{$item->Correo}}</td>
+                                <td>{{$item->Contraseña}}</td>
+                                <td>{{$item->ID_ubicacion}}</td>
+                                <td>{{$item->Telefono}}</td>
+                                <td>{{$item->ID_coordinacion}}</td>
                                 <td>
-                                  <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                  <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
   
-                                <!-- Modal para modificar los datos de los registros de la BDD-->
-                                <div class="modal fade" id="modalEditar{{$item->ID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                            <!-- Modal para modificar los datos de los registros de la BDD-->
+                                <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
                                             <div class="modal-header " style="background-color: #f79a0e;">
@@ -1785,7 +1787,7 @@
 
                                                         <div class="col-md-1">
                                                             <label for="id" class="form-label fw-bold">ID</label>
-                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID}}" readonly >
+                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_trabajador}}" readonly >
                                                         </div>
 
                                                         <!--campo para editar la cedula-->
@@ -1808,111 +1810,25 @@
                                                         halla coincidencia hace que las muestre
                                                     -->
 
-                                                        <div class="col-md-2">
-                                                            <label for="oficina" class="form-label fw-bold">Oficina:</label>
-                                                            <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="N_Rio" {{ $item->Oficina == 'N_Rio' ? 'selected' : '' }}>N_Rio</option>
-                                                                <option value="S_Nei" {{ $item->Oficina == 'S_Nei' ? 'selected' : '' }}>S_Nei</option>
-                                                                <option value="C_Téc" {{ $item->Oficina == 'C_Téc' ? 'selected' : '' }}>C_Téc</option>
-                                                                <option value="C_Adm" {{ $item->Oficina == 'C_Adm' ? 'selected' : '' }}>C_Adm</option>
-                                                                <option value="C_Hof" {{ $item->Oficina == 'C_Hof' ? 'selected' : '' }}>C_Hof</option>
-                                                                <option value="N_Hof" {{ $item->Oficina == 'N_Hof' ? 'selected' : '' }}>N_Hof</option>
-                                                                <option value="S_Hof" {{ $item->Oficina == 'S_Hof' ? 'selected' : '' }}>S_Hof</option>
-                                                                <option value="N_Uri" {{ $item->Oficina == 'N_Uri' ? 'selected' : '' }}>N_Uri</option>
-                                                            </select>
-                                                        </div>
+
                                                         
                                                         <!--campo para editar el area -->
 
-                                                        <div class="col-md-2">
-                                                            <label for="area" class="form-label fw-bold">Area:</label>
-                                                            <select id="area" name="area" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="Tecnica" {{ $item->Area == 'Tecnica' ? 'selected' : '' }}>Tecnica</option>
-                                                                <option value="Contabilidad" {{ $item->Area == 'Contabilidad' ? 'selected' : '' }}>Contabilidad</option>
-                                                                <option value="Administracion" {{ $item->Area == 'Administracion' ? 'selected' : '' }}>Administracion</option>
-                                                                <option value="Geb_Centro" {{ $item->Area == 'Geb_Centro' ? 'selected' : '' }}>Geb_Centro</option>
-                                                                <option value="Geb_Norte" {{ $item->Area == 'Geb_Norte' ? 'selected' : '' }}>Geb_Norte</option>
-                                                                <option value="Gerencia" {{ $item->Area == 'Gerencia' ? 'selected' : '' }}>Gerencia</option>
-                                                            </select>
-                                                        </div>
+
 
                                                         <!--campo para editar el cargo del trabajador-->
 
-                                                        <div class="col-md-6">
-                                                            <label for="cargo" class="form-label fw-bold">Cargo:</label>
-                                                            <select id="cargo" name="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="Gerente" {{ $item->Cargo == 'Gerente' ? 'selected' : '' }}>Gerente</option>
-                                                                <option value="Profesional Forestal" {{ $item->Cargo == 'Profesional Forestal' ? 'selected' : '' }}>Profesional Forestal</option>
-                                                                <option value="Profesional Ambiental" {{ $item->Cargo == 'Profesional Ambiental' ? 'selected' : '' }}>Profesional Ambiental</option>
-                                                                <option value="Gestor Predial" {{ $item->Cargo == 'Gestor Predial' ? 'selected' : '' }}>Gestor Predial</option>
-                                                                <option value="Coordinador de Proyectos" {{ $item->Cargo == 'Coordinador de Proyectos' ? 'selected' : '' }}>Coordinador de Proyectos</option>
-                                                                <option value="Auxiliar HSEQ" {{ $item->Cargo == 'Auxiliar HSEQ' ? 'selected' : '' }}>Auxiliar HSEQ</option>
-                                                                <option value="Profesional Civil" {{ $item->Cargo == 'Profesional Civil' ? 'selected' : '' }}>Profesional Civil</option>
-                                                                <option value="Profesional Social" {{ $item->Cargo == 'Profesional Social' ? 'selected' : '' }}>Profesional Social</option>
-                                                                <option value="Gerente Tecnico" {{ $item->Cargo == 'Gerente Tecnico' ? 'selected' : '' }}>Gerente Tecnico</option>
-                                                                <option value="Coordinador De Arqueología" {{ $item->Cargo == 'Coordinador De Arqueología' ? 'selected' : '' }}>Coordinador De Arqueología</option>
-                                                                <option value="Profesional Biologo" {{ $item->Cargo == 'Profesional Biologo' ? 'selected' : '' }}>Profesional Biologo</option>
-                                                                <option value="Tecnologo Social" {{ $item->Cargo == 'Tecnologo Social' ? 'selected' : '' }}>Tecnologo Social</option>
-                                                                <option value="Auxiliar de Servicios Generales" {{ $item->Cargo == 'Auxiliar de Servicios Generales' ? 'selected' : '' }}>Auxiliar de Servicios Generales</option>
-                                                                <option value="Coordinador Sig" {{ $item->Cargo == 'Coordinador Sig' ? 'selected' : '' }}>Coordinador Sig</option>
-                                                                <option value="Gerente Administrativo" {{ $item->Cargo == 'Gerente Administrativo' ? 'selected' : '' }}>Gerente Administrativo</option>
-                                                                <option value="Coordinador Area Sig" {{ $item->Cargo == 'Coordinador Area Sig' ? 'selected' : '' }}>Coordinador Area Sig</option>
-                                                                <option value="Contador Junior" {{ $item->Cargo == 'Contador Junior' ? 'selected' : '' }}>Contador Junior</option>
-                                                                <option value="Gestor Social" {{ $item->Cargo == 'Gestor Social' ? 'selected' : '' }}>Gestor Social</option>
-                                                                <option value="Logistico/Conduccion" {{ $item->Cargo == 'Logistico/Conduccion' ? 'selected' : '' }}>Logistico/Conduccion</option>
-                                                                <option value="Profesional Geologo" {{ $item->Cargo == 'Profesional Geologo' ? 'selected' : '' }}>Profesional Geologo</option>
-                                                                <option value="Profesional Biotico" {{ $item->Cargo == 'Profesional Biotico' ? 'selected' : '' }}>Profesional Biotico</option>
-                                                                <option value="Profesional Especializado" {{ $item->Cargo == 'Profesional Especializado' ? 'selected' : '' }}>Profesional Especializado</option>
-                                                                <option value="Asistente Administrativo" {{ $item->Cargo == 'Asistente Administrativo' ? 'selected' : '' }}>Asistente Administrativo</option>
-                                                                <option value="Profesional Abiotico" {{ $item->Cargo == 'Profesional Abiotico' ? 'selected' : '' }}>Profesional Abiotico</option>
-                                                                <option value="Asistente De Facturacion" {{ $item->Cargo == 'Asistente De Facturacion' ? 'selected' : '' }}>Asistente De Facturacion</option>
-                                                                <option value="Estructurador de Proyectos" {{ $item->Cargo == 'Estructurador de Proyectos' ? 'selected' : '' }}>Estructurador de Proyectos</option>
-                                                                <option value="Gerente General" {{ $item->Cargo == 'Gerente General' ? 'selected' : '' }}>Gerente General</option>
-                                                                <option value="Logistico" {{ $item->Cargo == 'Logistico' ? 'selected' : '' }}>Logistico</option>
-                                                                <option value="Auxiliar Tecnico/Alturas" {{ $item->Cargo == 'Auxiliar Tecnico/Alturas' ? 'selected' : '' }}>Auxiliar Tecnico/Alturas</option>
-                                                                <option value="Profesional Arqueologo" {{ $item->Cargo == 'Profesional Arqueologo' ? 'selected' : '' }}>Profesional Arqueologo</option>
-                                                                <option value="Tecnico Biologo" {{ $item->Cargo == 'Tecnico Biologo' ? 'selected' : '' }}>Tecnico Biologo</option>
-                                                                <option value="Profesional Sig / Profesional De Aseguramiento De Información - Sig" {{ $item->Cargo == 'Profesional Sig / Profesional De Aseguramiento De Información - Sig' ? 'selected' : '' }}>Profesional Sig / Profesional De Aseguramiento De Información - Sig</option>
-                                                                <option value="Coordinador Administrativo" {{ $item->Cargo == 'Coordinador Administrativo' ? 'selected' : '' }}>Coordinador Administrativo</option>
-                                                                <option value="Tecnico Juridico" {{ $item->Cargo == 'Tecnico Juridico' ? 'selected' : '' }}>Tecnico Juridico</option>
-                                                                <option value="Tecnologo Geologo" {{ $item->Cargo == 'Tecnologo Geologo' ? 'selected' : '' }}>Tecnologo Geologo</option>
-                                                                <option value="Auxiliar Recursos Humanos" {{ $item->Cargo == 'Auxiliar Recursos Humanos' ? 'selected' : '' }}>Auxiliar Recursos Humanos</option>
-                                                                <option value="Tecnico De Sistemas" {{ $item->Cargo == 'Tecnico De Sistemas' ? 'selected' : '' }}>Tecnico De Sistemas</option>
-                                                                <option value="Subgerente" {{ $item->Cargo == 'Subgerente' ? 'selected' : '' }}>Subgerente</option>
-                                                                <option value="Coordinador Social" {{ $item->Cargo == 'Coordinador Social' ? 'selected' : '' }}>Coordinador Social</option>
-                                                                <option value="Coordinador De Compras Y Mantenimiento" {{ $item->Cargo == 'Coordinador De Compras Y Mantenimiento' ? 'selected' : '' }}>Coordinador De Compras Y Mantenimiento</option>
-                                                                <option value="Coordinador HSEQ" {{ $item->Cargo == 'Coordinador HSEQ' ? 'selected' : '' }}>Coordinador HSEQ</option>
-                                                                <option value="Coordinador T.I.C." {{ $item->Cargo == 'Coordinador T.I.C.' ? 'selected' : '' }}>Coordinador T.I.C.</option>
-                                                                <option value="Profesional Biologo Mastozoologo" {{ $item->Cargo == 'Profesional Biologo Mastozoologo' ? 'selected' : '' }}>Profesional Biologo Mastozoologo</option>
-                                                                <option value="Gestor Documental - Tecnico" {{ $item->Cargo == 'Gestor Documental - Tecnico' ? 'selected' : '' }}>Gestor Documental - Tecnico</option>
-                                                                <option value="Contador" {{ $item->Cargo == 'Contador' ? 'selected' : '' }}>Contador</option>
-                                                                <option value="Auxiliar Contable" {{ $item->Cargo == 'Auxiliar Contable' ? 'selected' : '' }}>Auxiliar Contable</option>
-                                                                <option value="Coordinador Juridica" {{ $item->Cargo == 'Coordinador Juridica' ? 'selected' : '' }}>Coordinador Juridica</option>
-                                                                <option value="Gerente Comercial" {{ $item->Cargo == 'Gerente Comercial' ? 'selected' : '' }}>Gerente Comercial</option>
-                                                            </select>
-                                                        </div>
+
                                                         
                                                         <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
 
                                                         <div class="col-md-4">
-                                                            <label for="cuenta" class="form-label fw-bold">Cuenta:</label>
-                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Cuenta}}"  />
+                                                            <label for="cuenta" class="form-label fw-bold">Correo:</label>
+                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
                                                         </div>
 
                                                         <!--campo para editar la region-->
 
-                                                        <div class="col-md-2">
-                                                            <label for="region" class="form-label fw-bold">Región:</label>
-                                                            <select id="region" name="region" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="Centro" {{$item->Region == 'Centro' ? 'selected' : ''}}>Centro</option>
-                                                                <option value="Norte" {{$item->Region == 'Norte' ? 'selected' : ''}}>Norte</option>
-                                                                <option value="Sur" {{$item->Region == 'Sur' ? 'selected' : ''}}>Sur</option>
-                                                            </select>                                                    
-                                                        </div>
 
                                                         <!--campo para editar la ubicacion-->
 
@@ -1929,59 +1845,19 @@
                                     
                                                         <!--campo para editar el codigo asignado al equipo-->
 
-                                                        <div class="col-md-2">
-                                                            <label for="codigo" class="form-label fw-bold">Codigo:</label>
-                                                            <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Codigo}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
-                                                        </div>
+                                                        
 
                                                         <!--campo para editar el sistema operativo que se utiliza en el equipo-->
 
-                                                        <div class="col-md-6">
-                                                            <label for="tipo_sistema" class="form-label fw-bold">Tipo de sistema:</label>
-                                                            <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="Windows10 home" {{ $item->Tipo_de_sistema == 'Windows10 home' ? 'selected' : '' }}>Windows 10 home</option>
-                                                                <option value="Windows10 home single" {{ $item->Tipo_de_sistema == 'Windows10 home single' ? 'selected' : '' }}>Windows 10 home single</option>
-                                                                <option value="Windows10 home single language" {{ $item->Tipo_de_sistema == 'Windows10 home single language' ? 'selected' : '' }}>Windows 10 home single language</option>
-                                                                <option value="Windows10 pro" {{ $item->Tipo_de_sistema == 'Windows10 pro' ? 'selected' : '' }}>Windows 10 pro</option>
-                                                                <option value="windows11 home" {{ $item->Tipo_de_sistema == 'windows11 home' ? 'selected' : '' }}>windows 11 home</option>
-                                                                <option value="windows11 home single" {{ $item->Tipo_de_sistema == 'windows11 home single' ? 'selected' : '' }}>windows 11 home single</option>
-                                                                <option value="windows11 home single language" {{ $item->Tipo_de_sistema == 'windows11 home single language' ? 'selected' : '' }}>windows 11 home single language</option>
-                                                                <option value="windows11 pro" {{ $item->Tipo_de_sistema == 'windows11 pro' ? 'selected' : '' }}>windows 11 pro</option>
-                                                            </select>
-                                                        </div>
+                                                        
                                                         
                                                         <!--campo para editar la cantidad de ram asignado a um equipo-->
 
-                                                        <div class="col-md-2">
-                                                            <label for="ram" class="form-label fw-bold">Ram:</label>
-                                                            <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="8Gb" {{ $item->Ram == '8Gb' ? 'selected' : '' }}>8Gb</option>
-                                                                <option value="12Gb" {{ $item->Ram == '12Gb' ? 'selected' : '' }}>12Gb</option>
-                                                                <option value="16Gb" {{ $item->Ram == '16Gb' ? 'selected' : '' }}>16Gb</option>
-                                                                <option value="64Gb" {{ $item->Ram == '24Gb' ? 'selected' : '' }}>24Gb</option>
-                                                                <option value="32Gb" {{ $item->Ram == '32Gb' ? 'selected' : '' }}>32Gb</option>
-                                                                <option value="64Gb" {{ $item->Ram == '64Gb' ? 'selected' : '' }}>64Gb</option>
-                                                            </select>
-                                                        </div>
+                                                        
 
                                                         <!--campo para editar la capacidad de disco duro en el equipo-->
                                                         
-                                                        <div class="col-md-2">
-                                                            <label for="disco_duro" class="form-label fw-bold">Disco duro:</label>
-                                                            <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #33ccff;" >
-                                                                <option value=""></option>
-                                                                <option value="128Gb" {{ $item->Disco_duro == '128Gb' ? 'selected' : '' }}>128 Gb</option>
-                                                                <option value="250Gb" {{ $item->Disco_duro == '250Gb' ? 'selected' : '' }}>250 Gb</option>
-                                                                <option value="500Gb" {{ $item->Disco_duro == '500Gb' ? 'selected' : '' }}>500 Gb</option>
-                                                                <option value="1TB" {{ $item->Disco_duro == '1TB' ? 'selected' : '' }}>1 TB</option>
-                                                                <option value="1Tb+250Gb" {{ $item->Disco_duro == '1Tb+250Gb' ? 'selected' : '' }}>1 TB + 250Gb</option>
-                                                                <option value="1Tb+500Gb" {{ $item->Disco_duro == '1Tb+500Gb' ? 'selected' : '' }}>1 TB + 500Gb</option>
-                                                                <option value="1Tb+1Tb" {{ $item->Disco_duro == '1Tb+1Tb' ? 'selected' : '' }}>1 TB + 1TB</option>
-                                                            </select>
-                                                            <br>
-                                                        </div>
+                                                        
                                                         
                                                         <!--Aca empieza la parte donde se edita el historico del equipo-->
 
@@ -1991,24 +1867,13 @@
 
                                                         <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
 
-                                                        <div class="col-md-12">
-                                                            <label for="historial_asignacion" class="form-label fw-bold">Historial asignacion:</label>
-                                                            <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color:  #33ccff;" value="{{$item->Historial_asignacion}}"  />
-                                                        </div>
+                                                        
                                     
                                                         <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
 
-                                                        <div class="col-md-12">
-                                                            <label for="procesos_ejecutar" class="form-label fw-bold">Procesos a ejecutar:</label>
-                                                            <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color:  #33ccff;" value="{{$item->Procesos_a_ejecutar}}"  />
-                                                        </div>
-                                
+                                                        
                                                         <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
 
-                                                        <div class="col-md-12">
-                                                            <label for="observaciones" class="form-label fw-bold">Observaciones:</label>
-                                                            <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #33ccff;" >{{$item->Observaciones}}</textarea>
-                                                        </div>
                                                         
                                                         <br><br>
 

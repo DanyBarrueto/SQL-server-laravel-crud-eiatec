@@ -10,14 +10,28 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 // Definir la clase del controlador y extenderla de Controller
 class CrudController extends Controller
 {
-    // Función para mostrar todos los registros de trabajadores
+
+// Función para mostrar todos los registros de trabajadores, equipos e historico
     public function index(){
-        // Consultar todos los registros de trabajadores ordenados por ID en orden descendente
-        $datos = DB::select("SELECT * FROM trabajadores ORDER BY ID DESC");
-        
-        // Retornar la vista "Welcome" con los datos obtenidos
-        return view("Welcome")->with("datos", $datos);
-    }
+    // Consultar todos los registros de trabajadores ordenados por ID en orden descendente
+    $trabajadores = DB::select("SELECT * FROM Trabajadores
+        INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+        INNER JOIN Cargos ON Trabajadores.ID_cargo = Cargos.ID_cargos
+        INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+        INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+
+        ORDER BY ID_trabajador ASC");
+    
+    // Consultar todos los registros de equipos ordenados por ID en orden descendente
+    $equipos = DB::select("SELECT * FROM Equipos ORDER BY ID_equipo DESC");
+
+    // Consultar todos los registros de historico ordenados por ID en orden descendente
+    $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+
+    // Retornar la vista "Welcome" con los datos obtenidos
+    return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico'));
+}
+
 
     // Función para buscar registros en la tabla trabajadores en la base de datos:
     public function buscar(Request $request){
