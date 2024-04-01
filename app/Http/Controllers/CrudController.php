@@ -14,14 +14,20 @@ class CrudController extends Controller
 // Función para mostrar todos los registros de trabajadores, equipos e historico
     public function index(){
     // Consultar todos los registros de trabajadores ordenados por ID en orden descendente
-    $trabajadores = DB::select("SELECT * FROM Trabajadores
-        INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
-        INNER JOIN Cargos ON Trabajadores.ID_cargo = Cargos.ID_cargos
-        INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
-        INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+    $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
+                            Expedicion.Lugar AS LugarExpedicion, 
+                            Cargo.Cargo AS Cargo,
+                            Trabajadores.Correo,
+                            Trabajadores.Contraseña,
+                            Coordinadores.Nombre AS NombreCoordinador, 
+                            Ubicacion.Ubicacion AS Ubicacion,
+                            Trabajadores.Telefono
+                            FROM Trabajadores
+                            INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                            INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                            INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                            INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion");
 
-        ORDER BY ID_trabajador ASC");
-    
     // Consultar todos los registros de equipos ordenados por ID en orden descendente
     $equipos = DB::select("SELECT * FROM Equipos ORDER BY ID_equipo DESC");
 
@@ -38,20 +44,30 @@ class CrudController extends Controller
         // Obtener el texto de búsqueda desde la solicitud
         $texto = trim($request->get('texto'));
         
-        // Realizar la consulta a la base de datos utilizando Eloquent ORM
-        $datos = DB::table('trabajadores')
-                    ->select ('ID','Nombre','Cedula','Cuenta','Ubicacion','Area','Cargo','Codigo',
-                    'Region','Oficina','Tipo_de_computador','Marca','Modelo','Numero_de_serie','Id_producto',
-                    'Procesador','Ram','Disco_duro','Gpu','Tipo_de_sistema','Display','Historial_asignacion','Procesos_a_ejecutar','Observaciones')
-                    ->where('ID','LIKE','%'.$texto.'%')
-                    ->orWhere('Cedula','LIKE','%'.$texto.'%')
-                    ->orWhere('Nombre','LIKE','%'.$texto.'%')
-                    ->orderBy('ID','asc')
-                    ->paginate(10);
-        
+        // Realizar la consulta a la base de datos utilizando la consulta SQL
+        $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
+                                    Expedicion.Lugar AS LugarExpedicion, 
+                                    Cargo.Cargo AS Cargo,
+                                    Trabajadores.Correo,
+                                    Trabajadores.Contraseña,
+                                    Coordinadores.Nombre AS NombreCoordinador, 
+                                    Ubicacion.Ubicacion AS Ubicacion,
+                                    Trabajadores.Telefono
+                                    FROM Trabajadores
+                                    INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                                    INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                                    INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                                    INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                    WHERE Trabajadores.ID_trabajador LIKE ? OR
+                                          Trabajadores.Cedula LIKE ? OR
+                                          Trabajadores.Nombre LIKE ?
+                                    ORDER BY Trabajadores.ID_trabajador ", 
+                                    ['%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%']);
+    
         // Retornar la vista "Welcome" con los datos de la búsqueda y el texto de búsqueda
-        return view('Welcome', compact('datos', 'texto'));        
+        return view('Welcome', compact('trabajadores', 'texto'));        
     }
+    
 
     // Función para buscar registros en la tabla equipos en la base de datos:
     public function buscar2(Request $request){
@@ -338,7 +354,7 @@ class CrudController extends Controller
 
     //Funcion para poder descargar la BDD con todos los datos registrados:
     public function descargarDatos(){
-        $datos = DB::table('trabajadores')->get()->toArray();
+        $trabajadores = DB::table('trabajadores')->get()->toArray();
         $csvFileName = 'BDD_Eiatec.csv';
 
         $headers = array(
@@ -349,14 +365,14 @@ class CrudController extends Controller
             "Expires" => "0"
         );
 
-        $callback = function() use ($datos) {
+        $callback = function() use ($trabajadores) {
             $file = fopen('php://output', 'w');
 
             // Encabezado CSV
-            fputcsv($file, array_keys((array) $datos[0]));
+            fputcsv($file, array_keys((array) $trabajadores[0]));
 
             // Datos
-            foreach ($datos as $dato) {
+            foreach ($trabajadores as $dato) {
                 fputcsv($file, (array) $dato);
             }
 

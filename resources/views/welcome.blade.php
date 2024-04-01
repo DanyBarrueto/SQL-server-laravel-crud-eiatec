@@ -1377,18 +1377,12 @@
                     <div class="col-md-1">
                         <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
                     </div>
-
-                    <!--Boton para limpiar los datos de los campos de la parte del trabajador-->
-
-                    <div class="col-md-1">
-                        <input type="submit" class="btn btn-lg btn-info mt-2 fw-bold" id="boton_limpiar" value="Limpiar" formaction="{{ route('example-app.index') }}">
-                    </div>
-
                     <br> <br> <br>
                     <hr>
                 </div>    
             </form>
         </div>
+
     <!--Aca empieza la parte para ingresar los datos del equipo asignado en el formulario principal-->
                 <div class="container">
                     <div class="row justify-content-center">
@@ -1635,9 +1629,6 @@
 
                                 <div>
                                     <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
-
-                                    <input type="submit" class="btn btn-lg btn-info mt-2 fw-bold" id="boton_limpiar" value="Limpiar" formaction="{{ route('example-app.index') }}">
-
                                 </div>
 
                                 <br> <br> <br>
@@ -1691,6 +1682,7 @@
 
 <!--Aca es todo lo referente a poder ver,consultar y modificar los datos de la BDD-->
 
+    <!--Parte para consultar los datos de la tabla de trabajadores de la BDD-->
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
@@ -1748,18 +1740,440 @@
                             <tr>
                                 <td>{{$item->ID_trabajador}}</td>
                                 <td>{{$item->Cedula}}</td>
-                                <td>{{$item->ID_expedicion}}</td>
+                                <td>{{$item->LugarExpedicion}}</td>
                                 <td>{{$item->Nombre}}</td>
-                                <td>{{$item->ID_cargo}}</td>
+                                <td>{{$item->Cargo}}</td>
                                 <td>{{$item->Correo}}</td>
                                 <td>{{$item->Contraseña}}</td>
-                                <td>{{$item->ID_ubicacion}}</td>
+                                <td>{{$item->Ubicacion}}</td>
                                 <td>{{$item->Telefono}}</td>
-                                <td>{{$item->ID_coordinacion}}</td>
+                                <td>{{$item->NombreCoordinador}}</td>
                                 <td>
-                                  <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
-  
+                            </tr>
+                            <!-- Modal para modificar los datos de los registros de la BDD-->
+                                <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                    <div class="modal-dialog modal-xl modal-lg">
+                                        <div class="modal-content" >
+                                            <div class="modal-header " style="background-color: #f79a0e;">
+                                            <h1 class="modal-title fs-3 fw-bold" id="exampleModalLabel">Modificar datos</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body" style="background-color: #f2f2f2;">
+                                                <form class="col-md-8" action="{{ route('example-app.update') }}" method="post">
+
+                                                    <!--Para proteger contra ataques CSRF-->
+                                                    @csrf
+
+                                                    <div class="row">
+
+                                                    <!--Desde aca se editan los datos personales del trabajador-->
+
+                                                        <h2 class="fw-bold">
+                                                            Datos personales:
+                                                        </h2>
+
+                                                        <!--campo para mostrar el ID del registro (NO es editable)-->
+
+                                                        <div class="col-md-1">
+                                                            <label for="id" class="form-label fw-bold">ID</label>
+                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_trabajador}}" readonly >
+                                                        </div>
+
+                                                        <!--campo para editar la cedula-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="cedula" class="form-label fw-bold">Cédula:</label>
+                                                            <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
+                                                        </div>
+
+                                                        <!--campo para editar el nombre -->
+
+                                                        <div class="col-md-7">
+                                                            <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                                                            <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
+                                                        </div>
+
+                                                    <!--
+                                                        Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
+                                                        se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
+                                                        halla coincidencia hace que las muestre
+                                                    -->
+
+
+                                                        
+                                                        <!--campo para editar el area -->
+
+
+
+                                                        <!--campo para editar el cargo del trabajador-->
+
+
+                                                        
+                                                        <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
+
+                                                        <div class="col-md-4">
+                                                            <label for="cuenta" class="form-label fw-bold">Correo:</label>
+                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
+                                                        </div>
+
+                                                        <!--campo para editar la region-->
+
+
+                                                        <!--campo para editar la ubicacion-->
+
+                                                        <div class="col-md-3">
+                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
+                                                            <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
+                                                            <br>
+                                                        </div>
+                                                        
+                                                    <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
+                                                        <h2 class="fw-bold">
+                                                            Datos del equipo:
+                                                        </h2>
+                                    
+                                                        <!--campo para editar el codigo asignado al equipo-->
+
+                                                        
+
+                                                        <!--campo para editar el sistema operativo que se utiliza en el equipo-->
+
+                                                        
+                                                        
+                                                        <!--campo para editar la cantidad de ram asignado a um equipo-->
+
+                                                        
+
+                                                        <!--campo para editar la capacidad de disco duro en el equipo-->
+                                                        
+                                                        
+                                                        
+                                                        <!--Aca empieza la parte donde se edita el historico del equipo-->
+
+                                                        <h2 class="fw-bold">
+                                                            Historial:
+                                                        </h2>
+
+                                                        <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
+
+                                                        
+                                    
+                                                        <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
+
+                                                        
+                                                        <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
+
+                                                        
+                                                        <br><br>
+
+                                                        <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
+                                                        en los datos -->
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal" id="boton_cerrar">Cerrar</button>
+                                                            <button type="submit" class="btn btn-success fw-bold" id="boton_guardar_cambios" >Guardar cambios</button>
+                                                        </div>
+                                                    </div>           
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                          
+                        </tbody>
+                      </table>
+                      
+                    </div>
+
+                  </div>
+                </div>
+    </div>
+
+    <!--Parte para consultar los datos de la tabla de Equipos de la BDD-->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mt-3 text-dark fw-bold" >Tabla de Equipos:</h2>
+
+                <!--Aca se declara la parte para permitir las busquedas-->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <form action="{{route('example-app.buscar')}}" method="GET">
+                            <div class="form-row">
+                                <div class="col-sm-4 my-1">
+                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID, EL NOMBRE O LA CEDULA" onfocus="this.value='';">
+                                </div>
+                                <div class="col-auto my-1" >
+                                    <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
+                                    <input type="submit" class="btn btn-info fw-bold" id="boton_limpiar" style="width:27.3vh" value="Limpiar" formaction="{{ route('example-app.index') }}">
+                                </div>                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Boton para descargar la BDD-->
+                <div class="row">
+                <form method="GET" action="{{ route('descargar.datos') }}">
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar BDD</button>
+                </form>
+                </div>
+
+                <br>
+
+                <!--Encabezado de la tabla para los datos de la BDD-->
+                <div class="table-responsive overflow-auto" style="max-height:30vh;">
+                    <table class="table table-light ">
+                        <thead class="table-success table-responsive ">
+                          <tr>
+                            <th>#</th>
+                            <th>Cédula</th>
+                            <th>Expedicion</th>
+                            <th>Nombre</th>
+                            <th>Cargo</th>
+                            <th>Correo</th>
+                            <th>Contraseña</th>
+                            <th>Ubicacion</th>
+                            <th>Telefono</th>
+                            <th>Coordinador</th>
+                            <th>Editar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <!--Conexion con BDD para permitir mostrar los datos registrados
+                                en la tabla recien creada-->
+                            @foreach ($trabajadores as $item)
+                            <tr>
+                                <td>{{$item->ID_trabajador}}</td>
+                                <td>{{$item->Cedula}}</td>
+                                <td>{{$item->LugarExpedicion}}</td>
+                                <td>{{$item->Nombre}}</td>
+                                <td>{{$item->Cargo}}</td>
+                                <td>{{$item->Correo}}</td>
+                                <td>{{$item->Contraseña}}</td>
+                                <td>{{$item->Ubicacion}}</td>
+                                <td>{{$item->Telefono}}</td>
+                                <td>{{$item->NombreCoordinador}}</td>
+                                <td>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                </td>
+                            </tr>
+                            <!-- Modal para modificar los datos de los registros de la BDD-->
+                                <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                    <div class="modal-dialog modal-xl modal-lg">
+                                        <div class="modal-content" >
+                                            <div class="modal-header " style="background-color: #f79a0e;">
+                                            <h1 class="modal-title fs-3 fw-bold" id="exampleModalLabel">Modificar datos</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body" style="background-color: #f2f2f2;">
+                                                <form class="col-md-8" action="{{ route('example-app.update') }}" method="post">
+
+                                                    <!--Para proteger contra ataques CSRF-->
+                                                    @csrf
+
+                                                    <div class="row">
+
+                                                    <!--Desde aca se editan los datos personales del trabajador-->
+
+                                                        <h2 class="fw-bold">
+                                                            Datos personales:
+                                                        </h2>
+
+                                                        <!--campo para mostrar el ID del registro (NO es editable)-->
+
+                                                        <div class="col-md-1">
+                                                            <label for="id" class="form-label fw-bold">ID</label>
+                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_trabajador}}" readonly >
+                                                        </div>
+
+                                                        <!--campo para editar la cedula-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="cedula" class="form-label fw-bold">Cédula:</label>
+                                                            <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
+                                                        </div>
+
+                                                        <!--campo para editar el nombre -->
+
+                                                        <div class="col-md-7">
+                                                            <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                                                            <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
+                                                        </div>
+
+                                                    <!--
+                                                        Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
+                                                        se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
+                                                        halla coincidencia hace que las muestre
+                                                    -->
+
+
+                                                        
+                                                        <!--campo para editar el area -->
+
+
+
+                                                        <!--campo para editar el cargo del trabajador-->
+
+
+                                                        
+                                                        <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
+
+                                                        <div class="col-md-4">
+                                                            <label for="cuenta" class="form-label fw-bold">Correo:</label>
+                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
+                                                        </div>
+
+                                                        <!--campo para editar la region-->
+
+
+                                                        <!--campo para editar la ubicacion-->
+
+                                                        <div class="col-md-3">
+                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
+                                                            <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
+                                                            <br>
+                                                        </div>
+                                                        
+                                                    <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
+                                                        <h2 class="fw-bold">
+                                                            Datos del equipo:
+                                                        </h2>
+                                    
+                                                        <!--campo para editar el codigo asignado al equipo-->
+
+                                                        
+
+                                                        <!--campo para editar el sistema operativo que se utiliza en el equipo-->
+
+                                                        
+                                                        
+                                                        <!--campo para editar la cantidad de ram asignado a um equipo-->
+
+                                                        
+
+                                                        <!--campo para editar la capacidad de disco duro en el equipo-->
+                                                        
+                                                        
+                                                        
+                                                        <!--Aca empieza la parte donde se edita el historico del equipo-->
+
+                                                        <h2 class="fw-bold">
+                                                            Historial:
+                                                        </h2>
+
+                                                        <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
+
+                                                        
+                                    
+                                                        <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
+
+                                                        
+                                                        <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
+
+                                                        
+                                                        <br><br>
+
+                                                        <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
+                                                        en los datos -->
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal" id="boton_cerrar">Cerrar</button>
+                                                            <button type="submit" class="btn btn-success fw-bold" id="boton_guardar_cambios" >Guardar cambios</button>
+                                                        </div>
+                                                    </div>           
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                          
+                        </tbody>
+                      </table>
+                      
+                    </div>
+
+                  </div>
+                </div>
+    </div>
+
+    <!--parte para consultar los datos de la tabla de historico--> 
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mt-3 text-dark fw-bold" >Historico</h2>
+
+                <!--Aca se declara la parte para permitir las busquedas-->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <form action="{{route('example-app.buscar')}}" method="GET">
+                            <div class="form-row">
+                                <div class="col-sm-4 my-1">
+                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID, EL NOMBRE O LA CEDULA" onfocus="this.value='';">
+                                </div>
+                                <div class="col-auto my-1" >
+                                    <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
+                                    <input type="submit" class="btn btn-info fw-bold" id="boton_limpiar" style="width:27.3vh" value="Limpiar" formaction="{{ route('example-app.index') }}">
+                                </div>                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Boton para descargar la BDD-->
+                <div class="row">
+                <form method="GET" action="{{ route('descargar.datos') }}">
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar BDD</button>
+                </form>
+                </div>
+
+                <br>
+
+                <!--Encabezado de la tabla para los datos de la BDD-->
+                <div class="table-responsive overflow-auto" style="max-height:30vh;">
+                    <table class="table table-light ">
+                        <thead class="table-success table-responsive ">
+                          <tr>
+                            <th>#</th>
+                            <th>Cédula</th>
+                            <th>Expedicion</th>
+                            <th>Nombre</th>
+                            <th>Cargo</th>
+                            <th>Correo</th>
+                            <th>Contraseña</th>
+                            <th>Ubicacion</th>
+                            <th>Telefono</th>
+                            <th>Coordinador</th>
+                            <th>Editar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <!--Conexion con BDD para permitir mostrar los datos registrados
+                                en la tabla recien creada-->
+                            @foreach ($trabajadores as $item)
+                            <tr>
+                                <td>{{$item->ID_trabajador}}</td>
+                                <td>{{$item->Cedula}}</td>
+                                <td>{{$item->LugarExpedicion}}</td>
+                                <td>{{$item->Nombre}}</td>
+                                <td>{{$item->Cargo}}</td>
+                                <td>{{$item->Correo}}</td>
+                                <td>{{$item->Contraseña}}</td>
+                                <td>{{$item->Ubicacion}}</td>
+                                <td>{{$item->Telefono}}</td>
+                                <td>{{$item->NombreCoordinador}}</td>
+                                <td>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                </td>
+                            </tr>
                             <!-- Modal para modificar los datos de los registros de la BDD-->
                                 <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
@@ -1903,8 +2317,9 @@
     <br>
     <br>
     <br>
+    <br>
 
-<!--Funciones del boostrap para el funcionamiento del modal-->
+<!--Funcion del boostrap para el funcionamiento del modal-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
