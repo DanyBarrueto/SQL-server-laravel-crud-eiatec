@@ -1627,6 +1627,19 @@
                                     <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
 
+                                <!--campo para seleccionar el trabajador al cual esta asignado el equipo-->
+
+                                <div class="col-md-5">
+                                    <label for="trabajador_id" class="form-label fw-bold" style="color: #7ab82c;">Trabajador asignado:</label>
+                                    <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        @foreach ($trabajadores as $trabajador)
+                                            <option value="{{ $trabajador->ID_trabajador }}">{{ $trabajador->Nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>                                
+                                
+                                <!--Boton para enviar los datos-->
+
                                 <div>
                                     <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
                                 </div>
@@ -1650,8 +1663,8 @@
                                 </h2>
 
                                 <div class="col-md-3">
-                                    <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">ID del equipo</label>
-                                    <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
+                                    <label for="id_historial" class="form-label fw-bold" style="color: #7ab82c;">Codigo del equipo</label>
+                                    <input type="text" id="id_historial" name="id_historial" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
 
                                 <div class="col-md-12">
@@ -1665,8 +1678,8 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Observaciones:</label>
-                                    <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
+                                    <label for="Anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
+                                    <textarea name="Anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
                                 </div>
                             </div>
         
@@ -1708,7 +1721,7 @@
                 <!--Boton para descargar la tabla de trabajadores de la BDD-->
                 <div class="row">
                 <form method="GET" action="{{ route('descargar.datos') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar Tabla</button>
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar Tabla de los trabajadores</button>
                 </form>
                 </div>
 
@@ -1875,8 +1888,8 @@
 
                 <!--Boton para descargar la BDD-->
                 <div class="row">
-                <form method="GET" action="{{ route('descargar.datos') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar BDD</button>
+                <form method="GET" action="{{ route('descargar.datos2') }}">
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar tabla de equipos</button>
                 </form>
                 </div>
 
@@ -1915,17 +1928,16 @@
                             
                             <!--Conexion con BDD para permitir mostrar los datos registrados
                                 en la tabla recien creada-->
-                            @foreach ($trabajadores as $item)
+                            @foreach ($equipos as $item)
                             <tr>
-                                <td>{{$item->ID_trabajador}}</td>
-                                <td>{{$item->Cedula}}</td>
-                                <td>{{$item->LugarExpedicion}}</td>
-                                <td>{{$item->Nombre}}</td>
-                                <td>{{$item->Cargo}}</td>
-                                <td>{{$item->Correo}}</td>
-                                <td>{{$item->Contraseña}}</td>
+                                <td>{{$item->ID_equipo}}</td>
+                                <td>{{$item->Estado}}</td>
+                                <td>{{$item->Codigo}}</td>
+                                <td>{{$item->Marca}}</td>
+                                <td>{{$item->Tipo_licencia}}</td>
                                 <td>{{$item->Ubicacion}}</td>
-                                <td>{{$item->Telefono}}</td>
+                                <td>{{$item->Oficina}}</td>
+                                <td>{{$item->Direccion}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -1938,12 +1950,14 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td>{{$item->Nombre_trabajador}}</td>
                                 <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarEquipos{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarEquipos{{$item->ID_equipo}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
                             </tr>
                             <!-- Modal para modificar los datos de los registros de la BDD-->
-                                <div class="modal fade" id="modalEditarEquipos{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                <div class="modal fade" id="modalEditarEquipos{{$item->ID_equipo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
                                             <div class="modal-header " style="background-color: #f79a0e;">
@@ -1969,22 +1983,10 @@
 
                                                         <div class="col-md-1">
                                                             <label for="id" class="form-label fw-bold">ID</label>
-                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_trabajador}}" readonly >
+                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_equipo}}" readonly >
                                                         </div>
 
-                                                        <!--campo para editar la cedula-->
-
-                                                        <div class="col-md-2">
-                                                            <label for="cedula" class="form-label fw-bold">Cédula:</label>
-                                                            <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
-                                                        </div>
-
-                                                        <!--campo para editar el nombre -->
-
-                                                        <div class="col-md-7">
-                                                            <label for="nombre" class="form-label fw-bold">Nombre:</label>
-                                                            <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
-                                                        </div>
+                                                        
 
                                                     <!--
                                                         Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
@@ -2059,7 +2061,7 @@
                         <form action="{{route('example-app.buscar')}}" method="GET">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1">
-                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID, EL NOMBRE O LA CEDULA" onfocus="this.value='';">
+                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID" onfocus="this.value='';">
                                 </div>
                                 <div class="col-auto my-1" >
                                     <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
@@ -2130,7 +2132,7 @@
                                                             Historial:
                                                         </h2>
 
-                                                        <!--campo para mostrar el ID del registro (NO es editable)-->
+                                                        <!--campo para mostrar el ID del historico (NO es editable)-->
 
                                                         <div class="col-md-1">
                                                             <label for="ID_historico" class="form-label fw-bold">ID</label>
@@ -2153,8 +2155,8 @@
                                                         </div>
                         
                                                         <div class="col-md-12">
-                                                            <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
-                                                            <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
+                                                            <label for="Anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
+                                                            <textarea name="Anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
                                                         </div>                                                        
                                                         
                                                         <br><br>

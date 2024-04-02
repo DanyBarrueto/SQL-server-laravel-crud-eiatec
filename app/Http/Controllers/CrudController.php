@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use App\Models\Trabajador;
 
 // Definir la clase del controlador y extenderla de Controller
 class CrudController extends Controller
@@ -29,7 +30,23 @@ class CrudController extends Controller
                                 INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
                                 INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion");
         
-        $equipos = DB::select("SELECT * FROM Equipos ORDER BY ID_equipo DESC");
+        $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,
+                            Tipo.Modalidad AS Tipo,
+                            Marca.Nombre AS Marca,
+                            Licencia.Licencia AS Tipo_licencia,
+                            Ubicacion.Ubicacion AS Ubicacion,
+                            Oficinas.Oficina AS Oficina,
+                            Direccion.Direccion AS Direccion,
+                            Trabajadores.Nombre AS Nombre_trabajador
+                            FROM Equipos
+                            LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
+                            LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
+                            LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
+                            LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
+                            LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
+                            LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
+                            LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
+                            ORDER BY Equipos.ID_equipo DESC");
 
         $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico ASC");
 
@@ -209,9 +226,9 @@ class CrudController extends Controller
                 }
         }
 
-            // Función para crear un nuevo registro en la tabla de historico en la base de datos:
+        // Función para crear un nuevo registro en la tabla de historico en la base de datos:
 
-            public function create3(Request $request){
+        public function create3(Request $request){
                 try {
                     // Realizar la inserción en la tabla "equipo" con los datos recibidos
                     $sql = DB::insert("INSERT INTO trabajadores(Nombre,Cedula,Cuenta,Ubicacion,Area,Cargo,Codigo,
@@ -253,13 +270,13 @@ class CrudController extends Controller
                 } else {
                     return back()->with("Incorrecto", "Error al registrar");
                 }
-            }
+        }
 
 
 
-        // Funciones para actualizar un registro de las tablas de la base de datos:
+    // Funciones para actualizar un registro de las tablas de la base de datos:
 
-            public function update(Request $request){
+        public function update(Request $request){
                 try {
                     // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
                     $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Cuenta=?, Ubicacion=?, Area=?, Cargo=?, Codigo=?,
@@ -292,11 +309,11 @@ class CrudController extends Controller
                     // Capturar cualquier excepción ocurrida durante la actualización
                     return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
                 }
-            }
+        }
 
-            // Función para actualizar un registro de la tabla equipos en la base de datos:
+        // Función para actualizar un registro de la tabla equipos en la base de datos:
 
-            public function update2(Request $request){
+        public function update2(Request $request){
                 try {
                     // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
                     $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Cuenta=?, Ubicacion=?, Area=?, Cargo=?, Codigo=?,
@@ -329,11 +346,11 @@ class CrudController extends Controller
                     // Capturar cualquier excepción ocurrida durante la actualización
                     return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
                 }
-            }
+        }
 
-            //funcion para actualizar un registro de la tabla de historico:
+        //funcion para actualizar un registro de la tabla de historico:
         
-            public function update3(Request $request){
+        public function update3(Request $request){
                 try {
                     // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
                     $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Cuenta=?, Ubicacion=?, Area=?, Cargo=?, Codigo=?,
@@ -366,17 +383,17 @@ class CrudController extends Controller
                     // Capturar cualquier excepción ocurrida durante la actualización
                     return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
                 }
-            }
+        }
 
 
 
-        //Funciones para poder descargar las tablas de la base de datos con todos los datos registrados:
+    //Funciones para poder descargar las tablas de la base de datos con todos los datos registrados:
 
-            //Funcion para descargar la tabla de trabajadores
+        //Funcion para descargar la tabla de trabajadores
             
-            public function descargarDatos(){
-                $trabajadores = DB::table('trabajadores')->get()->toArray();
-                $csvFileName = 'BDD_Eiatec.csv';
+        public function descargarDatos(){
+                $trabajadores = DB::table('Trabajadores')->get()->toArray();
+                $csvFileName = 'BDD_Eiatec_Trabajadores.csv';
 
                 $headers = array(
                     "Content-type" => "text/csv",
@@ -401,13 +418,13 @@ class CrudController extends Controller
                 };
 
                 return new StreamedResponse($callback, 200, $headers);
-            }
+        }
 
-            //Funcion para descargar la tabla de equipos
+        //Funcion para descargar la tabla de equipos
             
-            public function descargarDatos2(){
-                $trabajadores = DB::table('trabajadores')->get()->toArray();
-                $csvFileName = 'BDD_Eiatec.csv';
+        public function descargarDatos2(){
+                $equipos = DB::table('Equipos')->get()->toArray();
+                $csvFileName = 'BDD_Eiatec_Equipos.csv';
 
                 $headers = array(
                     "Content-type" => "text/csv",
@@ -417,14 +434,14 @@ class CrudController extends Controller
                     "Expires" => "0"
                 );
 
-                $callback = function() use ($trabajadores) {
+                $callback = function() use ($equipos) {
                     $file = fopen('php://output', 'w');
 
                     // Encabezado CSV
-                    fputcsv($file, array_keys((array) $trabajadores[0]));
+                    fputcsv($file, array_keys((array) $equipos[0]));
 
                     // Datos
-                    foreach ($trabajadores as $dato) {
+                    foreach ($equipos as $dato) {
                         fputcsv($file, (array) $dato);
                     }
 
@@ -432,13 +449,13 @@ class CrudController extends Controller
                 };
 
                 return new StreamedResponse($callback, 200, $headers);
-            }
+        }
 
-            //Funcion para descargar la tabla de historico
+        //Funcion para descargar la tabla de historico
 
-            public function descargarDatos3(){
-                $trabajadores = DB::table('trabajadores')->get()->toArray();
-                $csvFileName = 'BDD_Eiatec.csv';
+        public function descargarDatos3(){
+                $historico = DB::table('Historico')->get()->toArray();
+                $csvFileName = 'BDD_Eiatec_Historico.csv';
 
                 $headers = array(
                     "Content-type" => "text/csv",
@@ -448,14 +465,14 @@ class CrudController extends Controller
                     "Expires" => "0"
                 );
 
-                $callback = function() use ($trabajadores) {
+                $callback = function() use ($historico) {
                     $file = fopen('php://output', 'w');
 
                     // Encabezado CSV
-                    fputcsv($file, array_keys((array) $trabajadores[0]));
+                    fputcsv($file, array_keys((array) $historico[0]));
 
                     // Datos
-                    foreach ($trabajadores as $dato) {
+                    foreach ($historico as $dato) {
                         fputcsv($file, (array) $dato);
                     }
 
@@ -463,5 +480,17 @@ class CrudController extends Controller
                 };
 
                 return new StreamedResponse($callback, 200, $headers);
-            }
+        }
+
+
+
+    //Funcion para mostrar los trabajadores de la tabla trabajadores
+
+        public function mostrarFormulario(){
+
+            $trabajadores = DB::select("SELECT * FROM trabajadores");
+
+            return view('formulario', compact('trabajadores'));
+        }
+
 }
