@@ -1705,10 +1705,10 @@
                     </div>
                 </div>
 
-                <!--Boton para descargar la BDD-->
+                <!--Boton para descargar la tabla de trabajadores de la BDD-->
                 <div class="row">
                 <form method="GET" action="{{ route('descargar.datos') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar BDD</button>
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar Tabla</button>
                 </form>
                 </div>
 
@@ -1803,9 +1803,6 @@
                                                     -->
 
 
-                                                        
-                                                        <!--campo para editar el area -->
-
 
 
                                                         <!--campo para editar el cargo del trabajador-->
@@ -1819,9 +1816,6 @@
                                                             <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
                                                         </div>
 
-                                                        <!--campo para editar la region-->
-
-
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-3">
@@ -1829,43 +1823,6 @@
                                                             <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
                                                             <br>
                                                         </div>
-                                                        
-                                                    <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
-                                                        <h2 class="fw-bold">
-                                                            Datos del equipo:
-                                                        </h2>
-                                    
-                                                        <!--campo para editar el codigo asignado al equipo-->
-
-                                                        
-
-                                                        <!--campo para editar el sistema operativo que se utiliza en el equipo-->
-
-                                                        
-                                                        
-                                                        <!--campo para editar la cantidad de ram asignado a um equipo-->
-
-                                                        
-
-                                                        <!--campo para editar la capacidad de disco duro en el equipo-->
-                                                        
-                                                        
-                                                        
-                                                        <!--Aca empieza la parte donde se edita el historico del equipo-->
-
-                                                        <h2 class="fw-bold">
-                                                            Historial:
-                                                        </h2>
-
-                                                        <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
-
-                                                        
-                                    
-                                                        <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
-
-                                                        
-                                                        <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
-
                                                         
                                                         <br><br>
 
@@ -1931,15 +1888,26 @@
                         <thead class="table-success table-responsive ">
                           <tr>
                             <th>#</th>
-                            <th>Cédula</th>
-                            <th>Expedicion</th>
-                            <th>Nombre</th>
-                            <th>Cargo</th>
-                            <th>Correo</th>
-                            <th>Contraseña</th>
-                            <th>Ubicacion</th>
-                            <th>Telefono</th>
-                            <th>Coordinador</th>
+                            <th>Estado</th>
+                            <th>Codigo</th>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Numero de serie</th>
+                            <th>Id del producto</th>
+                            <th>Procesador</th>
+                            <th>Ram</th>
+                            <th>Disco</th>
+                            <th>GPU/APU</th>
+                            <th>Sistema operativo</th>
+                            <th>Licencia</th>
+                            <th>Display</th>
+                            <th>Anydesk</th>
+                            <th>Ubicación</th>
+                            <th>Oficina</th>
+                            <th>Dirección</th>
+                            <th>Clave</th>
+                            <th>Trabajador</th>
                             <th>Editar</th>
                           </tr>
                         </thead>
@@ -1958,7 +1926,18 @@
                                 <td>{{$item->Contraseña}}</td>
                                 <td>{{$item->Ubicacion}}</td>
                                 <td>{{$item->Telefono}}</td>
-                                <td>{{$item->NombreCoordinador}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
@@ -1983,7 +1962,7 @@
                                                     <!--Desde aca se editan los datos personales del trabajador-->
 
                                                         <h2 class="fw-bold">
-                                                            Datos personales:
+                                                            Datos del equipo:
                                                         </h2>
 
                                                         <!--campo para mostrar el ID del registro (NO es editable)-->
@@ -2013,26 +1992,6 @@
                                                         halla coincidencia hace que las muestre
                                                     -->
 
-
-                                                        
-                                                        <!--campo para editar el area -->
-
-
-
-                                                        <!--campo para editar el cargo del trabajador-->
-
-
-                                                        
-                                                        <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
-
-                                                        <div class="col-md-4">
-                                                            <label for="cuenta" class="form-label fw-bold">Correo:</label>
-                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
-                                                        </div>
-
-                                                        <!--campo para editar la region-->
-
-
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-3">
@@ -2042,9 +2001,7 @@
                                                         </div>
                                                         
                                                     <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
-                                                        <h2 class="fw-bold">
-                                                            Datos del equipo:
-                                                        </h2>
+                                                        
                                     
                                                         <!--campo para editar el codigo asignado al equipo-->
 
@@ -2064,20 +2021,6 @@
                                                         
                                                         <!--Aca empieza la parte donde se edita el historico del equipo-->
 
-                                                        <h2 class="fw-bold">
-                                                            Historial:
-                                                        </h2>
-
-                                                        <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
-
-                                                        
-                                    
-                                                        <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
-
-                                                        
-                                                        <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
-
-                                                        
                                                         <br><br>
 
                                                         <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
@@ -2108,7 +2051,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mt-3 text-dark fw-bold" >Historico</h2>
+                <h2 class="mt-3 text-dark fw-bold">Historico</h2>
 
                 <!--Aca se declara la parte para permitir las busquedas-->
                 <div class="row">
@@ -2142,15 +2085,10 @@
                         <thead class="table-success table-responsive ">
                           <tr>
                             <th>#</th>
-                            <th>Cédula</th>
-                            <th>Expedicion</th>
-                            <th>Nombre</th>
-                            <th>Cargo</th>
-                            <th>Correo</th>
-                            <th>Contraseña</th>
-                            <th>Ubicacion</th>
-                            <th>Telefono</th>
-                            <th>Coordinador</th>
+                            <th># Equipo</th>
+                            <th>Historial de asignaciones</th>
+                            <th>Procesos a ejecutar</th>
+                            <th>Anotaciones</th>
                             <th>Editar</th>
                           </tr>
                         </thead>
@@ -2158,24 +2096,19 @@
                             
                             <!--Conexion con BDD para permitir mostrar los datos registrados
                                 en la tabla recien creada-->
-                            @foreach ($trabajadores as $item)
+                            @foreach ($historico as $item)
                             <tr>
-                                <td>{{$item->ID_trabajador}}</td>
-                                <td>{{$item->Cedula}}</td>
-                                <td>{{$item->LugarExpedicion}}</td>
-                                <td>{{$item->Nombre}}</td>
-                                <td>{{$item->Cargo}}</td>
-                                <td>{{$item->Correo}}</td>
-                                <td>{{$item->Contraseña}}</td>
-                                <td>{{$item->Ubicacion}}</td>
-                                <td>{{$item->Telefono}}</td>
-                                <td>{{$item->NombreCoordinador}}</td>
+                                <td>{{$item->ID_historico}}</td>
+                                <td>{{$item->ID_equipo}}</td>
+                                <td>{{$item->Historial_asignaciones}}</td>
+                                <td>{{$item->Procesos_a_ejecutar}}</td>
+                                <td>{{$item->Anotaciones}}</td>
                                 <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_historico}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
                             </tr>
                             <!-- Modal para modificar los datos de los registros de la BDD-->
-                                <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                <div class="modal fade" id="modalEditar{{$item->ID_historico}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
                                             <div class="modal-header " style="background-color: #f79a0e;">
@@ -2194,90 +2127,17 @@
                                                     <!--Desde aca se editan los datos personales del trabajador-->
 
                                                         <h2 class="fw-bold">
-                                                            Datos personales:
+                                                            Historial:
                                                         </h2>
 
                                                         <!--campo para mostrar el ID del registro (NO es editable)-->
 
                                                         <div class="col-md-1">
                                                             <label for="id" class="form-label fw-bold">ID</label>
-                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_trabajador}}" readonly >
+                                                            <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_historico}}" readonly >
                                                         </div>
 
-                                                        <!--campo para editar la cedula-->
-
-                                                        <div class="col-md-2">
-                                                            <label for="cedula" class="form-label fw-bold">Cédula:</label>
-                                                            <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
-                                                        </div>
-
-                                                        <!--campo para editar el nombre -->
-
-                                                        <div class="col-md-7">
-                                                            <label for="nombre" class="form-label fw-bold">Nombre:</label>
-                                                            <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
-                                                        </div>
-
-                                                    <!--
-                                                        Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
-                                                        se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
-                                                        halla coincidencia hace que las muestre
-                                                    -->
-
-
                                                         
-                                                        <!--campo para editar el area -->
-
-
-
-                                                        <!--campo para editar el cargo del trabajador-->
-
-
-                                                        
-                                                        <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
-
-                                                        <div class="col-md-4">
-                                                            <label for="cuenta" class="form-label fw-bold">Correo:</label>
-                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
-                                                        </div>
-
-                                                        <!--campo para editar la region-->
-
-
-                                                        <!--campo para editar la ubicacion-->
-
-                                                        <div class="col-md-3">
-                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
-                                                            <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
-                                                            <br>
-                                                        </div>
-                                                        
-                                                    <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
-                                                        <h2 class="fw-bold">
-                                                            Datos del equipo:
-                                                        </h2>
-                                    
-                                                        <!--campo para editar el codigo asignado al equipo-->
-
-                                                        
-
-                                                        <!--campo para editar el sistema operativo que se utiliza en el equipo-->
-
-                                                        
-                                                        
-                                                        <!--campo para editar la cantidad de ram asignado a um equipo-->
-
-                                                        
-
-                                                        <!--campo para editar la capacidad de disco duro en el equipo-->
-                                                        
-                                                        
-                                                        
-                                                        <!--Aca empieza la parte donde se edita el historico del equipo-->
-
-                                                        <h2 class="fw-bold">
-                                                            Historial:
-                                                        </h2>
 
                                                         <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
 

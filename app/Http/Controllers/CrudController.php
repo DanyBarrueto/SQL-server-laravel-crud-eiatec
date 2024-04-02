@@ -12,6 +12,7 @@ class CrudController extends Controller
 {
 
 // Función para mostrar todos los registros de trabajadores, equipos e historico
+
     public function index(){
     // Consultar todos los registros de trabajadores ordenados por ID en orden descendente
     $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
@@ -32,7 +33,7 @@ class CrudController extends Controller
     $equipos = DB::select("SELECT * FROM Equipos ORDER BY ID_equipo DESC");
 
     // Consultar todos los registros de historico ordenados por ID en orden descendente
-    $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+    $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico ASC");
 
     // Retornar la vista "Welcome" con los datos obtenidos
     return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico'));
@@ -40,6 +41,7 @@ class CrudController extends Controller
 
 
     // Función para buscar registros en la tabla trabajadores en la base de datos:
+
     public function buscar(Request $request){
         // Obtener el texto de búsqueda desde la solicitud
         $texto = trim($request->get('texto'));
@@ -70,6 +72,7 @@ class CrudController extends Controller
     
 
     // Función para buscar registros en la tabla equipos en la base de datos:
+
     public function buscar2(Request $request){
         // Obtener el texto de búsqueda desde la solicitud
         $texto = trim($request->get('texto'));
@@ -90,6 +93,7 @@ class CrudController extends Controller
     }
 
     //Función para buscar registros en la tabla de historico en la base de datos:
+
     public function buscar3(Request $request){
         // Obtener el texto de búsqueda desde la solicitud
         $texto = trim($request->get('texto'));
@@ -110,6 +114,7 @@ class CrudController extends Controller
     }
 
     // Función para crear un nuevo registro en la tabla de trabajadores en la base de datos:
+
     public function create(Request $request){
         try {
             // Realizar la inserción en la tabla "trabajadores" con los datos recibidos
@@ -155,6 +160,7 @@ class CrudController extends Controller
     }
 
     // Función para crear un nuevo registro en la tabla de equipos en la base de datos:
+
     public function create2(Request $request){
         try {
             // Realizar la inserción en la tabla "equipo" con los datos recibidos
@@ -200,6 +206,7 @@ class CrudController extends Controller
     }
 
     // Función para crear un nuevo registro en la tabla de historico en la base de datos:
+
     public function create3(Request $request){
         try {
             // Realizar la inserción en la tabla "equipo" con los datos recibidos
@@ -245,6 +252,7 @@ class CrudController extends Controller
     }
 
     // Función para actualizar un registro de la tabla trabajadores en la base de datos:
+
     public function update(Request $request){
         try {
             // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
@@ -281,6 +289,7 @@ class CrudController extends Controller
     }
 
     // Función para actualizar un registro de la tabla equipos en la base de datos:
+
     public function update2(Request $request){
         try {
             // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
@@ -317,6 +326,7 @@ class CrudController extends Controller
     }
 
     //funcion para actualizar un registro de la tabla de historico:
+    
     public function update3(Request $request){
         try {
             // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
