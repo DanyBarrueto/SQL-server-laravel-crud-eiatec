@@ -16,7 +16,7 @@ class CrudController extends Controller
 
         public function index(){
 
-        $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
+        $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador,Trabajadores.Cedula,Trabajadores.Nombre, 
                                 Expedicion.Lugar AS LugarExpedicion, 
                                 Cargo.Cargo AS Cargo,
                                 Trabajadores.Correo,
@@ -30,7 +30,9 @@ class CrudController extends Controller
                                 INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
                                 INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion");
         
-        $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,
+        $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
+                            Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,
+                            Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,
                             Tipo.Modalidad AS Tipo,
                             Marca.Nombre AS Marca,
                             Licencia.Licencia AS Tipo_licencia,

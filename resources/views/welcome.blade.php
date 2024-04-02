@@ -1933,24 +1933,23 @@
                                 <td>{{$item->ID_equipo}}</td>
                                 <td>{{$item->Estado}}</td>
                                 <td>{{$item->Codigo}}</td>
+                                <td>{{$item->Tipo}}</td>
                                 <td>{{$item->Marca}}</td>
+                                <td>{{$item->Modelo}}</td>
+                                <td>{{$item->Num_serie}}</td>
+                                <td>{{$item->Id_producto}}</td>
+                                <td>{{$item->Procesador}}</td>
+                                <td>{{$item->Ram}}</td>
+                                <td>{{$item->Disco}}</td>
+                                <td>{{$item->GPU_APU}}</td>
+                                <td>{{$item->Sistema_operativo}}</td>
                                 <td>{{$item->Tipo_licencia}}</td>
+                                <td>{{$item->Display}}</td>
+                                <td>{{$item->Anydesk}}</td>
                                 <td>{{$item->Ubicacion}}</td>
                                 <td>{{$item->Oficina}}</td>
                                 <td>{{$item->Direccion}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$item->Clave_equipo}}</td>
                                 <td>{{$item->Nombre_trabajador}}</td>
                                 <td>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarEquipos{{$item->ID_equipo}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
