@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Models\Trabajador;
 
 // Definir la clase del controlador y extenderla de Controller
 class CrudController extends Controller
@@ -28,7 +27,8 @@ class CrudController extends Controller
                                 INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
                                 INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
                                 INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
-                                INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion");
+                                INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                ORDER BY Trabajadores.ID_trabajador DESC");
         
         $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
                             Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,
@@ -50,10 +50,12 @@ class CrudController extends Controller
                             LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
                             ORDER BY Equipos.ID_equipo DESC");
 
-        $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico ASC");
+        $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+
+        $coordinador = DB::select("SELECT * FROM Coordinadores");
 
         // Retornar la vista "Welcome" con los datos obtenidos
-        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico'));
+        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador'));
         }
 
 
@@ -486,13 +488,33 @@ class CrudController extends Controller
 
 
 
-    //Funcion para mostrar los trabajadores de la tabla trabajadores
+    //Funciones para mostrar los datos de diferentes tablas para listas desplegables
+
+        //Funcion para mostrar los trabajadores de la tabla trabajadores 
 
         public function mostrarFormulario(){
 
-            $trabajadores = DB::select("SELECT * FROM trabajadores");
+            $trabajadores = DB::select("SELECT * FROM trabajadores ");
 
             return view('formulario', compact('trabajadores'));
         }
 
+        //Funcion para mostrar los codigos de la tabla equipos 
+
+        public function mostrarFormulario2(){
+
+            $equipos = DB::select("SELECT ID_equipo, Codigo FROM Equipos");
+        
+            return view('formulario', compact('equipos'));
+        }
+        
+        public function mostrarFormulario3(){
+
+            $coordinador = DB::select("SELECT * FROM Coordinadores");
+        
+            return view('formulario', compact('coordinadores'));
+        }
+        
+
+        
 }

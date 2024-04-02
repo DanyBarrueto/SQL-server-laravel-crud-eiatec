@@ -1123,32 +1123,14 @@
                     <!--lista desplegable para elegir a uno de los coordinadores-->
 
                     <div class="col-md-4">
-                        <label for="coordinador" class="form-label fw-bold" style="color: #7ab82c;">Coordinador:</label>
-                        <select id="coordinador" name="coordinador" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                            <option value=""></option>
-                            <option value="1">Nayive Gutierrez Romero</option>
-                            <option value="2">Wilson Ramírez Pineda</option>
-                            <option value="3">Sandra Milena Perez Pico</option>
-                            <option value="4">Rubén Darío Ramírez Motta</option>
-                            <option value="5">Steven Ricardo Garzón Burgos</option>
-                            <option value="6">Nara Marcela Niño Martinez</option>
-                            <option value="7">Camila Rivera Paez</option>
-                            <option value="8">Clara Johanna Rodriguez Melo</option>
-                            <option value="9">Diego Fernando Mantilla Rincon</option>
-                            <option value="10">Sara Mayerly Amado Ariza</option>
-                            <option value="11">Ancizar Sanchez Urriago</option>
-                            <option value="12">Cristhian Bernardo Rivera</option>
-                            <option value="13">Marcela Cabrera</option>
-                            <option value="14">Andres Valbuena</option>
-                            <option value="15">Adriana Palma</option>
-                            <option value="16">Cristhian Rivera</option>
-                            <option value="17">Maria Gomez</option>
-                            <option value="18">Monica Valderrama</option>
-                            <option value="19">Madeline Ossa</option>
-                            <option value="20">Carlos Galan</option>
-                            <option value="21">Ninguno</option>
+                        <label for="coordinador_id" class="form-label fw-bold" style="color: #7ab82c;">Coordinador asignado:</label>
+                        <select name="coordinador_id" id="coordinador_id" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                            @foreach ($coordinador as $coordinadorB)
+                                <option value="{{ $coordinadorB->ID_coordinador }}">{{ $coordinadorB->Nombre }}</option>
+                            @endforeach
                         </select>
                     </div>
+                    
 
                     <!--lista desplegable para elegir uno de los cargos-->
 
@@ -1474,6 +1456,7 @@
                                         <option value=""></option>
                                         <option value="Windows10">Windows 10</option>
                                         <option value="Windows11">Windows 11</option>
+                                        <option value="Windows12">Windows 12</option>
                                     </select>
                                 </div>
 
@@ -1662,11 +1645,15 @@
                                     Historial:
                                 </h2>
 
-                                <div class="col-md-3">
-                                    <label for="id_historial" class="form-label fw-bold" style="color: #7ab82c;">Codigo del equipo</label>
-                                    <input type="text" id="id_historial" name="id_historial" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
+                                <div class="col-md-5">
+                                    <label for="id_equipo" class="form-label fw-bold" style="color: #7ab82c;">Codigo del equipo:</label>
+                                    <select name="id_equipo" id="id_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                        @foreach ($equipos as $equipo)
+                                            <option value="{{ $equipo->ID_equipo }}">ID: {{ $equipo->ID_equipo }} - Codigo: {{ $equipo->Codigo }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-
+                                
                                 <div class="col-md-12">
                                     <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
                                     <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
