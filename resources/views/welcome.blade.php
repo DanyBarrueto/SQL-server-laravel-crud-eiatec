@@ -1383,7 +1383,7 @@
             </form>
         </div>
 
-    <!--Aca empieza la parte para ingresar los datos del equipo asignado en el formulario principal-->
+    <!--Aca va la parte para registrar datos del equipo-->
                 <div class="container">
                     <div class="row justify-content-center">
                         <form class="col-md-8" action="{{route("example-app.create2")}}" method="post" style="width: 200vh;">
@@ -1749,11 +1749,11 @@
                                 <td>{{$item->Telefono}}</td>
                                 <td>{{$item->NombreCoordinador}}</td>
                                 <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarTrabajador{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
                             </tr>
                             <!-- Modal para modificar los datos de los registros de la BDD-->
-                                <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                <div class="modal fade" id="modalEditarTrabajador{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
                                             <div class="modal-header " style="background-color: #f79a0e;">
@@ -1939,11 +1939,11 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarEquipos{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
                             </tr>
                             <!-- Modal para modificar los datos de los registros de la BDD-->
-                                <div class="modal fade" id="modalEditar{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                <div class="modal fade" id="modalEditarEquipos{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
                                             <div class="modal-header " style="background-color: #f79a0e;">
@@ -2072,7 +2072,7 @@
 
                 <!--Boton para descargar la BDD-->
                 <div class="row">
-                <form method="GET" action="{{ route('descargar.datos') }}">
+                <form method="GET" action="{{ route('descargar.datos3') }}">
                     <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar BDD</button>
                 </form>
                 </div>
@@ -2104,11 +2104,11 @@
                                 <td>{{$item->Procesos_a_ejecutar}}</td>
                                 <td>{{$item->Anotaciones}}</td>
                                 <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{$item->ID_historico}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarHistorico{{$item->ID_historico}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
                             </tr>
                             <!-- Modal para modificar los datos de los registros de la BDD-->
-                                <div class="modal fade" id="modalEditar{{$item->ID_historico}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                <div class="modal fade" id="modalEditarHistorico{{$item->ID_historico}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
                                             <div class="modal-header " style="background-color: #f79a0e;">
@@ -2117,7 +2117,7 @@
                                             </div>
 
                                             <div class="modal-body" style="background-color: #f2f2f2;">
-                                                <form class="col-md-8" action="{{ route('example-app.update') }}" method="post">
+                                                <form class="col-md-8" action="{{ route('example-app.update3') }}" method="post">
 
                                                     <!--Para proteger contra ataques CSRF-->
                                                     @csrf
@@ -2133,21 +2133,29 @@
                                                         <!--campo para mostrar el ID del registro (NO es editable)-->
 
                                                         <div class="col-md-1">
-                                                            <label for="id" class="form-label fw-bold">ID</label>
+                                                            <label for="ID_historico" class="form-label fw-bold">ID</label>
                                                             <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_historico}}" readonly >
                                                         </div>
 
-                                                        
+                                                        <div class="col-md-2">
+                                                            <label for="ID_equipo" class="form-label fw-bold" style="color: #7ab82c;">ID del equipo</label>
+                                                            <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white text-center" style="background-color: #ff3333;" value="{{$item->ID_equipo}}" readonly />
+                                                        </div>
+                        
+                                                        <div class="col-md-12">
+                                                            <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
+                                                            <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Historial_asignaciones}}" required />
+                                                        </div>
 
-                                                        <!--campo para editar el historial de todas las asignaciones que a tenido el equipo-->
-
-                                                        
-                                    
-                                                        <!--campo para editar todos los posibles procesos a ejecutar en el equipo-->
-
-                                                        
-                                                        <!--campo para editar las observacion adicionales que se lleguen a ver en el equipo-->
-
+                                                        <div class="col-md-12">
+                                                            <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
+                                                            <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Procesos_a_ejecutar}}" required />
+                                                        </div>
+                        
+                                                        <div class="col-md-12">
+                                                            <label for="observaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
+                                                            <textarea name="observaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
+                                                        </div>                                                        
                                                         
                                                         <br><br>
 
