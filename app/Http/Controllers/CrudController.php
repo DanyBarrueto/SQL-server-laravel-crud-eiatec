@@ -54,8 +54,12 @@ class CrudController extends Controller
 
         $coordinador = DB::select("SELECT * FROM Coordinadores");
 
+        $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+
+        $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
+
         // Retornar la vista "Welcome" con los datos obtenidos
-        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador'));
+        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador','expedicion','cargo'));
         }
 
 
@@ -488,7 +492,7 @@ class CrudController extends Controller
 
 
 
-    //Funciones para mostrar los datos de diferentes tablas para listas desplegables
+    //Funciones para mostrar los datos de diferentes tablas para diferentes listas desplegables
 
         //Funcion para mostrar los trabajadores de la tabla trabajadores 
 
@@ -508,6 +512,8 @@ class CrudController extends Controller
             return view('formulario', compact('equipos'));
         }
         
+        //Funcion para mostrar los coordinadores en la tabla trabajadores
+
         public function mostrarFormulario3(){
 
             $coordinador = DB::select("SELECT * FROM Coordinadores");
@@ -515,6 +521,22 @@ class CrudController extends Controller
             return view('formulario', compact('coordinadores'));
         }
         
+        //Funcion para mostrar los sitios de expedicion de la cedula en la tabla de trabajadores
 
+        public function mostrarFormulario4(){
+
+            $expedicion = DB::select("SELECT * FROM Expedicion");
+        
+            return view('formulario', compact('expedicion'));
+        }
+
+        //Funcion para mostrar los cargos en la tabla de trabajadores
+
+        public function mostrarFormulario5(){
+
+            $cargo = DB::select("SELECT * FROM Cargo");
+        
+            return view('formulario', compact('cargo'));
+        }
         
 }
