@@ -52,6 +52,7 @@
                     <div class="col-md-3">
                         <label for="ID_expedicion" class="form-label fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
                         <select name="ID_expedicion" id="ID_expedicion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                <option value=""></option>
                             @foreach ($expedicion as $expedicionB)
                                 <option value="{{ $expedicionB->ID_expedicion }}">{{ $expedicionB->Lugar }}</option>
                             @endforeach
@@ -70,6 +71,7 @@
                     <div class="col-md-4">
                         <label for="coordinador_id" class="form-label fw-bold" style="color: #7ab82c;">Coordinador asignado:</label>
                         <select name="coordinador_id" id="coordinador_id" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                <option value=""></option>
                             @foreach ($coordinador as $coordinadorB)
                                 <option value="{{ $coordinadorB->ID_coordinador }}">{{ $coordinadorB->Nombre }}</option>
                             @endforeach
@@ -78,9 +80,10 @@
                     
                     <!--lista desplegable para elegir uno de los cargos-->
 
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <label for="cargo" class="form-label fw-bold" style="color: #7ab82c;">Cargo Asignado:</label>
                         <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                <option value=""></option>
                             @foreach ($cargo as $cargoB)
                                 <option value="{{ $cargoB->ID_cargo }}">{{ $cargoB->Cargo }}</option>
                             @endforeach
@@ -90,8 +93,8 @@
                     <!--campo para insertar la cuenta de correo electonico-->
 
                     <div class="col-md-4">
-                        <label for="cuenta" class="form-label fw-bold" style="color: #7ab82c;">Correo:</label>
-                        <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
+                        <label for="correo" class="form-label fw-bold" style="color: #7ab82c;">Correo:</label>
+                        <input type="text" id="correo" name="correo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                     </div>
 
                     <!--campo para insertar la contraseña de la cuenta-->
@@ -332,8 +335,8 @@
                                 <!--lista desplegable para elegir la ubicacion de donde se encuentra el equipo-->
 
                                 <div class="col-md-2">
-                                    <label for="ubicacion_equipo" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
-                                    <select id="ubicacion_equipo" name="ubicacion_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                    <label for="ubicacion" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
+                                    <select id="ubicacion" name="ubicacion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                         <option value=""></option>
                                         <option value="1">Bogotá</option>
                                         <option value="2">Riohacha</option>
@@ -391,6 +394,7 @@
                                 <div class="col-md-5">
                                     <label for="trabajador_id" class="form-label fw-bold" style="color: #7ab82c;">Trabajador asignado:</label>
                                     <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                            <option value=""></option>
                                         @foreach ($trabajadores as $trabajador)
                                             <option value="{{ $trabajador->ID_trabajador }}">{{ $trabajador->Nombre }}</option>
                                         @endforeach
@@ -565,6 +569,10 @@
                                                             <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
                                                         </div>
 
+                                                        <!--lista desplegable para elegir el lugar de la expedicion de la cedula-->
+                                                        
+                                                        
+
                                                         <!--campo para editar el nombre -->
 
                                                         <div class="col-md-7">
@@ -579,19 +587,18 @@
                                                     -->
 
 
-
-
                                                         <!--campo para editar el cargo del trabajador-->
 
-
-                                                        
-                                                        <!--campo para editar la cuenta de correo electronico asignada al trabajador-->
-
-                                                        <div class="col-md-4">
-                                                            <label for="cuenta" class="form-label fw-bold">Correo:</label>
-                                                            <input type="text" id="cuenta" name="cuenta" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;"  value="{{$item->Correo}}"  />
+                                                        <div class="col-md-8">
+                                                            <label for="cargo" class="form-label fw-bold">Cargo Asignado:</label>
+                                                            <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;" required>
+                                                                    <option value=""></option>                                                               
+                                                                @foreach ($cargo as $cargoB)
+                                                                    <option value="{{ $cargoB->ID_cargo }}">{{ $cargoB->Cargo }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
-
+                                                        
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-3">
@@ -600,6 +607,30 @@
                                                             <br>
                                                         </div>
                                                         
+                                                        <!--campo para editar el cargo-->
+
+
+                                                        <!--campo para editar la cuenta de correo electonico-->
+
+                                                        <div class="col-md-4">
+                                                            <label for="correo" class="form-label fw-bold">Correo:</label>
+                                                            <input type="text" id="correo" name="correo" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Correo}}" />
+                                                        </div>
+
+                                                        <!--campo para editar la contraseña de la cuenta-->
+
+                                                        <div class="col-md-3">
+                                                            <label for="contraseña" class="form-label fw-bold">Contraseña:</label>
+                                                            <input type="text" id="contraseña" name="contraseña" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Contraseña}}"  />
+                                                        </div>
+
+                                                        <!--campo para editar el telefono-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="telefono" class="form-label fw-bold">Telefono:</label>
+                                                            <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Contraseña}}" />
+                                                        </div>
+
                                                         <br><br>
 
                                                         <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
@@ -748,13 +779,75 @@
                                                             <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_equipo}}" readonly >
                                                         </div>
 
-                                                        
-
-                                                    <!--
+                                                        <!--
                                                         Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
                                                         se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
                                                         halla coincidencia hace que las muestre
-                                                    -->
+                                                        -->
+
+                                                        <!--campo para editar el estado del equipo-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="estado" class="form-label fw-bold">Estado:</label>
+                                                            <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                <option value="De_baja">De baja</option>
+                                                                <option value="Disponible">Disponible</option>
+                                                                <option value="En_garantia">En garantia</option>
+                                                                <option value="Ilocalizado">Ilocalizado</option>
+                                                                <option value="No_aplica">No aplica</option>
+                                                                <option value="Pendiente">Pendiente</option>
+                                                            </select>                    
+                                                        </div>
+
+                                                        <!--campo para editar el codigo designado al equipo-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="codigo" class="form-label fw-bold">Codigo:</label>
+                                                            <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Codigo}}"  />
+                                                        </div>
+
+                                                        <!--campo para editar la cantidad de ram del equipo-->
+
+                                                        <div class="col-md-1">
+                                                            <label for="ram" class="form-label fw-bold">Ram:</label>
+                                                            <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                <option value="4Gb">4Gb</option>
+                                                                <option value="8Gb">8Gb</option>
+                                                                <option value="12Gb">12Gb</option>
+                                                                <option value="16Gb">16Gb</option>
+                                                                <option value="24Gb">24Gb</option>
+                                                                <option value="32Gb">32Gb</option>
+                                                                <option value="48Gb">48Gb</option>                            
+                                                                <option value="64Gb">64Gb</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <!--lista desplegable para editar la cantidad de almacenamiento del disco duro-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="disco_duro" class="form-label fw-bold">Disco duro:</label>
+                                                            <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                <option value="128Gb" {{ $item->Disco == '128Gb' ? 'selected' : '' }}>128 Gb</option>
+                                                                <option value="250Gb" {{ $item->Disco == '250Gb' ? 'selected' : '' }}>250 Gb</option>
+                                                                <option value="512Gb" {{ $item->Disco == '512Gb' ? 'selected' : '' }}>512 Gb</option>
+                                                                <option value="1Tb" {{ $item->Disco == '1Tb' ? 'selected' : '' }}>1 TB</option>
+                                                                <option value="1Tb+128Gb" {{ $item->Disco == '1Tb+128Gb' ? 'selected' : '' }}>1 TB + 128 GB</option>
+                                                                <option value="1Tb+250Gb" {{ $item->Disco == '1Tb+250Gb' ? 'selected' : '' }}>1 TB + 250 Gb</option>
+                                                                <option value="1Tb+512Gb" {{ $item->Disco == '1Tb+512Gb' ? 'selected' : '' }}>1 TB + 512 Gb</option>
+                                                                <option value="1Tb+1Tb" {{ $item->Disco == '1Tb+1Tb' ? 'selected' : '' }}>1 TB + 1 TB</option>
+                                                                <option value="2Tb" {{ $item->Disco == '2Tb' ? 'selected' : '' }}>2 TB</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <!--campo para editar el codigo del anydesk para conectarse-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="anydesk" class="form-label fw-bold">Anydesk:</label>
+                                                            <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #33ccff;" value="{{$item->Anydesk}}" />
+                                                        </div>
 
                                                         <!--campo para editar la ubicacion-->
 
@@ -763,27 +856,55 @@
                                                             <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
                                                             <br>
                                                         </div>
-                                                        
-                                                    <!--Aca empieza la parte de edicion  de los datos del equipo en el modal-->
-                                                        
-                                    
-                                                        <!--campo para editar el codigo asignado al equipo-->
 
-                                                        
+                                                        <!--lista desplegable para elegir la oficina donde se encuentra-->
 
-                                                        <!--campo para editar el sistema operativo que se utiliza en el equipo-->
+                                                        <div class="col-md-2">
+                                                            <label for="oficina" class="form-label fw-bold">Oficina:</label>
+                                                            <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #33ccff;" >
+                                                                <option value=""></option>
+                                                                <option value="1">Adm</option>
+                                                                <option value="2">Rio</option>
+                                                                <option value="3">Nei</option>
+                                                                <option value="4">Téc</option>
+                                                                <option value="5">Hof</option>
+                                                                <option value="6">Home_Office</option>
+                                                                <option value="8">Uri</option>
+                                                            </select>                        
+                                                        </div>
 
-                                                        
-                                                        
-                                                        <!--campo para editar la cantidad de ram asignado a um equipo-->
+                                                        <!--lista desplegable para elegir la direccion de la oficina (norte,sur,centro,local)-->
 
+                                                        <div class="col-md-2">
+                                                            <label for="direccion" class="form-label fw-bold" >Dirección:</label>
+                                                            <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #33ccff;" >
+                                                                <option value=""></option>
+                                                                <option value="1">Norte</option>
+                                                                <option value="2">Centro</option>
+                                                                <option value="3">Sur</option>
+                                                                <option value="4">Local</option>                            
+                                                            </select>                        
+                                                        </div>
                                                         
+                                                        <!--campo para la clave del equipo asignado-->
 
-                                                        <!--campo para editar la capacidad de disco duro en el equipo-->
+                                                        <div class="col-md-2">
+                                                            <label for="clave_equipo" class="form-label fw-bold">Clave:</label>
+                                                            <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #33ccff;" value="{{$item->Clave_equipo}}"  />
+                                                        </div>
+
+                                                        <!--campo para seleccionar el trabajador al cual esta asignado el equipo-->
+
+                                                        <div class="col-md-5">
+                                                            <label for="trabajador_id" class="form-label fw-bold">Trabajador asignado:</label>
+                                                            <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                @foreach ($trabajadores as $trabajador)
+                                                                    <option value="{{ $item->ID_trabajador }}" @if ($trabajador->ID_trabajador == $item->ID_trabajador) selected @endif>{{ $trabajador->Nombre }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                         
-                                                        
-                                                        
-                                                        <!--Aca empieza la parte donde se edita el historico del equipo-->
 
                                                         <br><br>
 

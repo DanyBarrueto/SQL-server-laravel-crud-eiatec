@@ -15,7 +15,7 @@ class CrudController extends Controller
 
         public function index(){
 
-        $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador,Trabajadores.Cedula,Trabajadores.Nombre, 
+        $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
                                 Expedicion.Lugar AS LugarExpedicion, 
                                 Cargo.Cargo AS Cargo,
                                 Trabajadores.Correo,
@@ -29,10 +29,11 @@ class CrudController extends Controller
                                 INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
                                 INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
                                 ORDER BY Trabajadores.ID_trabajador DESC");
+
         
         $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
                             Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,
-                            Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,
+                            Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
                             Tipo.Modalidad AS Tipo,
                             Marca.Nombre AS Marca,
                             Licencia.Licencia AS Tipo_licencia,
@@ -489,54 +490,5 @@ class CrudController extends Controller
 
                 return new StreamedResponse($callback, 200, $headers);
         }
-
-
-
-    //Funciones para mostrar los datos de diferentes tablas para diferentes listas desplegables
-
-        //Funcion para mostrar los trabajadores de la tabla trabajadores 
-
-        public function mostrarFormulario(){
-
-            $trabajadores = DB::select("SELECT * FROM trabajadores ");
-
-            return view('formulario', compact('trabajadores'));
-        }
-
-        //Funcion para mostrar los codigos de la tabla equipos 
-
-        public function mostrarFormulario2(){
-
-            $equipos = DB::select("SELECT ID_equipo, Codigo FROM Equipos");
-        
-            return view('formulario', compact('equipos'));
-        }
-        
-        //Funcion para mostrar los coordinadores en la tabla trabajadores
-
-        public function mostrarFormulario3(){
-
-            $coordinador = DB::select("SELECT * FROM Coordinadores");
-        
-            return view('formulario', compact('coordinadores'));
-        }
-        
-        //Funcion para mostrar los sitios de expedicion de la cedula en la tabla de trabajadores
-
-        public function mostrarFormulario4(){
-
-            $expedicion = DB::select("SELECT * FROM Expedicion");
-        
-            return view('formulario', compact('expedicion'));
-        }
-
-        //Funcion para mostrar los cargos en la tabla de trabajadores
-
-        public function mostrarFormulario5(){
-
-            $cargo = DB::select("SELECT * FROM Cargo");
-        
-            return view('formulario', compact('cargo'));
-        }
-        
+ 
 }
