@@ -258,14 +258,14 @@
                                     <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
                                     <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                         <option value=""></option>
-                                        <option value="4Gb">4Gb</option>
-                                        <option value="8Gb">8Gb</option>
-                                        <option value="12Gb">12Gb</option>
-                                        <option value="16Gb">16Gb</option>
-                                        <option value="24Gb">24Gb</option>
-                                        <option value="32Gb">32Gb</option>
-                                        <option value="48Gb">48Gb</option>                            
-                                        <option value="64Gb">64Gb</option>
+                                        <option value="4GB">4GB</option>
+                                        <option value="8GB">8GB</option>
+                                        <option value="12GB">12GB</option>
+                                        <option value="16GB">16GB</option>
+                                        <option value="24GB">24GB</option>
+                                        <option value="32GB">32GB</option>
+                                        <option value="48GB">48GB</option>                            
+                                        <option value="64GB">64GB</option>
                                     </select>
                                 </div>
 
@@ -313,15 +313,15 @@
                                     <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
                                     <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                         <option value=""></option>
-                                        <option value="128Gb">128 Gb</option>
-                                        <option value="250Gb">250 Gb</option>
-                                        <option value="512Gb">512 Gb</option>
-                                        <option value="1Tb">1 TB</option>
-                                        <option value="1Tb+128Gb">1 TB + 128 GB</option>
-                                        <option value="1Tb+250Gb">1 TB + 250 Gb</option>
-                                        <option value="1Tb+512Gb">1 TB + 512 Gb</option>
-                                        <option value="1Tb+1Tb">1 TB + 1 TB</option>
-                                        <option value="2Tb">2 TB</option>
+                                        <option value="128GB">128 GB</option>
+                                        <option value="250GB">250 GB</option>
+                                        <option value="512GB">512 GB</option>
+                                        <option value="1TB">1 TB</option>
+                                        <option value="1TB+128GB">1 TB + 128 GB</option>
+                                        <option value="1TB+250GB">1 TB + 250 GB</option>
+                                        <option value="1TB+512GB">1 TB + 512 GB</option>
+                                        <option value="1TB+1TB">1 TB + 1 TB</option>
+                                        <option value="2TB">2 TB</option>
                                     </select>
                                 </div>
 
@@ -779,26 +779,20 @@
                                                             <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_equipo}}" readonly >
                                                         </div>
 
-                                                        <!--
-                                                        Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
-                                                        se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
-                                                        halla coincidencia hace que las muestre
-                                                        -->
-
                                                         <!--campo para editar el estado del equipo-->
 
                                                         <div class="col-md-2">
                                                             <label for="estado" class="form-label fw-bold">Estado:</label>
                                                             <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
-                                                                <option value="De_baja">De baja</option>
-                                                                <option value="Disponible">Disponible</option>
-                                                                <option value="En_garantia">En garantia</option>
-                                                                <option value="Ilocalizado">Ilocalizado</option>
-                                                                <option value="No_aplica">No aplica</option>
-                                                                <option value="Pendiente">Pendiente</option>
+                                                                <option value="De_baja" {{ $item->Estado == 'De_baja' ? 'selected' : '' }}>De baja</option>
+                                                                <option value="Disponible" {{ $item->Estado == 'Disponible' ? 'selected' : '' }}>Disponible</option>
+                                                                <option value="En_garantia" {{ $item->Estado == 'En_garantia' ? 'selected' : '' }}>En garantia</option>
+                                                                <option value="Ilocalizado" {{ $item->Estado == 'Ilocalizado' ? 'selected' : '' }}>Ilocalizado</option>
+                                                                <option value="No_aplica" {{ $item->Estado == 'No_aplica' ? 'selected' : '' }}>No aplica</option>
+                                                                <option value="Pendiente" {{ $item->Estado == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                                                             </select>                    
-                                                        </div>
+                                                        </div>                                                        
 
                                                         <!--campo para editar el codigo designado al equipo-->
 
@@ -813,16 +807,16 @@
                                                             <label for="ram" class="form-label fw-bold">Ram:</label>
                                                             <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
-                                                                <option value="4Gb">4Gb</option>
-                                                                <option value="8Gb">8Gb</option>
-                                                                <option value="12Gb">12Gb</option>
-                                                                <option value="16Gb">16Gb</option>
-                                                                <option value="24Gb">24Gb</option>
-                                                                <option value="32Gb">32Gb</option>
-                                                                <option value="48Gb">48Gb</option>                            
-                                                                <option value="64Gb">64Gb</option>
+                                                                <option value="4GB" {{ $item->Ram == '4GB' ? 'selected' : '' }}>4GB</option>
+                                                                <option value="8GB" {{ $item->Ram == '8GB' ? 'selected' : '' }}>8GB</option>
+                                                                <option value="12GB" {{ $item->Ram == '12GB' ? 'selected' : '' }}>12GB</option>
+                                                                <option value="16GB" {{ $item->Ram == '16GB' ? 'selected' : '' }}>16GB</option>
+                                                                <option value="24GB" {{ $item->Ram == '24GB' ? 'selected' : '' }}>24GB</option>
+                                                                <option value="32GB" {{ $item->Ram == '32GB' ? 'selected' : '' }}>32GB</option>
+                                                                <option value="48GB" {{ $item->Ram == '48GB' ? 'selected' : '' }}>48GB</option>                            
+                                                                <option value="64GB" {{ $item->Ram == '64GB' ? 'selected' : '' }}>64GB</option>
                                                             </select>
-                                                        </div>
+                                                        </div>                                                        
 
                                                         <!--lista desplegable para editar la cantidad de almacenamiento del disco duro-->
 
@@ -830,15 +824,24 @@
                                                             <label for="disco_duro" class="form-label fw-bold">Disco duro:</label>
                                                             <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
-                                                                <option value="128Gb" {{ $item->Disco == '128Gb' ? 'selected' : '' }}>128 Gb</option>
-                                                                <option value="250Gb" {{ $item->Disco == '250Gb' ? 'selected' : '' }}>250 Gb</option>
-                                                                <option value="512Gb" {{ $item->Disco == '512Gb' ? 'selected' : '' }}>512 Gb</option>
-                                                                <option value="1Tb" {{ $item->Disco == '1Tb' ? 'selected' : '' }}>1 TB</option>
-                                                                <option value="1Tb+128Gb" {{ $item->Disco == '1Tb+128Gb' ? 'selected' : '' }}>1 TB + 128 GB</option>
-                                                                <option value="1Tb+250Gb" {{ $item->Disco == '1Tb+250Gb' ? 'selected' : '' }}>1 TB + 250 Gb</option>
-                                                                <option value="1Tb+512Gb" {{ $item->Disco == '1Tb+512Gb' ? 'selected' : '' }}>1 TB + 512 Gb</option>
-                                                                <option value="1Tb+1Tb" {{ $item->Disco == '1Tb+1Tb' ? 'selected' : '' }}>1 TB + 1 TB</option>
-                                                                <option value="2Tb" {{ $item->Disco == '2Tb' ? 'selected' : '' }}>2 TB</option>
+                                                                <option value="120GB" {{ $item->Disco == '120GB' ? 'selected' : '' }}>120 GB</option>
+                                                                <option value="128GB" {{ $item->Disco == '128GB' ? 'selected' : '' }}>128 GB</option>
+                                                                <option value="128GB+512GB" {{ $item->Disco == '128GB+512GB' ? 'selected' : '' }}>128 GB + 512 GB</option>
+                                                                <option value="128GB+1TB" {{ $item->Disco == '128GB+1TB' ? 'selected' : '' }}>128 GB + 1TB</option>
+                                                                <option value="256GB" {{ $item->Disco == '256GB' ? 'selected' : '' }}>256 GB</option>
+                                                                <option value="256GB+500GB" {{ $item->Disco == '256GB+500GB' ? 'selected' : '' }}>256 GB +500 GB</option>
+                                                                <option value="256GB+1TB" {{ $item->Disco == '256GB+1TB' ? 'selected' : '' }}>256 GB +1 TB</option>
+                                                                <option value="256GB+2TB" {{ $item->Disco == '256GB+2TB' ? 'selected' : '' }}>256 GB +2 TB</option>
+                                                                <option value="500GB" {{ $item->Disco == '500GB' ? 'selected' : '' }}>500 GB</option>
+                                                                <option value="512GB" {{ $item->Disco == '512GB' ? 'selected' : '' }}>512 GB</option>
+                                                                <option value="610GB+283GB" {{ $item->Disco == '610GB+283GB' ? 'selected' : '' }}>1 TB + 128 GB</option>
+                                                                <option value="650GB" {{ $item->Disco == '650GB' ? 'selected' : '' }}>650 GB</option>
+                                                                <option value="1TB" {{ $item->Disco == '1TB' ? 'selected' : '' }}>1 TB</option>
+                                                                <option value="1TB+128GB" {{ $item->Disco == '1TB+128GB' ? 'selected' : '' }}>1 TB + 128 GB</option>
+                                                                <option value="1TB+250GB" {{ $item->Disco == '1TB+250GB' ? 'selected' : '' }}>1 TB + 250 GB</option>
+                                                                <option value="1TB+512GB" {{ $item->Disco == '1TB+512GB' ? 'selected' : '' }}>1 TB + 512 GB</option>
+                                                                <option value="1TB+1TB" {{ $item->Disco == '1TB+1TB' ? 'selected' : '' }}>1 TB + 1 TB</option>
+                                                                <option value="2TB" {{ $item->Disco == '2TB' ? 'selected' : '' }}>2 TB</option>
                                                             </select>
                                                         </div>
                                                         
