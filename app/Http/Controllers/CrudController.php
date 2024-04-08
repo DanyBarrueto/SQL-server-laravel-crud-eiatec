@@ -21,6 +21,7 @@ class CrudController extends Controller
                                 Trabajadores.Correo,
                                 Trabajadores.ID_ubicacion,
                                 Trabajadores.Contraseña,
+                                Trabajadores.ID_cargo,
                                 Coordinadores.Nombre AS NombreCoordinador, 
                                 Ubicacion.Ubicacion AS Ubicacion,
                                 Trabajadores.Telefono
@@ -33,8 +34,9 @@ class CrudController extends Controller
 
         
         $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
-                            Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,
+                            Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
                             Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
+                            Equipos.ID_oficina,Equipos.ID_direccion,
                             Tipo.Modalidad AS Tipo,
                             Marca.Nombre AS Marca,
                             Licencia.Licencia AS Tipo_licencia,
@@ -60,18 +62,16 @@ class CrudController extends Controller
 
         $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
 
-        $oficinas = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+        $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
 
         $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
         
-        $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
-
         $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
 
         $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
 
         // Retornar la vista "Welcome" con los datos obtenidos
-        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador','expedicion','cargo','oficinas','licencia','oficina','direccion','ubicacion'));
+        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador','expedicion','cargo','oficina','licencia','direccion','ubicacion'));
         }
 
 

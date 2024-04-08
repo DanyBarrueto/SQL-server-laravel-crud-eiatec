@@ -269,7 +269,7 @@
                                     </select>
                                 </div>
 
-                                <!--campo para ingresar el nombre del procesador-->
+                                <!--campo para ingresar cual es el procesador-->
 
                                 <div class="col-md-6">
                                     <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
@@ -425,6 +425,8 @@
                                     Historial:
                                 </h2>
 
+                                <!--campo para elegir el equipo al que se le va a poner un historial-->
+
                                 <div class="col-md-5">
                                     <label for="id_equipo" class="form-label fw-bold" style="color: #7ab82c;">Codigo del equipo:</label>
                                     <select name="id_equipo" id="id_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
@@ -434,22 +436,30 @@
                                     </select>
                                 </div>
                                 
+                                <!--campo para ingresar el historial de asignacion-->
+
                                 <div class="col-md-12">
                                     <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
                                     <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
+
+                                <!--campo para ingresar los procesos a ejecutar del equipo-->
 
                                 <div class="col-md-12">
                                     <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
                                     <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
 
+                                <!--campo para inbgresar las anotaciones del equipo-->
+
                                 <div class="col-md-12">
                                     <label for="Anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
                                     <textarea name="Anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
                                 </div>
                             </div>
-        
+                            
+                            <!--boton para enviar los datos del historial-->
+
                             <div>
                                 <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
                             </div>
@@ -585,30 +595,23 @@
 
                                                         <!--campo para editar el nombre -->
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="nombre" class="form-label fw-bold">Nombre:</label>
                                                             <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
                                                         </div>
 
-                                                    <!--
-                                                        Debido a que no se puede mirar en la base de datos y mostrar el dato directamenta al ser lista desplegable
-                                                        se incluyo la parte donde en ves de coger los datos, compara el dato puesto con las opciones en lo que donde
-                                                        halla coincidencia hace que las muestre
-                                                    -->
-
-
                                                         <!--campo para editar el cargo del trabajador-->
-
-                                                        <div class="col-md-8">
-                                                            <label for="cargo" class="form-label fw-bold">Cargo Asignado:</label>
+                                                        
+                                                        <div class="col-md-5">
+                                                            <label for="cargo" class="form-label fw-bold">Cargo asignado:</label>
                                                             <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;">
-                                                                    <option value=""></option>                                                               
+                                                                <option value=""></option>
                                                                 @foreach ($cargo as $cargoB)
-                                                                    <option value="{{ $cargoB->ID_cargo }}">{{ $cargoB->Cargo }}</option>
+                                                                    <option value="{{ $cargoB->ID_cargo }}" @if ($cargoB->ID_cargo == $item->ID_cargo) selected @endif>{{ $cargoB->Cargo }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        
+
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-2">
@@ -616,7 +619,7 @@
                                                             <select name="ubicacion" id="ubicacion" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
                                                                 @foreach ($ubicacion as $ubicacionB)
-                                                                    <option value="{{ $item->ID_ubicacion }}" @if ($ubicacionB->ID_ubicacion == $item->ID_ubicacion) selected @endif>{{ $ubicacionB->Ubicacion }}</option>
+                                                                    <option value="{{ $ubicacionB->ID_ubicacion }}" @if ($ubicacionB->ID_ubicacion == $item->ID_ubicacion) selected @endif>{{ $ubicacionB->Ubicacion }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -642,7 +645,7 @@
 
                                                         <div class="col-md-2">
                                                             <label for="telefono" class="form-label fw-bold">Telefono:</label>
-                                                            <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Contraseña}}" />
+                                                            <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Telefono}}" />
                                                         </div>
 
                                                         <br><br>
@@ -882,13 +885,12 @@
                                                         <!--lista desplegable para editar la licensia (osea si tiene windows home, pro, etc)-->
 
                                                         <div class="col-md-3">
-                                                            <label for="licensia" class="form-label fw-bold">Licensia:</label>
-                                                            <select id="licensia" name="licensia" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                            <label for="licencia" class="form-label fw-bold">Licencia:</label>
+                                                            <select name="licencia" id="licencia" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
-                                                                <option value="1">Home</option>
-                                                                <option value="2">Pro</option>
-                                                                <option value="3">Home Single Language</option>
-                                                                <option value="4">Server</option>
+                                                                @foreach ($licencia as $licenciaB)
+                                                                    <option value="{{ $licenciaB->ID_licencia }}" @if ($licenciaB->ID_licencia == $item->ID_licencia) selected @endif>{{ $licenciaB->Licencia }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                                                                               
@@ -904,29 +906,24 @@
 
                                                         <div class="col-md-2">
                                                             <label for="oficina" class="form-label fw-bold">Oficina:</label>
-                                                            <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #33ccff;" >
+                                                            <select name="oficina" id="oficina" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
-                                                                <option value="1">Adm</option>
-                                                                <option value="2">Rio</option>
-                                                                <option value="3">Nei</option>
-                                                                <option value="4">Téc</option>
-                                                                <option value="5">Hof</option>
-                                                                <option value="6">Home_Office</option>
-                                                                <option value="8">Uri</option>
-                                                            </select>                        
+                                                                @foreach ($oficina as $oficinaB)
+                                                                    <option value="{{ $oficinaB->ID_oficina }}" @if ($oficinaB->ID_oficina == $item->ID_oficina) selected @endif>{{ $oficinaB->Oficina }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
 
                                                         <!--lista desplegable para elegir la direccion de la oficina (norte,sur,centro,local)-->
 
                                                         <div class="col-md-2">
-                                                            <label for="direccion" class="form-label fw-bold" >Dirección:</label>
-                                                            <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #33ccff;" >
+                                                            <label for="direccion" class="form-label fw-bold">Dirección:</label>
+                                                            <select name="direccion" id="direccion" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
-                                                                <option value="1">Norte</option>
-                                                                <option value="2">Centro</option>
-                                                                <option value="3">Sur</option>
-                                                                <option value="4">Local</option>                            
-                                                            </select>                        
+                                                                @foreach ($direccion as $direccionB)
+                                                                    <option value="{{ $direccionB->ID_direccion }}" @if ($direccionB->ID_direccion == $item->ID_direccion) selected @endif>{{ $direccionB->Direccion }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         
                                                         <!--campo para la clave del equipo asignado-->
@@ -943,12 +940,11 @@
                                                             <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
                                                                 @foreach ($trabajadores as $trabajador)
-                                                                    <option value="{{ $item->ID_trabajador }}" @if ($trabajador->ID_trabajador == $item->ID_trabajador) selected @endif>{{ $trabajador->Nombre }}</option>
+                                                                    <option value="{{ $trabajador->ID_trabajador }}" @if ($trabajador->ID_trabajador == $item->ID_trabajador) selected @endif>{{ $trabajador->Nombre }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                         
-
                                                         <br><br>
 
                                                         <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
@@ -1067,17 +1063,17 @@
 
                                                         <div class="col-md-2">
                                                             <label for="ID_equipo" class="form-label fw-bold">ID del equipo</label>
-                                                            <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white text-center" style="background-color: #ff3333;" value="{{$item->ID_equipo}}" readonly />
+                                                            <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white text-center" style="background-color: #ff3333;" value="{{$item->ID_equipo}}" readonly/>
                                                         </div>
                         
                                                         <div class="col-md-12">
                                                             <label for="historial_asignacion" class="form-label fw-bold">Historial asignacion:</label>
-                                                            <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Historial_asignaciones}}" required />
+                                                            <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Historial_asignaciones}}"/>
                                                         </div>
 
                                                         <div class="col-md-12">
                                                             <label for="procesos_ejecutar" class="form-label fw-bold">Procesos a ejecutar:</label>
-                                                            <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Procesos_a_ejecutar}}" required />
+                                                            <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Procesos_a_ejecutar}}"/>
                                                         </div>
                         
                                                         <div class="col-md-12">
@@ -1114,12 +1110,6 @@
     <br>
     <br>
     <br>
-
-    <div class="row container mt-4">
-        <form method="GET" action="{{ route('descargar.datos4') }}">
-            <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar toda la BDD</button>
-        </form>
-    </div>
 
 <!--Scripts de boostrap para funcionamientos del modal-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
