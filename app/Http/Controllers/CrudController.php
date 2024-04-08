@@ -19,6 +19,7 @@ class CrudController extends Controller
                                 Expedicion.Lugar AS LugarExpedicion, 
                                 Cargo.Cargo AS Cargo,
                                 Trabajadores.Correo,
+                                Trabajadores.ID_ubicacion,
                                 Trabajadores.Contraseña,
                                 Coordinadores.Nombre AS NombreCoordinador, 
                                 Ubicacion.Ubicacion AS Ubicacion,
@@ -59,8 +60,18 @@ class CrudController extends Controller
 
         $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
 
+        $oficinas = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+
+        $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
+        
+        $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+
+        $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
+
+        $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
+
         // Retornar la vista "Welcome" con los datos obtenidos
-        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador','expedicion','cargo'));
+        return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador','expedicion','cargo','oficinas','licencia','oficina','direccion','ubicacion'));
         }
 
 
@@ -491,4 +502,57 @@ class CrudController extends Controller
                 return new StreamedResponse($callback, 200, $headers);
         }
  
+        //Funcion para descargar toda la BDD
+
+        public function descargarDatos4() {
+            // Obtener los nombres de todas las tablas de la base de datos
+            $tables = DB::connection()->getDoctrineSchemaManager()->listTableNames();
+        
+            // Inicializar un array para almacenar todos los datos
+            $allData = [];
+        
+            foreach ($tables as $table) {
+                // Obtener los datos de cada tabla y agregarlos al array
+                $data = DB::table($table)->get()->toArray();
+                $allData[$table] = $data;
+            }
+        
+            // Nombre del archivo CSV
+            $csvFileName = 'BDD_Eiatec_Toda.csv';
+        
+            // Encabezados para la respuesta HTTP
+            $headers = array(
+                "Content-type" => "text/csv",
+                "Content-Disposition" => "attachment; filename=".$csvFileName,
+                "Pragma" => "no-cache",
+                "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+                "Expires" => "0"
+            );
+        
+            // Función de devolución de llamada para generar el archivo CSV
+            $callback = function() use ($allData) {
+                $file = fopen('php://output', 'w');
+        
+                foreach ($allData as $tableName => $tableData) {
+                    // Escribir el nombre de la tabla como encabezado
+                    fputcsv($file, [$tableName]);
+        
+                    // Encabezado CSV
+                    fputcsv($file, array_keys((array) $tableData[0]));
+        
+                    // Datos
+                    foreach ($tableData as $dato) {
+                        fputcsv($file, (array) $dato);
+                    }
+        
+                    // Agregar una línea en blanco entre las tablas
+                    fputcsv($file, []);
+                }
+        
+                fclose($file);
+            };
+        
+            // Retornar la respuesta HTTP como una respuesta de flujo
+            return new StreamedResponse($callback, 200, $headers);
+        }
 }

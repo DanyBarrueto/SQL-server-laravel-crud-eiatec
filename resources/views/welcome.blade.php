@@ -455,9 +455,19 @@
                             </div>
 
                         </form>
+
                     </div>
                 </div>
                 <hr>
+
+                <!--Boton pora descargar todos los datos de la BDD -->
+
+                <div class="row container mt-4">
+                    <form method="GET" action="{{ route('descargar.datos4') }}">
+                        <button type="submit" class="btn btn-primary fw-bold btn-lg mt-2" id="boton_descargar" style="width:55vh">Descargar toda la BDD</button>
+                    </form>
+                </div>
+
     </div>
 
 <!--Aca es todo lo referente a poder ver,consultar y modificar los datos de la BDD-->
@@ -575,7 +585,7 @@
 
                                                         <!--campo para editar el nombre -->
 
-                                                        <div class="col-md-7">
+                                                        <div class="col-md-4">
                                                             <label for="nombre" class="form-label fw-bold">Nombre:</label>
                                                             <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
                                                         </div>
@@ -591,7 +601,7 @@
 
                                                         <div class="col-md-8">
                                                             <label for="cargo" class="form-label fw-bold">Cargo Asignado:</label>
-                                                            <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;" required>
+                                                            <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                     <option value=""></option>                                                               
                                                                 @foreach ($cargo as $cargoB)
                                                                     <option value="{{ $cargoB->ID_cargo }}">{{ $cargoB->Cargo }}</option>
@@ -601,10 +611,14 @@
                                                         
                                                         <!--campo para editar la ubicacion-->
 
-                                                        <div class="col-md-3">
-                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
-                                                            <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
-                                                            <br>
+                                                        <div class="col-md-2">
+                                                            <label for="ubicacion" class="form-label fw-bold">Ubicacion:</label>
+                                                            <select name="ubicacion" id="ubicacion" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                @foreach ($ubicacion as $ubicacionB)
+                                                                    <option value="{{ $item->ID_ubicacion }}" @if ($ubicacionB->ID_ubicacion == $item->ID_ubicacion) selected @endif>{{ $ubicacionB->Ubicacion }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         
                                                         <!--campo para editar el cargo-->
@@ -785,6 +799,7 @@
                                                             <label for="estado" class="form-label fw-bold">Estado:</label>
                                                             <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
+                                                                <option value="Pendiente" {{ $item->Estado == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                                                                 <option value="De_baja" {{ $item->Estado == 'De_baja' ? 'selected' : '' }}>De baja</option>
                                                                 <option value="Disponible" {{ $item->Estado == 'Disponible' ? 'selected' : '' }}>Disponible</option>
                                                                 <option value="En_garantia" {{ $item->Estado == 'En_garantia' ? 'selected' : '' }}>En garantia</option>
@@ -852,6 +867,31 @@
                                                             <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #33ccff;" value="{{$item->Anydesk}}" />
                                                         </div>
 
+                                                        <!--lista desplegable para editar el sistema operativo-->
+
+                                                        <div class="col-md-2">
+                                                            <label for="tipo_sistema" class="form-label fw-bold">Sistema Operativo:</label>
+                                                            <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                <option value="Windows10" {{ $item->Sistema_operativo == 'Windows10' ? 'selected' : '' }}>Windows 10</option>
+                                                                <option value="Windows11" {{ $item->Sistema_operativo == 'Windows11' ? 'selected' : '' }}>Windows 11</option>
+                                                                <option value="Windows12" {{ $item->Sistema_operativo == 'Windows12' ? 'selected' : '' }}>Windows 12</option>
+                                                            </select>
+                                                        </div>                                                        
+
+                                                        <!--lista desplegable para editar la licensia (osea si tiene windows home, pro, etc)-->
+
+                                                        <div class="col-md-3">
+                                                            <label for="licensia" class="form-label fw-bold">Licensia:</label>
+                                                            <select id="licensia" name="licensia" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                <option value="1">Home</option>
+                                                                <option value="2">Pro</option>
+                                                                <option value="3">Home Single Language</option>
+                                                                <option value="4">Server</option>
+                                                            </select>
+                                                        </div>
+                                                                                                              
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-3">
@@ -1026,22 +1066,22 @@
                                                         </div>
 
                                                         <div class="col-md-2">
-                                                            <label for="ID_equipo" class="form-label fw-bold" style="color: #7ab82c;">ID del equipo</label>
+                                                            <label for="ID_equipo" class="form-label fw-bold">ID del equipo</label>
                                                             <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white text-center" style="background-color: #ff3333;" value="{{$item->ID_equipo}}" readonly />
                                                         </div>
                         
                                                         <div class="col-md-12">
-                                                            <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignacion:</label>
+                                                            <label for="historial_asignacion" class="form-label fw-bold">Historial asignacion:</label>
                                                             <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Historial_asignaciones}}" required />
                                                         </div>
 
                                                         <div class="col-md-12">
-                                                            <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
+                                                            <label for="procesos_ejecutar" class="form-label fw-bold">Procesos a ejecutar:</label>
                                                             <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Procesos_a_ejecutar}}" required />
                                                         </div>
                         
                                                         <div class="col-md-12">
-                                                            <label for="Anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
+                                                            <label for="Anotaciones" class="form-label fw-bold">Anotaciones:</label>
                                                             <textarea name="Anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
                                                         </div>                                                        
                                                         
@@ -1075,7 +1115,13 @@
     <br>
     <br>
 
-<!--Funcion del boostrap para el funcionamiento del modal-->
+    <div class="row container mt-4">
+        <form method="GET" action="{{ route('descargar.datos4') }}">
+            <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar toda la BDD</button>
+        </form>
+    </div>
+
+<!--Scripts de boostrap para funcionamientos del modal-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

@@ -61,7 +61,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Ruta para descargar los datos de las diferentes tablas de la base de datos
+//Rutas para descargar la base de datos entera o para descargar solo una tabla de la BDD
 
     //ruta para descargar los datos de la tabla de trabajadores
 
@@ -74,3 +74,7 @@ use Illuminate\Support\Facades\Route;
     //ruta para descargar los datos de la tabla de historico
 
     Route::get('/descargar-datos3', [CrudController::class, 'descargarDatos3'])->name('descargar.datos3');
+
+    //ruta para descargar toda la BDD 
+
+    Route::get('/descargar-datos4', [CrudController::class, 'descargarDatos4'])->name('descargar.datos4');
