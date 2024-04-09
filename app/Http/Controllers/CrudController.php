@@ -36,7 +36,7 @@ class CrudController extends Controller
         $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
                             Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
                             Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
-                            Equipos.ID_oficina,Equipos.ID_direccion,
+                            Equipos.ID_oficina,Equipos.ID_direccion,Equipos.ID_ubicacion,
                             Tipo.Modalidad AS Tipo,
                             Marca.Nombre AS Marca,
                             Licencia.Licencia AS Tipo_licencia,
@@ -296,40 +296,35 @@ class CrudController extends Controller
 
     // Funciones para actualizar un registro de las tablas de la base de datos:
 
-        public function update(Request $request){
-                try {
-                    // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
-                    $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Cuenta=?, Ubicacion=?, Area=?, Cargo=?, Codigo=?,
-                    Region=?, Oficina=?, Ram=?, Disco_duro=?, Tipo_de_sistema=?, Historial_asignacion=?, Procesos_a_ejecutar=?, Observaciones=? WHERE ID=?",[
-                        $request->nombre,
-                        $request->cedula,
-                        $request->cuenta,
-                        $request->ubicacion,
-                        $request->area,
-                        $request->cargo,
-                        $request->codigo,
-                        $request->region,
-                        $request->oficina,
-                        $request->ram,
-                        $request->disco_duro,
-                        $request->tipo_sistema,
-                        $request->historial_asignacion,
-                        $request->procesos_ejecutar,
-                        $request->observaciones,
-                        $request->id,
-                    ]);
-            
-                    // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
-                    if ($sql) {
-                        return back()->with("Correcto", "Trabajador correctamente modificado");
-                    } else {
-                        return back()->with("Incorrecto", "Error al modificar");
-                    }
-                } catch (\Throwable $th) {
-                    // Capturar cualquier excepción ocurrida durante la actualización
-                    return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
-                }
+    public function update(Request $request){
+        try {
+            // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
+            $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Correo=?, ID_ubicacion=?, ID_cargo=?, ID_oficina=?, Ram=?, Disco=?, Sistema_operativo=?, Observaciones=? WHERE ID=?",[
+                $request->nombre,
+                $request->cedula,
+                $request->correo,
+                $request->ubicacion,
+                $request->cargo,
+                $request->oficina,
+                $request->ram,
+                $request->disco_duro,
+                $request->tipo_sistema,
+                $request->observaciones,
+                $request->id,
+            ]);
+    
+            // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
+            if ($sql) {
+                return back()->with("Correcto", "Trabajador correctamente modificado");
+            } else {
+                return back()->with("Incorrecto", "Error al modificar");
+            }
+        } catch (\Throwable $th) {
+            // Capturar cualquier excepción ocurrida durante la actualización
+            return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
         }
+    }
+    
 
         // Función para actualizar un registro de la tabla equipos en la base de datos:
 

@@ -472,12 +472,16 @@
 
                 <!--Boton pora descargar todos los datos de la BDD -->
 
+                <h2 class="fw-bold">
+                    Descargar:
+                </h2>
+
                 <div class="row container mt-4">
                     <form method="GET" action="{{ route('descargar.datos4') }}">
                         <button type="submit" class="btn btn-primary fw-bold btn-lg mt-2" id="boton_descargar" style="width:55vh">Descargar toda la BDD</button>
                     </form>
                 </div>
-
+                <hr>
     </div>
 
 <!--Aca es todo lo referente a poder ver,consultar y modificar los datos de la BDD-->
@@ -897,9 +901,13 @@
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-3">
-                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
-                                                            <input type="text" id="ubicacion" name="ubicacion" class="form-control border-dark text-white text-center" style="background-color: #33ccff;" value="{{$item->Ubicacion}}" />
-                                                            <br>
+                                                            <label for="ubicacion" class="form-label fw-bold">ubicacion:</label>
+                                                            <select name="ubicacion" id="ubicacion" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                @foreach ($ubicacion as $ubicacionB)
+                                                                    <option value="{{ $ubicacionB->ID_ubicacion }}" @if ($ubicacionB->ID_ubicacion == $item->ID_ubicacion) selected @endif>{{ $ubicacionB->Ubicacion }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
 
                                                         <!--lista desplegable para elegir la oficina donde se encuentra-->
