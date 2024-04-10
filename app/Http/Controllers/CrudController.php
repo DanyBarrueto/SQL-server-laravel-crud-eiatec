@@ -309,7 +309,7 @@ class CrudController extends Controller
                     $request->ubicacion,
                     $request->cargo,
                     $request->telefono,
-                    $request->coordinador_id, // Se corrigió aquí
+                    $request->coordinador_id,
                     $request->contraseña,
                     $request->id,
                 ]);
@@ -330,39 +330,36 @@ class CrudController extends Controller
         // Función para actualizar un registro de la tabla equipos en la base de datos:
 
         public function update2(Request $request){
-                try {
-                    // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
-                    $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Cuenta=?, Ubicacion=?, Area=?, Cargo=?, Codigo=?,
-                    Region=?, Oficina=?, Ram=?, Disco_duro=?, Tipo_de_sistema=?, Historial_asignacion=?, Procesos_a_ejecutar=?, Observaciones=? WHERE ID=?",[
-                        $request->nombre,
-                        $request->cedula,
-                        $request->cuenta,
-                        $request->ubicacion,
-                        $request->area,
-                        $request->cargo,
-                        $request->codigo,
-                        $request->region,
-                        $request->oficina,
-                        $request->ram,
-                        $request->disco_duro,
-                        $request->tipo_sistema,
-                        $request->historial_asignacion,
-                        $request->procesos_ejecutar,
-                        $request->observaciones,
-                        $request->id,
-                    ]);
-            
-                    // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
-                    if ($sql) {
-                        return back()->with("Correcto", "Trabajador correctamente modificado");
-                    } else {
-                        return back()->with("Incorrecto", "Error al modificar");
-                    }
-                } catch (\Throwable $th) {
-                    // Capturar cualquier excepción ocurrida durante la actualización
-                    return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
+            try {
+                // Realizar la actualización del registro en la tabla "equipos" con los datos recibidos
+                $sql = DB::update("UPDATE Equipos SET Estado=?, Codigo=?, Ram=?, Disco=?, Anydesk=?, Sistema_operativo=?, ID_licencia=?, ID_ubicacion=?, ID_oficina=?, ID_direccion=?, Clave_equipo=?, ID_trabajador=? WHERE ID_equipo=?",[
+                    $request->estado,
+                    $request->codigo,
+                    $request->ram,
+                    $request->disco_duro,
+                    $request->anydesk,
+                    $request->tipo_sistema,
+                    $request->licencia,
+                    $request->ubicacion,
+                    $request->oficina,
+                    $request->direccion,
+                    $request->clave_equipo,
+                    $request->trabajador_id,
+                    $request->id,
+                ]);
+        
+                // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
+                if ($sql) {
+                    return back()->with("Correcto", "Equipo correctamente modificado");
+                } else {
+                    return back()->with("Incorrecto", "Error al modificar");
                 }
+            } catch (\Throwable $th) {
+                // Capturar cualquier excepción ocurrida durante la actualización
+                return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
+            }
         }
+        
 
         //funcion para actualizar un registro de la tabla de historico:
         

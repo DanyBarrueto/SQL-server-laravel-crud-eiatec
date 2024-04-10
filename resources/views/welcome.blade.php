@@ -810,7 +810,7 @@
                                             </div>
 
                                             <div class="modal-body" style="background-color: #f2f2f2;">
-                                                <form class="col-md-8" action="{{ route('example-app.update') }}" method="post">
+                                                <form class="col-md-8" action="{{ route('example-app.update2') }}" method="post">
 
                                                     <!--Para proteger contra ataques CSRF-->
                                                     @csrf
