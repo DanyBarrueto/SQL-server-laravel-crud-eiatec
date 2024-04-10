@@ -18,6 +18,8 @@ class CrudController extends Controller
         $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
                                 Expedicion.Lugar AS LugarExpedicion, 
                                 Cargo.Cargo AS Cargo,
+                                Trabajadores.ID_coordinacion,
+                                Trabajadores.ID_expedicion,
                                 Trabajadores.Correo,
                                 Trabajadores.ID_ubicacion,
                                 Trabajadores.Contraseña,
@@ -296,36 +298,35 @@ class CrudController extends Controller
 
     // Funciones para actualizar un registro de las tablas de la base de datos:
 
-    public function update(Request $request){
-        try {
-            // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
-            $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Correo=?, ID_ubicacion=?, ID_cargo=?, ID_oficina=?, Ram=?, Disco=?, Sistema_operativo=?, Observaciones=? WHERE ID=?",[
-                $request->nombre,
-                $request->cedula,
-                $request->correo,
-                $request->ubicacion,
-                $request->cargo,
-                $request->oficina,
-                $request->ram,
-                $request->disco_duro,
-                $request->tipo_sistema,
-                $request->observaciones,
-                $request->id,
-            ]);
-    
-            // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
-            if ($sql) {
-                return back()->with("Correcto", "Trabajador correctamente modificado");
-            } else {
-                return back()->with("Incorrecto", "Error al modificar");
+        public function update(Request $request){
+            try {
+                // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
+                $sql = DB::update("UPDATE Trabajadores SET Nombre=?, Cedula=?, ID_expedicion=?, Correo=?, ID_ubicacion=?, ID_cargo=?, Telefono=?, ID_coordinacion=?, Contraseña=?  WHERE ID_trabajador=?",[
+                    $request->nombre,
+                    $request->cedula,
+                    $request->ID_expedicion,
+                    $request->correo,
+                    $request->ubicacion,
+                    $request->cargo,
+                    $request->telefono,
+                    $request->coordinador_id, // Se corrigió aquí
+                    $request->contraseña,
+                    $request->id,
+                ]);
+        
+                // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
+                if ($sql) {
+                    return back()->with("Correcto", "Trabajador correctamente modificado");
+                } else {
+                    return back()->with("Incorrecto", "Error al modificar");
+                }
+            } catch (\Throwable $th) {
+                // Capturar cualquier excepción ocurrida durante la actualización
+                return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
             }
-        } catch (\Throwable $th) {
-            // Capturar cualquier excepción ocurrida durante la actualización
-            return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
         }
-    }
     
-
+    
         // Función para actualizar un registro de la tabla equipos en la base de datos:
 
         public function update2(Request $request){

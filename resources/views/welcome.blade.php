@@ -590,12 +590,33 @@
 
                                                         <div class="col-md-2">
                                                             <label for="cedula" class="form-label fw-bold">Cédula:</label>
-                                                            <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}" pattern="[0-9]+" title="Por favor, ingresa solo números" />
+                                                            <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white text-center" style="background-color:  #33ccff;" value="{{$item->Cedula}}"/>
                                                         </div>
 
-                                                        <!--lista desplegable para elegir el lugar de la expedicion de la cedula-->
+                                                        <!--lista desplegable para editar el sitio de expedicion-->
+
+                                                        <div class="col-md-4">
+                                                            <label for="ID_expedicion" class="form-label fw-bold">Lugar de expedición:</label>
+                                                            <select name="ID_expedicion" id="ID_expedicion" class="form-select border-dark text-white" style="background-color: #33ccff;" required>
+                                                                    <option value=""></option>
+                                                                @foreach ($expedicion as $expedicionB)
+                                                                    <option value="{{ $expedicionB->ID_expedicion }}" @if ($expedicionB->ID_expedicion == $item->ID_expedicion) selected @endif>{{ $expedicionB->Lugar }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+
+                                                        <!--lista desplegable para editar el cargo del empleado-->
                                                         
-                                                        
+                                                        <div class="col-md-5">
+                                                            <label for="cargo" class="form-label fw-bold">Cargo asignado:</label>
+                                                            <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;">
+                                                                <option value=""></option>
+                                                                @foreach ($cargo as $cargoB)
+                                                                    <option value="{{ $cargoB->ID_cargo }}" @if ($cargoB->ID_cargo == $item->ID_cargo) selected @endif>{{ $cargoB->Cargo }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
 
                                                         <!--campo para editar el nombre -->
 
@@ -616,6 +637,18 @@
                                                             </select>
                                                         </div>
 
+                                                        <!--campo para editar el coordinador -->
+
+                                                        <div class="col-md-4">
+                                                            <label for="coordinador_id" class="form-label fw-bold">Coordinador asignado:</label>
+                                                            <select name="coordinador_id" id="coordinador_id" class="form-select border-dark text-white" style="background-color: #33ccff;" required>
+                                                                    <option value=""></option>
+                                                                @foreach ($coordinador as $coordinadorB)
+                                                                    <option value="{{ $coordinadorB->ID_coordinador }}" @if ($coordinadorB->ID_coordinador == $item->ID_coordinacion) selected @endif>{{ $coordinadorB->Nombre }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-2">
@@ -627,9 +660,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        
-                                                        <!--campo para editar el cargo-->
-
 
                                                         <!--campo para editar la cuenta de correo electonico-->
 
