@@ -13,68 +13,66 @@ class CrudController extends Controller
 
     // Función para mostrar todos los registros de las tablas de trabajadores, equipos e historico en la BDD
 
-        public function index(){
-
+    public function index(){
         $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
-                                Expedicion.Lugar AS LugarExpedicion, 
-                                Cargo.Cargo AS Cargo,
-                                Trabajadores.ID_coordinacion,
-                                Trabajadores.ID_expedicion,
-                                Trabajadores.Correo,
-                                Trabajadores.ID_ubicacion,
-                                Trabajadores.Contraseña,
-                                Trabajadores.ID_cargo,
-                                Coordinadores.Nombre AS NombreCoordinador, 
-                                Ubicacion.Ubicacion AS Ubicacion,
-                                Trabajadores.Telefono
-                                FROM Trabajadores
-                                INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
-                                INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
-                                INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
-                                INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
-                                ORDER BY Trabajadores.ID_trabajador DESC");
-
-        
+                                    Expedicion.Lugar AS LugarExpedicion, 
+                                    Cargo.Cargo AS Cargo,
+                                    Trabajadores.ID_coordinacion,
+                                    Trabajadores.ID_expedicion,
+                                    Trabajadores.Correo,
+                                    Trabajadores.ID_ubicacion,
+                                    Trabajadores.Contraseña,
+                                    Trabajadores.ID_cargo,
+                                    Coordinadores.Nombre AS NombreCoordinador, 
+                                    Ubicacion.Ubicacion AS Ubicacion,
+                                    Trabajadores.Telefono
+                                    FROM Trabajadores
+                                    INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                                    INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                                    INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                                    INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                    ORDER BY Trabajadores.ID_trabajador DESC");
+    
         $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
-                            Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
-                            Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
-                            Equipos.ID_oficina,Equipos.ID_direccion,Equipos.ID_ubicacion,
-                            Tipo.Modalidad AS Tipo,
-                            Marca.Nombre AS Marca,
-                            Licencia.Licencia AS Tipo_licencia,
-                            Ubicacion.Ubicacion AS Ubicacion,
-                            Oficinas.Oficina AS Oficina,
-                            Direccion.Direccion AS Direccion,
-                            Trabajadores.Nombre AS Nombre_trabajador
-                            FROM Equipos
-                            LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
-                            LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
-                            LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
-                            LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
-                            LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
-                            LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
-                            LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
-                            ORDER BY Equipos.ID_equipo DESC");
-
+                                Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
+                                Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
+                                Equipos.ID_oficina,Equipos.ID_direccion,Equipos.ID_ubicacion,
+                                Tipo.Modalidad AS Tipo,
+                                Marca.Nombre AS Marca,
+                                Licencia.Licencia AS Tipo_licencia,
+                                Ubicacion.Ubicacion AS Ubicacion,
+                                Oficinas.Oficina AS Oficina,
+                                Direccion.Direccion AS Direccion,
+                                Trabajadores.Nombre AS Nombre_trabajador
+                                FROM Equipos
+                                LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
+                                LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
+                                LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
+                                LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
+                                LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
+                                LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
+                                LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
+                                ORDER BY Equipos.ID_equipo DESC");
+    
         $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
-
+    
         $coordinador = DB::select("SELECT * FROM Coordinadores");
-
+    
         $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
-
+    
         $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
-
+    
         $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
-
+    
         $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
         
         $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
-
+    
         $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
-
-        // Retornar la vista "Welcome" con los datos obtenidos
+    
         return view("Welcome")->with(compact('trabajadores', 'equipos', 'historico','coordinador','expedicion','cargo','oficina','licencia','direccion','ubicacion'));
-        }
+    }
+    
 
 
 
@@ -83,32 +81,78 @@ class CrudController extends Controller
         // Función para buscar registros en la tabla trabajadores en la base de datos:
 
         public function buscar(Request $request){
-                // Obtener el texto de búsqueda desde la solicitud
-                $texto = trim($request->get('texto'));
-                
-                // Realizar la consulta a la base de datos utilizando la consulta SQL
-                $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
-                                            Expedicion.Lugar AS LugarExpedicion, 
-                                            Cargo.Cargo AS Cargo,
-                                            Trabajadores.Correo,
-                                            Trabajadores.Contraseña,
-                                            Coordinadores.Nombre AS NombreCoordinador, 
-                                            Ubicacion.Ubicacion AS Ubicacion,
-                                            Trabajadores.Telefono
-                                            FROM Trabajadores
-                                            INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
-                                            INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
-                                            INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
-                                            INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
-                                            WHERE Trabajadores.ID_trabajador LIKE ? OR
-                                                Trabajadores.Cedula LIKE ? OR
-                                                Trabajadores.Nombre LIKE ?
-                                            ORDER BY Trabajadores.ID_trabajador ", 
-                                            ['%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%']);
+            // Obtener el texto de búsqueda desde la solicitud
+            $texto = trim($request->get('texto'));
             
-                // Retornar la vista "Welcome" con los datos de la búsqueda y el texto de búsqueda
-                return view('Welcome', compact('trabajadores', 'texto'));        
+            // Realizar la consulta a la base de datos utilizando la consulta SQL
+            $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
+                                        Expedicion.Lugar AS LugarExpedicion, 
+                                        Cargo.Cargo AS Cargo,
+                                        Trabajadores.Correo,
+                                        Trabajadores.ID_expedicion,
+                                        Trabajadores.Contraseña,
+                                        Trabajadores.ID_cargo,
+                                        Trabajadores.ID_coordinacion,
+                                        Trabajadores.ID_ubicacion,
+                                        Coordinadores.Nombre AS NombreCoordinador, 
+                                        Ubicacion.Ubicacion AS Ubicacion,
+                                        Trabajadores.Telefono
+                                        FROM Trabajadores
+                                        INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                                        INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                                        INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                                        INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                        WHERE Trabajadores.ID_trabajador LIKE ? OR
+                                            Trabajadores.Cedula LIKE ? OR
+                                            Trabajadores.Nombre LIKE ?
+                                        ORDER BY Trabajadores.ID_trabajador ", 
+                                        ['%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%']);
+
+            $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
+                                        Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
+                                        Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
+                                        Equipos.ID_oficina,Equipos.ID_direccion,Equipos.ID_ubicacion,
+                                        Tipo.Modalidad AS Tipo,
+                                        Marca.Nombre AS Marca,
+                                        Licencia.Licencia AS Tipo_licencia,
+                                        Ubicacion.Ubicacion AS Ubicacion,
+                                        Oficinas.Oficina AS Oficina,
+                                        Direccion.Direccion AS Direccion,
+                                        Trabajadores.Nombre AS Nombre_trabajador
+                                        FROM Equipos
+                                        LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
+                                        LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
+                                        LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
+                                        LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
+                                        LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
+                                        LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
+                                        LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
+                                        ORDER BY Equipos.ID_equipo DESC");
+            
+            // Obtener la lista de expediciones
+            $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+
+            $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+    
+            $coordinador = DB::select("SELECT * FROM Coordinadores");
+            
+            $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
+        
+            $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+        
+            $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
+            
+            $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
+        
+            $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
+
+            $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+        
+            // Retornar la vista "Welcome" con los datos de la búsqueda y el texto de búsqueda
+            return view('Welcome', compact('trabajadores','coordinador','expedicion','cargo','oficina','licencia','direccion','ubicacion','equipos','historico'));        
         }
+        
+        
             
         // Función para buscar registros en la tabla equipos en la base de datos:
 
@@ -151,7 +195,6 @@ class CrudController extends Controller
                 // Retornar la vista "Welcome" con los datos de la búsqueda y el texto de búsqueda
                 return view('Welcome', compact('datos', 'texto'));        
         }
-
 
 
     //Funciones para la creacion de nuevos registros en las diferentes tablas
@@ -540,4 +583,5 @@ class CrudController extends Controller
             // Retornar la respuesta HTTP como una respuesta de flujo
             return new StreamedResponse($callback, 200, $headers);
         }
+
 }

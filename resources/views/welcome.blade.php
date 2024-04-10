@@ -717,7 +717,7 @@
                 <!--Aca se declara la parte para permitir las busquedas-->
                 <div class="row">
                     <div class="col-xl-12">
-                        <form action="{{route('example-app.buscar')}}" method="GET">
+                        <form action="{{route('example-app.buscar2')}}" method="GET">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1">
                                 <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID, EL NOMBRE O LA CEDULA" onfocus="this.value='';">
@@ -1018,7 +1018,7 @@
                 <!--Aca se declara la parte para permitir las busquedas-->
                 <div class="row">
                     <div class="col-xl-12">
-                        <form action="{{route('example-app.buscar')}}" method="GET">
+                        <form action="{{route('example-app.buscar3')}}" method="GET">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1">
                                 <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID" onfocus="this.value='';">
