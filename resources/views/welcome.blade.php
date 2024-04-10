@@ -1115,8 +1115,8 @@
                                                         </div>
                         
                                                         <div class="col-md-12">
-                                                            <label for="Anotaciones" class="form-label fw-bold">Anotaciones:</label>
-                                                            <textarea name="Anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
+                                                            <label for="anotaciones" class="form-label fw-bold">Anotaciones:</label>
+                                                            <textarea name="anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
                                                         </div>                                                        
                                                         
                                                         <br><br>

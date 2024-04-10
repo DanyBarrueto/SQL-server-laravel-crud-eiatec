@@ -364,39 +364,31 @@ class CrudController extends Controller
         //funcion para actualizar un registro de la tabla de historico:
         
         public function update3(Request $request){
-                try {
-                    // Realizar la actualización del registro en la tabla "trabajadores" con los datos recibidos
-                    $sql = DB::update("UPDATE trabajadores SET Nombre=?, Cedula=?, Cuenta=?, Ubicacion=?, Area=?, Cargo=?, Codigo=?,
-                    Region=?, Oficina=?, Ram=?, Disco_duro=?, Tipo_de_sistema=?, Historial_asignacion=?, Procesos_a_ejecutar=?, Observaciones=? WHERE ID=?",[
-                        $request->nombre,
-                        $request->cedula,
-                        $request->cuenta,
-                        $request->ubicacion,
-                        $request->area,
-                        $request->cargo,
-                        $request->codigo,
-                        $request->region,
-                        $request->oficina,
-                        $request->ram,
-                        $request->disco_duro,
-                        $request->tipo_sistema,
+            try {
+                // Realizar la actualización del registro en la tabla "Historico" con los datos recibidos
+                $sql = DB::update("UPDATE Historico SET 
+                    Historial_asignaciones=?, 
+                    Procesos_a_ejecutar=?, 
+                    Anotaciones=? 
+                    WHERE ID_historico=?", [
                         $request->historial_asignacion,
                         $request->procesos_ejecutar,
-                        $request->observaciones,
+                        $request->anotaciones,
                         $request->id,
-                    ]);
-            
-                    // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
-                    if ($sql) {
-                        return back()->with("Correcto", "Trabajador correctamente modificado");
-                    } else {
-                        return back()->with("Incorrecto", "Error al modificar");
-                    }
-                } catch (\Throwable $th) {
-                    // Capturar cualquier excepción ocurrida durante la actualización
-                    return back()->with("Incorrecto", "Error al modificar: " . $th->getMessage());
+                ]);
+                
+                // Verificar si la actualización fue exitosa y redirigir con un mensaje apropiado
+                if ($sql) {
+                    return back()->with("Correcto", "Historial correctamente modificado");
+                } else {
+                    return back()->with("Incorrecto", "Error al modificar el historial");
                 }
+            } catch (\Throwable $th) {
+                // Capturar cualquier excepción ocurrida durante la actualización
+                return back()->with("Incorrecto", "Error al modificar el historial: " . $th->getMessage());
+            }
         }
+        
 
 
 
