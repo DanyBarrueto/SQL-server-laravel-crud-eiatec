@@ -32,8 +32,10 @@
 <!--Formulario principal para poder ingresar los datos en la BDD-->
     <div class="container">
         <br>
-    <!--Formulario principal, registro de los datos personales--> 
-        <h2 class="fw-bold" >Datos personales del trabajador:</h2>
+    <!--Formulario principal, registro de los datos personales-->
+        <h1 class="fw-bold" style="color: #ff8c00">Registro</h1>
+
+        <h2 class="fw-bold">Datos personales del trabajador:</h2>
 
         <div class="row justify-content-center">
             <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
@@ -149,9 +151,8 @@
                     <div class="row justify-content-center">
                         <form class="col-md-8" action="{{route("example-app.create2")}}" method="post" style="width: 200vh;">
                             <div class="row">
-                                <h2 class="fw-bold">
-                                    Datos del equipo:
-                                </h2>
+
+                                <h2 class="fw-bold">Datos del equipo:</h2>
 
                                 <!--lista desplegable para elegir el estado de asignacion del equipo-->
 
@@ -420,16 +421,16 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <form class="col-md-1" action="{{route("example-app.create3")}}" method="post" style="width: 200vh;"> 
-                            <div class="row"> 
-                                <h2 class="fw-bold">
-                                    Historial:
-                                </h2>
+                            <div class="row">
+
+                                <h2 class="fw-bold">Historial:</h2>
 
                                 <!--campo para elegir el equipo al que se le va a poner un historial-->
 
                                 <div class="col-md-5">
                                     <label for="id_equipo" class="form-label fw-bold" style="color: #7ab82c;">Codigo del equipo:</label>
                                     <select name="id_equipo" id="id_equipo" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                            <option value=""></option>
                                         @foreach ($equipos as $equipo)
                                             <option value="{{ $equipo->ID_equipo }}">ID: {{ $equipo->ID_equipo }} - Codigo: {{ $equipo->Codigo }}</option>
                                         @endforeach
@@ -472,9 +473,7 @@
 
                 <!--Boton pora descargar todos los datos de la BDD -->
 
-                <h2 class="fw-bold">
-                    Descargar:
-                </h2>
+                <h1 class="fw-bold" style="color: #ff8c00">Descargar BDD</h1>
 
                 <div class="row container mt-4">
                     <form method="GET" action="{{ route('descargar.datos4') }}">
@@ -490,7 +489,10 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mt-3 text-dark fw-bold" >Tabla de trabajadores:</h2>
+
+                <h1 class="fw-bold" style="color: #ff8c00">Consulta, Edición y Descarga De Datos:</h1>
+
+                <h2 class="mt-3 text-dark fw-bold" >Tabla de trabajadores</h2>
 
                 <!--Aca se declara la parte para permitir las busquedas-->
                 <div class="row">
@@ -712,7 +714,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mt-3 text-dark fw-bold" >Tabla de Equipos:</h2>
+                <h2 class="mt-3 text-dark fw-bold" >Tabla de Equipos</h2>
 
                 <!--Aca se declara la parte para permitir las busquedas-->
                 <div class="row">
