@@ -251,6 +251,27 @@ class CrudController extends Controller
                                     INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
                                     INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
                                     ORDER BY Trabajadores.ID_trabajador DESC");
+
+            $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
+                                    Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
+                                    Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
+                                    Equipos.ID_oficina,Equipos.ID_direccion,Equipos.ID_ubicacion,
+                                    Tipo.Modalidad AS Tipo,
+                                    Marca.Nombre AS Marca,
+                                    Licencia.Licencia AS Tipo_licencia,
+                                    Ubicacion.Ubicacion AS Ubicacion,
+                                    Oficinas.Oficina AS Oficina,
+                                    Direccion.Direccion AS Direccion,
+                                    Trabajadores.Nombre AS Nombre_trabajador
+                                    FROM Equipos
+                                    LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
+                                    LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
+                                    LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
+                                    LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
+                                    LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
+                                    LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
+                                    LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
+                                    ORDER BY Equipos.ID_equipo DESC");
         
             // Obtener las demás listas necesarias (igual que en la función buscar)
             $coordinador = DB::select("SELECT * FROM Coordinadores");
@@ -262,7 +283,7 @@ class CrudController extends Controller
             $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
 
             // Retornar la vista "Welcome" con los datos de la búsqueda y las listas necesarias
-            return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','expedicion','trabajadores'));        
+            return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','expedicion','trabajadores','equipos'));        
         }
         
         
@@ -439,7 +460,6 @@ class CrudController extends Controller
             }
         }
     
-    
         // Función para actualizar un registro de la tabla equipos en la base de datos:
 
         public function update2(Request $request){
@@ -473,7 +493,6 @@ class CrudController extends Controller
             }
         }
         
-
         //funcion para actualizar un registro de la tabla de historico:
         
         public function update3(Request $request){
@@ -500,8 +519,7 @@ class CrudController extends Controller
                 // Capturar cualquier excepción ocurrida durante la actualización
                 return back()->with("Incorrecto", "Error al modificar el historial: " . $th->getMessage());
             }
-        }
-        
+        }        
 
 
 
