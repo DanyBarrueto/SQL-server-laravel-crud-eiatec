@@ -293,49 +293,34 @@ class CrudController extends Controller
         // Función para crear un nuevo registro en la tabla de trabajadores en la base de datos:
 
         public function create(Request $request){
-                try {
-                    // Realizar la inserción en la tabla "trabajadores" con los datos recibidos
-                    $sql = DB::insert("INSERT INTO trabajadores(Nombre,Cedula,Cuenta,Ubicacion,Area,Cargo,Codigo,
-                    Region,Oficina,Tipo_de_computador,Marca,Modelo,Numero_de_serie,Id_producto,
-                    Procesador,Ram,Disco_duro,Gpu,Tipo_de_sistema,Display,Historial_asignacion,Procesos_a_ejecutar,Observaciones)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
-                        $request->nombre,
-                        $request->cedula,
-                        $request->cuenta,
-                        $request->ubicacion,
-                        $request->area,
-                        $request->cargo,
-                        $request->codigo,
-                        $request->region,
-                        $request->oficina,
-                        $request->tipo_computador,
-                        $request->marca,
-                        $request->modelo,
-                        $request->numero_serie,
-                        $request->id_producto,
-                        $request->procesador,
-                        $request->ram,
-                        $request->disco_duro,
-                        $request->gpu,
-                        $request->tipo_sistema,
-                        $request->display,
-                        $request->historial_asignacion,
-                        $request->procesos_ejecutar,
-                        $request->observaciones
-                    ]);
-                } catch (\Throwable $th) {
-                    // Capturar cualquier excepción ocurrida durante la inserción
-                    $sql = 0;
-                }
-            
-                // Verificar si la inserción fue exitosa y redirigir con un mensaje apropiado
-                if ($sql == true) {
-                    return back()->with("Correcto", "Trabajador correctamente registrado");
-                } else {
-                    return back()->with("Incorrecto", "Error al registrar");
-                }
+            try {
+                // Realizar la inserción en la tabla "Trabajadores" con los datos recibidos
+                $sql = DB::insert("INSERT INTO Trabajadores(
+                    Nombre, Cedula, ID_expedicion, ID_coordinacion, Correo, ID_ubicacion, Contraseña, ID_cargo, Telefono
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+                    $request->nombre,
+                    $request->cedula,
+                    $request->ID_expedicion,
+                    $request->coordinador_id,
+                    $request->correo,
+                    $request->ubicacion,
+                    $request->contraseña,
+                    $request->cargo,
+                    $request->telefono
+                ]);
+            } catch (\Throwable $th) {
+                // Capturar cualquier excepción ocurrida durante la inserción
+                $sql = 0;
+            }
+        
+            // Verificar si la inserción fue exitosa y redirigir con un mensaje apropiado
+            if ($sql == true) {
+                return back()->with("Correcto", "Trabajador correctamente registrado");
+            } else {
+                return back()->with("Incorrecto", "Error al registrar");
+            }
         }
-
+        
         // Función para crear un nuevo registro en la tabla de equipos en la base de datos:
 
         public function create2(Request $request){
