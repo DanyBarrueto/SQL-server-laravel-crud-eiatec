@@ -498,7 +498,7 @@
                         <form action="{{route('example-app.buscar')}}" method="GET">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1">
-                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID, EL NOMBRE O LA CEDULA" onfocus="this.value='';">
+                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA ID, NOMBRE O CEDULA DEL TRABAJADOR" onfocus="this.value='';">
                                 </div>
                                 <div class="col-auto my-1" >
                                     <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
@@ -720,7 +720,7 @@
                         <form action="{{route('example-app.buscar2')}}" method="GET">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1">
-                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID, EL NOMBRE O LA CEDULA" onfocus="this.value='';">
+                                <input type="text" class="form-control" name="texto" value="INSERTA EL ID O EL CODIGO DEL EQUIPO" onfocus="this.value='';">
                                 </div>
                                 <div class="col-auto my-1" >
                                     <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
@@ -1021,7 +1021,7 @@
                         <form action="{{route('example-app.buscar3')}}" method="GET">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1">
-                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA EL ID" onfocus="this.value='';">
+                                <input type="text" class="form-control" name="texto" value="INSERTA EL ID DEL HISTORICO O DEL EQUIPO" onfocus="this.value='';">
                                 </div>
                                 <div class="col-auto my-1" >
                                     <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">

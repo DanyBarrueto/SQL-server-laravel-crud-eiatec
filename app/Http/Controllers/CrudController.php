@@ -75,7 +75,6 @@ class CrudController extends Controller
     
 
 
-
     //Funciones para las busquedas de los registros en cada tabla
 
         // Función para buscar registros en la tabla trabajadores en la base de datos:
@@ -152,50 +151,121 @@ class CrudController extends Controller
             return view('Welcome', compact('trabajadores','coordinador','expedicion','cargo','oficina','licencia','direccion','ubicacion','equipos','historico'));        
         }
         
-        
-            
         // Función para buscar registros en la tabla equipos en la base de datos:
 
         public function buscar2(Request $request){
-                // Obtener el texto de búsqueda desde la solicitud
-                $texto = trim($request->get('texto'));
-                
-                // Realizar la consulta a la base de datos utilizando Eloquent ORM
-                $datos = DB::table('trabajadores')
-                            ->select ('ID','Nombre','Cedula','Cuenta','Ubicacion','Area','Cargo','Codigo',
-                            'Region','Oficina','Tipo_de_computador','Marca','Modelo','Numero_de_serie','Id_producto',
-                            'Procesador','Ram','Disco_duro','Gpu','Tipo_de_sistema','Display','Historial_asignacion','Procesos_a_ejecutar','Observaciones')
-                            ->where('ID','LIKE','%'.$texto.'%')
-                            ->orWhere('Cedula','LIKE','%'.$texto.'%')
-                            ->orWhere('Nombre','LIKE','%'.$texto.'%')
-                            ->orderBy('ID','asc')
-                            ->paginate(10);
-                
-                // Retornar la vista "Welcome" con los datos de la búsqueda y el texto de búsqueda
-                return view('Welcome', compact('datos', 'texto'));        
-        }
+            // Obtener el texto de búsqueda desde la solicitud
+            $texto = trim($request->get('texto'));
+            
+            // Realizar la consulta a la base de datos utilizando la consulta SQL
+            $equipos = DB::select("SELECT Equipos.ID_equipo, Equipos.Estado, Equipos.Codigo, Equipos.ID_tipo, Equipos.ID_marca, Equipos.Modelo, Equipos.Num_serie,
+                                Equipos.Id_producto, Equipos.Procesador, Equipos.Ram, Equipos.Disco, Equipos.GPU_APU, Equipos.ID_licencia, Equipos.Sistema_operativo,
+                                Equipos.Display, Equipos.Anydesk, Equipos.ID_ubicacion, Equipos.ID_oficina, Equipos.ID_direccion, Equipos.Clave_equipo, Equipos.ID_trabajador,
+                                Tipo.Modalidad AS Tipo,
+                                Marca.Nombre AS Marca,
+                                Licencia.Licencia AS Tipo_licencia,
+                                Ubicacion.Ubicacion AS Ubicacion,
+                                Oficinas.Oficina AS Oficina,
+                                Direccion.Direccion AS Direccion,
+                                Trabajadores.Nombre AS Nombre_trabajador
+                                FROM Equipos
+                                LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
+                                LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
+                                LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
+                                LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
+                                LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
+                                LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
+                                LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
+                                WHERE Equipos.ID_equipo LIKE ? OR
+                                      Equipos.Codigo LIKE ?
+                                ORDER BY Equipos.ID_equipo ASC", ['%'.$texto.'%', '%'.$texto.'%']);
 
+
+
+            $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
+                                Expedicion.Lugar AS LugarExpedicion, 
+                                Cargo.Cargo AS Cargo,
+                                Trabajadores.ID_coordinacion,
+                                Trabajadores.ID_expedicion,
+                                Trabajadores.Correo,
+                                Trabajadores.ID_ubicacion,
+                                Trabajadores.Contraseña,
+                                Trabajadores.ID_cargo,
+                                Coordinadores.Nombre AS NombreCoordinador, 
+                                Ubicacion.Ubicacion AS Ubicacion,
+                                Trabajadores.Telefono
+                                FROM Trabajadores
+                                INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                                INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                                INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                                INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                ORDER BY Trabajadores.ID_trabajador DESC");
+
+            // Obtener la lista de expediciones
+            $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+            
+            // Obtener las demás listas necesarias (igual que en la función buscar)
+            $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+            $coordinador = DB::select("SELECT * FROM Coordinadores");
+            $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
+            $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+            $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
+            $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
+            $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
+            
+            // Retornar la vista "Welcome" con los datos de la búsqueda y las listas necesarias
+            return view('Welcome', compact('equipos', 'expedicion', 'historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','trabajadores'));        
+        }
+        
         //Función para buscar registros en la tabla de historico en la base de datos:
 
         public function buscar3(Request $request){
-                // Obtener el texto de búsqueda desde la solicitud
-                $texto = trim($request->get('texto'));
-                
-                // Realizar la consulta a la base de datos utilizando Eloquent ORM
-                $datos = DB::table('trabajadores')
-                            ->select ('ID','Nombre','Cedula','Cuenta','Ubicacion','Area','Cargo','Codigo',
-                            'Region','Oficina','Tipo_de_computador','Marca','Modelo','Numero_de_serie','Id_producto',
-                            'Procesador','Ram','Disco_duro','Gpu','Tipo_de_sistema','Display','Historial_asignacion','Procesos_a_ejecutar','Observaciones')
-                            ->where('ID','LIKE','%'.$texto.'%')
-                            ->orWhere('Cedula','LIKE','%'.$texto.'%')
-                            ->orWhere('Nombre','LIKE','%'.$texto.'%')
-                            ->orderBy('ID','asc')
-                            ->paginate(10);
-                
-                // Retornar la vista "Welcome" con los datos de la búsqueda y el texto de búsqueda
-                return view('Welcome', compact('datos', 'texto'));        
-        }
+            // Obtener el texto de búsqueda desde la solicitud
+            $texto = trim($request->get('texto'));
+            
+            // Realizar la consulta a la base de datos utilizando la consulta SQL
+            $historico = DB::select("SELECT * FROM Historico 
+                                     WHERE ID_historico LIKE ? OR
+                                           ID_equipo LIKE ? OR
+                                           Historial_asignaciones LIKE ? OR
+                                           Procesos_a_ejecutar LIKE ? OR
+                                           Anotaciones LIKE ?
+                                     ORDER BY ID_historico DESC", 
+                                     ['%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%']);
 
+            $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
+                                    Expedicion.Lugar AS LugarExpedicion, 
+                                    Cargo.Cargo AS Cargo,
+                                    Trabajadores.ID_coordinacion,
+                                    Trabajadores.ID_expedicion,
+                                    Trabajadores.Correo,
+                                    Trabajadores.ID_ubicacion,
+                                    Trabajadores.Contraseña,
+                                    Trabajadores.ID_cargo,
+                                    Coordinadores.Nombre AS NombreCoordinador, 
+                                    Ubicacion.Ubicacion AS Ubicacion,
+                                    Trabajadores.Telefono
+                                    FROM Trabajadores
+                                    INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                                    INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                                    INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                                    INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                    ORDER BY Trabajadores.ID_trabajador DESC");
+        
+            // Obtener las demás listas necesarias (igual que en la función buscar)
+            $coordinador = DB::select("SELECT * FROM Coordinadores");
+            $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
+            $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+            $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
+            $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
+            $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
+            $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+
+            // Retornar la vista "Welcome" con los datos de la búsqueda y las listas necesarias
+            return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','expedicion','trabajadores'));        
+        }
+        
+        
 
     //Funciones para la creacion de nuevos registros en las diferentes tablas
 
