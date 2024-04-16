@@ -150,6 +150,7 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <form class="col-md-8" action="{{route("example-app.create2")}}" method="post" style="width: 200vh;">
+                            @csrf
                             <div class="row">
 
                                 <h2 class="fw-bold">Datos del equipo:</h2>
@@ -173,7 +174,7 @@
 
                                 <div class="col-md-2">
                                     <label for="codigo" class="form-label fw-bold" style="color: #7ab82c;">Codigo:</label>
-                                    <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" pattern="[0-9]+" required />
+                                    <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white text-center" style="background-color: #66c2c2;" required />
                                 </div>
 
                                 <!--lista desplegable para elegir el tipo de computador (portatil,mesa,etc)-->
@@ -243,15 +244,14 @@
                                 <!--lista desplegable para ingresar la licensia (osea si tiene windows home, pro, etc)-->
 
                                 <div class="col-md-3">
-                                    <label for="licensia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
-                                    <select id="licensia" name="licensia" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
-                                        <option value=""></option>
-                                        <option value="1">Home</option>
-                                        <option value="2">Pro</option>
-                                        <option value="3">Home Single Language</option>
-                                        <option value="4">Server</option>
+                                    <label for="licencia" class="form-label fw-bold" style="color: #7ab82c;">Licensia:</label>
+                                    <select name="licencia" id="licencia" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
+                                            <option value=""></option>
+                                        @foreach ($licencia as $licenciaB)
+                                            <option value="{{ $licenciaB->ID_licencia }}">{{ $licenciaB->Licencia }}</option>
+                                        @endforeach
                                     </select>
-                                </div>
+                                </div> 
 
                                 <!--lista deplegable para elegir la capacidad de la Ram-->
 
@@ -420,7 +420,8 @@
 
                 <div class="container">
                     <div class="row justify-content-center">
-                        <form class="col-md-1" action="{{route("example-app.create3")}}" method="post" style="width: 200vh;"> 
+                        <form class="col-md-1" action="{{route("example-app.create3")}}" method="post" style="width: 200vh;">
+                            @csrf
                             <div class="row">
 
                                 <h2 class="fw-bold">Historial:</h2>
@@ -806,7 +807,7 @@
                                 <div class="modal fade" id="modalEditarEquipos{{$item->ID_equipo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
-                                            <div class="modal-header " style="background-color: #f79a0e;">
+                                            <div class="modal-header " style="background-color: #3ccaca;">
                                             <h1 class="modal-title fs-3 fw-bold" id="exampleModalLabel">Modificar datos</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
@@ -1075,7 +1076,7 @@
                                 <div class="modal fade" id="modalEditarHistorico{{$item->ID_historico}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
-                                            <div class="modal-header " style="background-color: #f79a0e;">
+                                            <div class="modal-header " style="background-color: #0dec63;">
                                             <h1 class="modal-title fs-3 fw-bold" id="exampleModalLabel">Modificar datos</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
@@ -1108,17 +1109,17 @@
                         
                                                         <div class="col-md-12">
                                                             <label for="historial_asignacion" class="form-label fw-bold">Historial asignacion:</label>
-                                                            <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Historial_asignaciones}}"/>
+                                                            <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #33ccff;" value="{{$item->Historial_asignaciones}}"/>
                                                         </div>
 
                                                         <div class="col-md-12">
                                                             <label for="procesos_ejecutar" class="form-label fw-bold">Procesos a ejecutar:</label>
-                                                            <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #66c2c2;" value="{{$item->Procesos_a_ejecutar}}"/>
+                                                            <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #33ccff;" value="{{$item->Procesos_a_ejecutar}}"/>
                                                         </div>
                         
                                                         <div class="col-md-12">
                                                             <label for="anotaciones" class="form-label fw-bold">Anotaciones:</label>
-                                                            <textarea name="anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;">{{$item->Anotaciones}}</textarea>
+                                                            <textarea name="anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #33ccff;">{{$item->Anotaciones}}</textarea>
                                                         </div>                                                        
                                                         
                                                         <br><br>

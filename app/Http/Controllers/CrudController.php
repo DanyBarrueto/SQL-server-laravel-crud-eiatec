@@ -324,48 +324,49 @@ class CrudController extends Controller
         // Función para crear un nuevo registro en la tabla de equipos en la base de datos:
 
         public function create2(Request $request){
-                try {
-                    // Realizar la inserción en la tabla "equipo" con los datos recibidos
-                    $sql = DB::insert("INSERT INTO trabajadores(Nombre,Cedula,Cuenta,Ubicacion,Area,Cargo,Codigo,
-                    Region,Oficina,Tipo_de_computador,Marca,Modelo,Numero_de_serie,Id_producto,
-                    Procesador,Ram,Disco_duro,Gpu,Tipo_de_sistema,Display,Historial_asignacion,Procesos_a_ejecutar,Observaciones)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
-                        $request->nombre,
-                        $request->cedula,
-                        $request->cuenta,
-                        $request->ubicacion,
-                        $request->area,
-                        $request->cargo,
-                        $request->codigo,
-                        $request->region,
-                        $request->oficina,
-                        $request->tipo_computador,
-                        $request->marca,
-                        $request->modelo,
-                        $request->numero_serie,
-                        $request->id_producto,
-                        $request->procesador,
-                        $request->ram,
-                        $request->disco_duro,
-                        $request->gpu,
-                        $request->tipo_sistema,
-                        $request->display,
-                        $request->historial_asignacion,
-                        $request->procesos_ejecutar,
-                        $request->observaciones
-                    ]);
-                } catch (\Throwable $th) {
-                    // Capturar cualquier excepción ocurrida durante la inserción
-                    $sql = 0;
-                }
-            
-                // Verificar si la inserción fue exitosa y redirigir con un mensaje apropiado
-                if ($sql == true) {
-                    return back()->with("Correcto", "Trabajador correctamente registrado");
-                } else {
-                    return back()->with("Incorrecto", "Error al registrar");
-                }
+            try {
+                // Realizar la inserción en la tabla "equipos" con los datos recibidos
+                $sql = DB::insert("INSERT INTO Equipos(Estado, Codigo, ID_tipo, ID_marca, Modelo, Num_serie, Id_producto,
+                    Procesador, Ram, Disco, GPU_APU, Sistema_operativo, ID_licencia, Display, Anydesk, ID_ubicacion,
+                    ID_oficina, ID_direccion, Clave_equipo, ID_trabajador)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
+                    $request->estado,
+                    $request->codigo,
+                    $request->tipo_computador,
+                    $request->marca,
+                    $request->modelo,
+                    $request->numero_serie,
+                    $request->id_producto,
+                    $request->procesador,
+                    $request->ram,
+                    $request->disco_duro,
+                    $request->gpu,
+                    $request->tipo_sistema,
+                    $request->licencia,
+                    $request->display,
+                    $request->anydesk,
+                    $request->ubicacion,
+                    $request->oficina,
+                    $request->direccion,
+                    $request->clave_equipo,
+                    $request->trabajador_id
+                ]);
+            } catch (\Throwable $th) {
+                // Capturar cualquier excepción ocurrida durante la inserción
+                $sql = 0;
+                // Obtener el mensaje de error específico
+                $error_message = $th->getMessage();
+            }
+        
+            // Verificar si la inserción fue exitosa y redirigir con un mensaje apropiado
+            if ($sql == true) {
+                return back()->with("Correcto", "Equipo correctamente registrado");
+            } else {
+                // Retornar con un mensaje de error que incluya el motivo del fallo
+                return back()->with("Incorrecto", "Error al registrar el equipo: $error_message");
+            }
         }
+        
 
         // Función para crear un nuevo registro en la tabla de historico en la base de datos:
 
