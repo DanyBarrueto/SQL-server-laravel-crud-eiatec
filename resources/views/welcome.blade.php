@@ -392,7 +392,7 @@
 
                                 <!--campo para seleccionar el trabajador al cual esta asignado el equipo-->
 
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <label for="trabajador_id" class="form-label fw-bold" style="color: #7ab82c;">Trabajador asignado:</label>
                                     <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                             <option value=""></option>
@@ -455,8 +455,8 @@
                                 <!--campo para inbgresar las anotaciones del equipo-->
 
                                 <div class="col-md-12">
-                                    <label for="Anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
-                                    <textarea name="Anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
+                                    <label for="anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
+                                    <textarea name="anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #66c2c2;" ></textarea>
                                 </div>
                             </div>
                             
@@ -976,7 +976,7 @@
 
                                                         <!--campo para seleccionar el trabajador al cual esta asignado el equipo-->
 
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-4">
                                                             <label for="trabajador_id" class="form-label fw-bold">Trabajador asignado:</label>
                                                             <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
