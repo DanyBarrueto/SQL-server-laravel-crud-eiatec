@@ -12,7 +12,6 @@ class CrudController extends Controller
 {
 
     // Función para mostrar todos los registros de las tablas de trabajadores, equipos e historico en la BDD
-
     public function index(){
         $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
                                     Expedicion.Lugar AS LugarExpedicion, 
@@ -74,10 +73,9 @@ class CrudController extends Controller
     }
     
 
+    //Funciones para las busquedas de los registros en cada tabla de la BDD
 
-    //Funciones para las busquedas de los registros en cada tabla
-
-        // Función para buscar registros en la tabla trabajadores en la base de datos:
+        // función para buscar registros en la tabla trabajadores en la base de datos:
 
         public function buscar(Request $request){
             // Obtener el texto de búsqueda desde la solicitud
@@ -151,7 +149,7 @@ class CrudController extends Controller
             return view('Welcome', compact('trabajadores','coordinador','expedicion','cargo','oficina','licencia','direccion','ubicacion','equipos','historico'));        
         }
         
-        // Función para buscar registros en la tabla equipos en la base de datos:
+        // función para buscar registros en la tabla equipos en la base de datos:
 
         public function buscar2(Request $request){
             // Obtener el texto de búsqueda desde la solicitud
@@ -217,7 +215,7 @@ class CrudController extends Controller
             return view('Welcome', compact('equipos', 'expedicion', 'historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','trabajadores'));        
         }
         
-        //Función para buscar registros en la tabla de historico en la base de datos:
+        //función para buscar registros en la tabla de historico en la base de datos:
 
         public function buscar3(Request $request){
             // Obtener el texto de búsqueda desde la solicitud
@@ -287,10 +285,9 @@ class CrudController extends Controller
         }
         
         
+    //Funciones para la creacion de nuevos registros en las diferentes tablas de la BDD
 
-    //Funciones para la creacion de nuevos registros en las diferentes tablas
-
-        // Función para crear un nuevo registro en la tabla de trabajadores en la base de datos:
+        // función para crear un nuevo registro en la tabla de trabajadores en la base de datos:
 
         public function create(Request $request){
             try {
@@ -321,7 +318,7 @@ class CrudController extends Controller
             }
         }
         
-        // Función para crear un nuevo registro en la tabla de equipos en la base de datos:
+        // función para crear un nuevo registro en la tabla de equipos en la base de datos:
 
         public function create2(Request $request){
             try {
@@ -367,7 +364,7 @@ class CrudController extends Controller
             }
         }
         
-        // Función para crear un nuevo registro en la tabla de historico en la base de datos:
+        // función para crear un nuevo registro en la tabla de historico en la base de datos:
 
         public function create3(Request $request){
             try {
@@ -396,8 +393,9 @@ class CrudController extends Controller
         }
         
 
+    // Funciones para actualizar un registro en las diferentes tablas de la BDD:
 
-    // Funciones para actualizar un registro de las tablas de la base de datos:
+        //función para actualizar un registro de la tabla trabajadores en la base de datos
 
         public function update(Request $request){
             try {
@@ -427,7 +425,7 @@ class CrudController extends Controller
             }
         }
     
-        // Función para actualizar un registro de la tabla equipos en la base de datos:
+        // función para actualizar un registro de la tabla equipos en la base de datos:
 
         public function update2(Request $request){
             try {
@@ -460,7 +458,7 @@ class CrudController extends Controller
             }
         }
         
-        //funcion para actualizar un registro de la tabla de historico:
+        //función para actualizar un registro de la tabla de historico en la base de datos:
         
         public function update3(Request $request){
             try {
@@ -492,7 +490,7 @@ class CrudController extends Controller
 
     //Funciones para poder descargar las tablas de la base de datos con todos los datos registrados:
 
-        //Funcion para descargar la tabla de trabajadores
+        //función para descargar la tabla de trabajadores junto con todos sus datos
             
         public function descargarDatos(){
                 $trabajadores = DB::table('Trabajadores')->get()->toArray();
@@ -523,7 +521,7 @@ class CrudController extends Controller
                 return new StreamedResponse($callback, 200, $headers);
         }
 
-        //Funcion para descargar la tabla de equipos
+        //función para descargar la tabla de equipos junto con todos sus datos
             
         public function descargarDatos2(){
                 $equipos = DB::table('Equipos')->get()->toArray();
@@ -554,7 +552,7 @@ class CrudController extends Controller
                 return new StreamedResponse($callback, 200, $headers);
         }
 
-        //Funcion para descargar la tabla de historico
+        //función para descargar la tabla de historico junto con todos sus datos
 
         public function descargarDatos3(){
                 $historico = DB::table('Historico')->get()->toArray();
@@ -585,7 +583,7 @@ class CrudController extends Controller
                 return new StreamedResponse($callback, 200, $headers);
         }
  
-        //Funcion para descargar toda la BDD
+        //función para descargar toda la BDD con toda la informacion de cada tabla 
 
         public function descargarDatos4() {
             // Obtener los nombres de todas las tablas de la base de datos

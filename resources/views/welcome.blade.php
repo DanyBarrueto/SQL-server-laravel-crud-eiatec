@@ -13,14 +13,14 @@
 </head>
 <body>
     
-<!--Logo de la empresa en el encabezado-->
+<!--Logo de la empresa-->
     <header style="background-color:aquamarine; border-radius:10px; ">
         <div>
             <img src="{{ asset('img/Logo_eiatec.png') }}" class="img-responsive" style="width: 20%; height: auto; margin-left:15vh ">
-            </div>
+        </div>
     </header>
 
-<!--Mensajes para notificar si el dato se guardo o actualizo bien o si fallo en el proceso-->
+<!--Mensajes para notificar si el dato se guardo o actualizo bien o si fallo durante el proceso-->
     @if (session("Correcto"))
     <div class="alert alert-success fw-bold fs-5 ">{{session("Correcto")}}</div>
     @endif
@@ -29,10 +29,10 @@
     <div class="alert alert-danger fw-bold fs-5">{{session("Incorrecto")}}</div>
     @endif
 
-<!--Formulario principal para poder ingresar los datos en la BDD-->
+<!--Formularios principales para poder ingresar los datos en las tablas de la BDD-->
     <div class="container">
         <br>
-    <!--Formulario principal, registro de los datos personales-->
+    <!--Formulario principal, registro de los datos personales en la tabla Trabajadores-->
         <h1 class="fw-bold" style="color: #ff8c00">Registro</h1>
 
         <h2 class="fw-bold">Datos personales del trabajador:</h2>
@@ -146,7 +146,7 @@
             </form>
         </div>
 
-    <!--Aca va la parte para registrar datos del equipo-->
+    <!--Aca va la parte para registrar datos del equipo en la tabla Equipos-->
                 <div class="container">
                     <div class="row justify-content-center">
                         <form class="col-md-8" action="{{route("example-app.create2")}}" method="post" style="width: 200vh;">
@@ -410,13 +410,12 @@
 
                                 <br> <br> <br>
                                 <hr>
-                                
                             </div>
                         </form>
                     </div>
                 </div>
 
-    <!--Aca va la parte para registrar datos del historial-->
+    <!--Aca va la parte para registrar datos del historico del equipo en la tabla de Historico-->
 
                 <div class="container">
                     <div class="row justify-content-center">
@@ -467,7 +466,6 @@
                             </div>
 
                         </form>
-
                     </div>
                 </div>
                 <hr>
@@ -484,7 +482,7 @@
                 <hr>
     </div>
 
-<!--Aca es todo lo referente a poder ver,consultar y modificar los datos de la BDD-->
+<!--Aca es todo lo referente a poder ver,consultar y modificar los datos de las diferentes tablas de la BDD-->
 
     <!--Parte para consultar los datos de la tabla de trabajadores de la BDD-->
     <div class="container mt-4">
@@ -518,7 +516,6 @@
                     <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar Tabla de los trabajadores</button>
                 </form>
                 </div>
-
                 <br>
 
                 <!--Encabezado de la tabla para los datos de la BDD-->
@@ -544,7 +541,7 @@
                             <!--Conexion con BDD para permitir mostrar los datos registrados
                                 en la tabla recien creada-->
                             @foreach ($trabajadores as $item)
-                            <tr>
+                            <tr style="width: 7vw">
                                 <td>{{$item->ID_trabajador}}</td>
                                 <td>{{$item->Cedula}}</td>
                                 <td>{{$item->LugarExpedicion}}</td>
@@ -607,7 +604,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-
 
                                                         <!--lista desplegable para editar el cargo del empleado-->
                                                         
@@ -740,11 +736,10 @@
                     <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar tabla de equipos</button>
                 </form>
                 </div>
-
                 <br>
 
                 <!--Encabezado de la tabla para los datos de la BDD-->
-                <div class="table-responsive overflow-auto" style="max-height:30vh;">
+                <div class="table-responsive overflow-auto" style="max-height:45vh;">
                     <table class="table table-light ">
                         <thead class="table-success table-responsive ">
                           <tr>
@@ -822,9 +817,7 @@
 
                                                     <!--Desde aca se editan los datos personales del trabajador-->
 
-                                                        <h2 class="fw-bold">
-                                                            Datos del equipo:
-                                                        </h2>
+                                                        <h2 class="fw-bold">Datos del equipo:</h2>
 
                                                         <!--campo para mostrar el ID del registro (NO es editable)-->
 
@@ -985,7 +978,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        
                                                         <br><br>
 
                                                         <!--campo de los botones para cerrar la pestaña emergente o para poder guardar los cambios
@@ -1043,7 +1035,6 @@
                 </div>
 
                 <br>
-
                 <!--Encabezado de la tabla para los datos de la BDD-->
                 <div class="table-responsive overflow-auto" style="max-height:30vh;">
                     <table class="table table-light ">
@@ -1064,7 +1055,7 @@
                             @foreach ($historico as $item)
                             <tr>
                                 <td>{{$item->ID_historico}}</td>
-                                <td>{{$item->ID_equipo}}</td>
+                                <td style="width: 7vw">{{$item->ID_equipo}}</td>
                                 <td>{{$item->Historial_asignaciones}}</td>
                                 <td>{{$item->Procesos_a_ejecutar}}</td>
                                 <td>{{$item->Anotaciones}}</td>
@@ -1091,9 +1082,7 @@
 
                                                     <!--Desde aca se editan los datos personales del trabajador-->
 
-                                                        <h2 class="fw-bold">
-                                                            Historial:
-                                                        </h2>
+                                                        <h2 class="fw-bold">Historial:</h2>
 
                                                         <!--campo para mostrar el ID del historico (NO es editable)-->
 
@@ -1152,7 +1141,7 @@
     <br>
     <br>
 
-<!--Scripts de boostrap para funcionamientos del modal-->
+<!--Script de boostrap para funcionamientos del modal-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
