@@ -57,7 +57,7 @@ class CrudController extends Controller
     
         $coordinador = DB::select("SELECT * FROM Coordinadores");
     
-        $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+        $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion DESC");
     
         $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
     
@@ -81,7 +81,7 @@ class CrudController extends Controller
             // Obtener el texto de búsqueda desde la solicitud
             $texto = trim($request->get('texto'));
             
-            // Realizar la consulta a la base de datos utilizando la consulta SQL
+            // Consulta a la tabla de trabajadores
             $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
                                         Expedicion.Lugar AS LugarExpedicion, 
                                         Cargo.Cargo AS Cargo,
@@ -102,9 +102,10 @@ class CrudController extends Controller
                                         WHERE Trabajadores.ID_trabajador LIKE ? OR
                                             Trabajadores.Cedula LIKE ? OR
                                             Trabajadores.Nombre LIKE ?
-                                        ORDER BY Trabajadores.ID_trabajador ", 
+                                        ORDER BY Trabajadores.ID_trabajador DESC", 
                                         ['%'.$texto.'%', '%'.$texto.'%', '%'.$texto.'%']);
 
+            //Consulta a la tabla de equipos
             $equipos = DB::select("SELECT Equipos.ID_equipo,Equipos.Estado,Equipos.Codigo,Equipos.Modelo,Equipos.Num_serie,
                                         Equipos.Id_producto,Equipos.Procesador,Equipos.Ram,Equipos.Disco,Equipos.GPU_APU,Equipos.ID_licencia,
                                         Equipos.Sistema_operativo,Equipos.Display,Equipos.Anydesk,Equipos.Clave_equipo,Equipos.ID_trabajador,
@@ -124,9 +125,9 @@ class CrudController extends Controller
                                         LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
                                         LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
                                         LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
-                                        ORDER BY Equipos.ID_equipo DESC");
+                                        ORDER BY Equipos.ID_equipo");
             
-            // Obtener la lista de expediciones
+            // Obtener datos de las demas tablas
             $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
 
             $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
@@ -200,7 +201,7 @@ class CrudController extends Controller
                                 ORDER BY Trabajadores.ID_trabajador DESC");
 
             // Obtener la lista de expediciones
-            $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+            $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion DESC");
             
             // Obtener las demás listas necesarias (igual que en la función buscar)
             $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
@@ -463,10 +464,7 @@ class CrudController extends Controller
         public function update3(Request $request){
             try {
                 // Realizar la actualización del registro en la tabla "Historico" con los datos recibidos
-                $sql = DB::update("UPDATE Historico SET 
-                    Historial_asignaciones=?, 
-                    Procesos_a_ejecutar=?, 
-                    Anotaciones=? 
+                $sql = DB::update("UPDATE Historico SET Historial_asignaciones=?, Procesos_a_ejecutar=?, Anotaciones=? 
                     WHERE ID_historico=?", [
                         $request->historial_asignacion,
                         $request->procesos_ejecutar,

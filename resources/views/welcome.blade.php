@@ -493,7 +493,7 @@
 
                 <h2 class="mt-3 text-dark fw-bold" >Tabla de trabajadores</h2>
 
-                <!--Aca se declara la parte para permitir las busquedas-->
+                <!--Aca se declara la parte para permitir las busquedas en la tabla de trabajadores-->
                 <div class="row">
                     <div class="col-xl-12">
                         <form action="{{route('example-app.buscar')}}" method="GET">
@@ -519,9 +519,9 @@
                 <br>
 
                 <!--Encabezado de la tabla para los datos de la BDD-->
-                <div class="table-responsive overflow-auto" style="max-height:30vh;">
-                    <table class="table table-light ">
-                        <thead class="table-success table-responsive ">
+                <div class="table-responsive overflow-auto" style="max-height:37vh;">
+                    <table class="table table-light" style="width:140vw;">
+                        <thead class="table-success table-responsive">
                           <tr>
                             <th>#</th>
                             <th>Cédula</th>
@@ -541,7 +541,7 @@
                             <!--Conexion con BDD para permitir mostrar los datos registrados
                                 en la tabla recien creada-->
                             @foreach ($trabajadores as $item)
-                            <tr style="width: 7vw">
+                            <tr>
                                 <td>{{$item->ID_trabajador}}</td>
                                 <td>{{$item->Cedula}}</td>
                                 <td>{{$item->LugarExpedicion}}</td>
@@ -556,7 +556,9 @@
                                     <a href="" data-bs-toggle="modal" data-bs-target="#modalEditarTrabajador{{$item->ID_trabajador}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-nib fa-beat"></i></a>
                                 </td>
                             </tr>
+
                             <!-- Modal para modificar los datos de los registros de la BDD-->
+
                                 <div class="modal fade" id="modalEditarTrabajador{{$item->ID_trabajador}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                     <div class="modal-dialog modal-xl modal-lg">
                                         <div class="modal-content" >
@@ -605,21 +607,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <!--lista desplegable para editar el cargo del empleado-->
-                                                        
-                                                        <div class="col-md-5">
-                                                            <label for="cargo" class="form-label fw-bold">Cargo asignado:</label>
-                                                            <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #33ccff;">
-                                                                <option value=""></option>
-                                                                @foreach ($cargo as $cargoB)
-                                                                    <option value="{{ $cargoB->ID_cargo }}" @if ($cargoB->ID_cargo == $item->ID_cargo) selected @endif>{{ $cargoB->Cargo }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-
                                                         <!--campo para editar el nombre -->
 
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-5">
                                                             <label for="nombre" class="form-label fw-bold">Nombre:</label>
                                                             <input type="text" id="nombre" name="nombre" class="form-control border-dark  text-white text-center" style="background-color:  #33ccff;" value="{{$item->Nombre}}" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" />
                                                         </div>
@@ -650,8 +640,8 @@
 
                                                         <!--campo para editar la ubicacion-->
 
-                                                        <div class="col-md-2">
-                                                            <label for="ubicacion" class="form-label fw-bold">Ubicacion:</label>
+                                                        <div class="col-md-3">
+                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
                                                             <select name="ubicacion" id="ubicacion" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
                                                                 @foreach ($ubicacion as $ubicacionB)
@@ -713,7 +703,7 @@
             <div class="col-md-12">
                 <h2 class="mt-3 text-dark fw-bold" >Tabla de Equipos</h2>
 
-                <!--Aca se declara la parte para permitir las busquedas-->
+                <!--Aca se declara la parte para permitir las busquedas en la tabla de equipos-->
                 <div class="row">
                     <div class="col-xl-12">
                         <form action="{{route('example-app.buscar2')}}" method="GET">
@@ -739,8 +729,8 @@
                 <br>
 
                 <!--Encabezado de la tabla para los datos de la BDD-->
-                <div class="table-responsive overflow-auto" style="max-height:45vh;">
-                    <table class="table table-light ">
+                <div class="table-responsive overflow-auto" style="max-height:37vh;">
+                    <table class="table table-light" style="width:280vw;">
                         <thead class="table-success table-responsive ">
                           <tr>
                             <th>#</th>
@@ -822,7 +812,7 @@
                                                         <!--campo para mostrar el ID del registro (NO es editable)-->
 
                                                         <div class="col-md-1">
-                                                            <label for="id" class="form-label fw-bold">ID</label>
+                                                            <label for="id" class="form-label fw-bold">ID:</label>
                                                             <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_equipo}}" readonly >
                                                         </div>
 
@@ -927,7 +917,7 @@
                                                         <!--campo para editar la ubicacion-->
 
                                                         <div class="col-md-3">
-                                                            <label for="ubicacion" class="form-label fw-bold">ubicacion:</label>
+                                                            <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
                                                             <select name="ubicacion" id="ubicacion" class="form-select border-dark text-white" style="background-color: #33ccff;">
                                                                 <option value=""></option>
                                                                 @foreach ($ubicacion as $ubicacionB)
@@ -1010,7 +1000,7 @@
             <div class="col-md-12">
                 <h2 class="mt-3 text-dark fw-bold">Historico</h2>
 
-                <!--Aca se declara la parte para permitir las busquedas-->
+                <!--Aca se declara la parte para permitir las busquedas en la tabla de historico-->
                 <div class="row">
                     <div class="col-xl-12">
                         <form action="{{route('example-app.buscar3')}}" method="GET">
@@ -1036,7 +1026,7 @@
 
                 <br>
                 <!--Encabezado de la tabla para los datos de la BDD-->
-                <div class="table-responsive overflow-auto" style="max-height:30vh;">
+                <div class="table-responsive overflow-auto" style="max-height:35vh;">
                     <table class="table table-light ">
                         <thead class="table-success table-responsive ">
                           <tr>
@@ -1055,7 +1045,7 @@
                             @foreach ($historico as $item)
                             <tr>
                                 <td>{{$item->ID_historico}}</td>
-                                <td style="width: 7vw">{{$item->ID_equipo}}</td>
+                                <td style="width: 7vw;">{{$item->ID_equipo}}</td>
                                 <td>{{$item->Historial_asignaciones}}</td>
                                 <td>{{$item->Procesos_a_ejecutar}}</td>
                                 <td>{{$item->Anotaciones}}</td>
@@ -1087,17 +1077,17 @@
                                                         <!--campo para mostrar el ID del historico (NO es editable)-->
 
                                                         <div class="col-md-1">
-                                                            <label for="ID_historico" class="form-label fw-bold">ID</label>
+                                                            <label for="ID_historico" class="form-label fw-bold">ID:</label>
                                                             <input type="text" id="id" name="id" class="form-control border-dark text-white text-center" style="background-color:  #ff3333;" value="{{$item->ID_historico}}" readonly >
                                                         </div>
 
                                                         <div class="col-md-2">
-                                                            <label for="ID_equipo" class="form-label fw-bold">ID del equipo</label>
+                                                            <label for="ID_equipo" class="form-label fw-bold">ID del equipo:</label>
                                                             <input type="text" id="id_equipo" name="id_equipo" class="form-control border-dark text-white text-center" style="background-color: #ff3333;" value="{{$item->ID_equipo}}" readonly/>
                                                         </div>
                         
                                                         <div class="col-md-12">
-                                                            <label for="historial_asignacion" class="form-label fw-bold">Historial asignacion:</label>
+                                                            <label for="historial_asignacion" class="form-label fw-bold">Historial asignación:</label>
                                                             <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #33ccff;" value="{{$item->Historial_asignaciones}}"/>
                                                         </div>
 
@@ -1136,8 +1126,6 @@
                   </div>
                 </div>
     </div>
-    <br>
-    <br>
     <br>
     <br>
 
