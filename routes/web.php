@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 //Rutas para poder poder crear nuevos registros en la base de datos en sus respectivas tablas
 
-    //ruta para creaer nuevos registros en la tabla de trabajadores:
+    //ruta para crear nuevos registros en la tabla de trabajadores:
     Route::post('/registrar-producto-trabajador', [CrudController::class, "create"])->name("example-app.create");
 
     //ruta para crear nuevos registros en la BDD en la tabla de equipos:
@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::post('/modificar-producto-equipo', [CrudController::class, "update2"])->name("example-app.update2");
 
-    //ruta para modificar registros de la BDD en la tabla historico 
+    //ruta para modificar registros de la BDD en la tabla histórico 
 
     Route::post('/modificar-producto-historico', [CrudController::class, "update3"])->name("example-app.update3");
 

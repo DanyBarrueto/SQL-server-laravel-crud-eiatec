@@ -52,7 +52,7 @@
                     <!--lista desplegable para elegir el lugar de la expedicion de la cedula-->
 
                     <div class="col-md-3">
-                        <label for="ID_expedicion" class="form-label fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
+                        <label for="ID_expedicion" class="form-label fw-bold" style="color: #7ab82c;">Lugar de Expedición:</label>
                         <select name="ID_expedicion" id="ID_expedicion" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                 <option value=""></option>
                             @foreach ($expedicion as $expedicionB)
@@ -71,7 +71,7 @@
                     <!--lista desplegable para elegir a uno de los coordinadores-->
 
                     <div class="col-md-4">
-                        <label for="coordinador_id" class="form-label fw-bold" style="color: #7ab82c;">Coordinador asignado:</label>
+                        <label for="coordinador_id" class="form-label fw-bold" style="color: #7ab82c;">Coordinador Asignado:</label>
                         <select name="coordinador_id" id="coordinador_id" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                 <option value=""></option>
                             @foreach ($coordinador as $coordinadorB)
@@ -180,7 +180,7 @@
                                 <!--lista desplegable para elegir el tipo de computador (portatil,mesa,etc)-->
 
                                 <div class="col-md-2">
-                                    <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de computador:</label>
+                                    <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de Computador:</label>
                                     <select id="tipo_computador" name="tipo_computador" class="form-select border-dark text-white" style="background-color: #66c2c2;" required>
                                         <option value=""></option>
                                         <option value="1">Mesa</option>
@@ -218,14 +218,14 @@
                                 <!--campo para ingresar el numero de serie del equipo-->
 
                                 <div class="col-md-3">
-                                    <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de serie:</label>
+                                    <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de Serie:</label>
                                     <input type="text" id="numero_serie" name="numero_serie" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
 
                                 <!--campo para ingresar el id del producto-->
 
                                 <div class="col-md-3">
-                                    <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id producto:</label>
+                                    <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id Producto:</label>
                                     <input type="text" id="id_producto" name="id_producto" class="form-control text-center border-dark text-white" style="background-color: #66c2c2;" required />
                                 </div>
 
@@ -481,114 +481,186 @@
             <hr>
     </div>
 
-    <!--Consultas en forma de formularios-->
-    <div class="container">
-
-            <div class="row">
-                <div class="col-xl-12">
-                    <form action="{{route('example-app.buscar4')}}" method="GET">
-                        <div class="form-row align-items-center">
-
-                            <div class="col-auto my-1">
-                                <div class="btn-group">
-                                    <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="NOMBRE O CEDULA" onfocus="this.value='';">
-                                    
-                                    <button type="submit" class="btn btn-success fw-bold" id="boton_buscar">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                    
-                                    <button type="submit" class="btn btn-info fw-bold" id="boton_limpiar" formaction="{{ route('example-app.index') }}">
-                                        <i class="fa-solid fa-brush"></i>
-                                    </button>                                    
-                                
-                                </div>
-                            </div>                                
-                        </div>
-                    </form>
-                </div>
-            </div>        
-        
-        <br><br>
-
+    <!--Consulta de las tablas de trabajadores y equipos en forma de formularios-->
         <div class="container">
-            <div class="row">
-    
-                <!-- Datos del trabajador -->
-                <div class="col-md-6">
-                    <h3 class="fw-bold">Datos del trabajador:</h3>
-                    <div class="form-group">
-                        <label for="input1" class="fw-bold" style="color: #7ab82c;">Nombre:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input1" name="nombre" value="{{ isset($trabajador) ? $trabajador->Nombre : '' }}" readonly>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="input2" class="fw-bold" style="color: #7ab82c;">Cédula:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input2" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cedula : '' }}" readonly>
-                    </div>
+            <h1 class="fw-bold" style="color: #ff8c00">Consultas:</h1>
 
-                    <div class="form-group">
-                        <label for="input3" class="fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input3" name="cedula" value="{{ isset($trabajador) ? $trabajador->LugarExpedicion : '' }}" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="input4" class="fw-bold" style="color: #7ab82c;">Cargo:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input4" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cargo : '' }}" readonly>
-                    </div>
+                <!--Campo para busquedas-->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <form action="{{ route('example-app.buscar4') }}" method="GET">
+                            <div class="form-row align-items-center">
+                                <div class="col-auto my-1">
+                                    <div class="btn-group">
+                                        <select name="texto" class="form-select border-dark text-white" style="background-color: #66c2c2;">
+                                            <option value="">Selecciona un Trabajador</option>
+                                            @foreach ($trabajadores as $trabajador)
+                                                <option value="{{ $trabajador->Nombre }}">{{ $trabajador->Nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit" class="btn btn-success fw-bold" id="boton_buscar">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
 
-                    <div class="form-group">
-                        <label for="input5" class="fw-bold" style="color: #7ab82c;">Correo:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input5" name="cedula" value="{{ isset($trabajador) ? $trabajador->Correo : '' }}" readonly>
-                    </div>
+                                        <!--boton para volver a la vista anterior-->
 
-                    <div class="form-group">
-                        <label for="input6" class="fw-bold" style="color: #7ab82c;">Contraseña:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input6" name="cedula" value="{{ isset($trabajador) ? $trabajador->Contraseña : '' }}" readonly>
+                                        <a href="{{ url()->previous() }}" class="btn btn-info fw-bold" id="boton_limpiar">
+                                            <i class="fa-solid fa-brush"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="input7" class="fw-bold" style="color: #7ab82c;">Ubicación:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input7" name="cedula" value="{{ isset($trabajador) ? $trabajador->Ubicacion : '' }}" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="input8" class="fw-bold" style="color: #7ab82c;">Teléfono:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input8" name="cedula" value="{{ isset($trabajador) ? $trabajador->Telefono : '' }}" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="input9" class="fw-bold" style="color: #7ab82c;">Código:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input9" name="cedula" value="{{ isset($equipo) ? $equipo->Codigo : '' }}" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="input10" class="fw-bold" style="color: #7ab82c;">Oficina:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input10" name="cedula" value="{{ isset($equipo) ? $equipo->Oficina : '' }}" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="input11" class="fw-bold" style="color: #7ab82c;">Direción:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input11" name="cedula" value="{{ isset($equipo) ? $equipo->Direccion : '' }}" readonly>
-                    </div>
-
                 </div>
-    
-                <!-- Datos del equipo -->
-                <div class="col-md-6">
-                    <h3 class="fw-bold">Datos del equipo:</h3>
-                    <div class="form-group">
-                        <label for="input12" class="fw-bold" style="color: #7ab82c;">Tipo:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input12" name="tipo" value="{{ isset($equipo) ? $equipo->Tipo : '' }}" readonly>
+                                  
+            <br><br>
+
+            <div class="container">
+                <div class="row">
+        
+                <!--Campos de consulta del formulario con los datos del trabajador -->
+                    <div class="col-md-6">
+                        <h3 class="fw-bold">Datos del trabajador:</h3>
+                        <div class="form-group">
+                            <label for="input1" class="fw-bold" style="color: #7ab82c;">Nombre:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input1" name="nombre" value="{{ isset($trabajador) ? $trabajador->Nombre : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input2" class="fw-bold" style="color: #7ab82c;">Cédula:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input2" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cedula : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input3" class="fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input3" name="cedula" value="{{ isset($trabajador) ? $trabajador->LugarExpedicion : '' }}" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="input4" class="fw-bold" style="color: #7ab82c;">Cargo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input4" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cargo : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input5" class="fw-bold" style="color: #7ab82c;">Correo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input5" name="cedula" value="{{ isset($trabajador) ? $trabajador->Correo : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input6" class="fw-bold" style="color: #7ab82c;">Contraseña:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input6" name="cedula" value="{{ isset($trabajador) ? $trabajador->Contraseña : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input7" class="fw-bold" style="color: #7ab82c;">Ubicación:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input7" name="cedula" value="{{ isset($trabajador) ? $trabajador->Ubicacion : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input8" class="fw-bold" style="color: #7ab82c;">Teléfono:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input8" name="cedula" value="{{ isset($trabajador) ? $trabajador->Telefono : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input9" class="fw-bold" style="color: #7ab82c;">Código:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input9" name="cedula" value="{{ isset($equipo) ? $equipo->Codigo : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input10" class="fw-bold" style="color: #7ab82c;">Oficina:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input10" name="cedula" value="{{ isset($equipo) ? $equipo->Oficina : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input11" class="fw-bold" style="color: #7ab82c;">Direción:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input11" name="cedula" value="{{ isset($equipo) ? $equipo->Direccion : '' }}" readonly>
+                        </div>
+
                     </div>
-                    <div class="form-group">
-                        <label for="input13" class="fw-bold" style="color: #7ab82c;">Marca:</label>
-                        <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input13" name="marca" value="{{ isset($equipo) ? $equipo->Marca : '' }}" readonly>
+        
+                <!--Campos de consultas del formulario con los datos del equipo -->
+                    <div class="col-md-6">
+                        <h3 class="fw-bold">Datos del equipo:</h3>
+
+                        <div class="form-group">
+                            <label for="input12" class="fw-bold" style="color: #7ab82c;">Estado:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input12" name="marca" value="{{ isset($equipo) ? $equipo->Estado : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input13" class="fw-bold" style="color: #7ab82c;">Tipo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input13" name="tipo" value="{{ isset($equipo) ? $equipo->Tipo : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input14" class="fw-bold" style="color: #7ab82c;">Marca:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input14" name="marca" value="{{ isset($equipo) ? $equipo->Marca : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input15" class="fw-bold" style="color: #7ab82c;">Modelo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input15" name="marca" value="{{ isset($equipo) ? $equipo->Modelo : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input16" class="fw-bold" style="color: #7ab82c;">Numero de Serie:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input16" name="marca" value="{{ isset($equipo) ? $equipo->Num_serie : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input17" class="fw-bold" style="color: #7ab82c;">ID Producto:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input17" name="marca" value="{{ isset($equipo) ? $equipo->Id_producto : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input18" class="fw-bold" style="color: #7ab82c;">Procesador:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input18" name="marca" value="{{ isset($equipo) ? $equipo->Procesador : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input19" class="fw-bold" style="color: #7ab82c;">Ram:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input19" name="marca" value="{{ isset($equipo) ? $equipo->Ram : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input20" class="fw-bold" style="color: #7ab82c;">Disco:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input20" name="marca" value="{{ isset($equipo) ? $equipo->Disco : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input21" class="fw-bold" style="color: #7ab82c;">GPU/APU:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input21" name="marca" value="{{ isset($equipo) ? $equipo->GPU_APU : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input22" class="fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input22" name="marca" value="{{ isset($equipo) ? $equipo->Sistema_operativo : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input23" class="fw-bold" style="color: #7ab82c;">Licencia:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input23" name="marca" value="{{ isset($equipo) ? $equipo->Tipo_licencia : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input24" class="fw-bold" style="color: #7ab82c;">Display:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input24" name="marca" value="{{ isset($equipo) ? $equipo->Display : '' }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input25" class="fw-bold" style="color: #7ab82c;">Anydesk:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #66c2c2;" id="input25" name="marca" value="{{ isset($equipo) ? $equipo->Anydesk : '' }}" readonly>
+                        </div>
+
                     </div>
-                    <!-- Agrega más campos según los datos del equipo -->
+        
                 </div>
-    
             </div>
-    </div>
+        </div>
+
+<br>
     
 <!--Aca es todo lo referente a poder ver,consultar y modificar los datos de las diferentes tablas de la BDD-->
 
@@ -597,8 +669,6 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-
-                <h1 class="fw-bold" style="color: #ff8c00">Consultas:</h1>
 
                 <h2 class="mt-3 text-dark fw-bold" >Tabla de trabajadores</h2>
 
@@ -1123,9 +1193,9 @@
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
                                         
-                                        <button type="submit" class="btn btn-info fw-bold" id="boton_limpiar" formaction="{{ route('example-app.index') }}">
+                                        <a href="{{ url()->previous() }}" class="btn btn-info fw-bold" id="boton_limpiar">
                                             <i class="fa-solid fa-brush"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>                                
                             </div>
@@ -1245,7 +1315,7 @@
     <br>
     <br>
 
-<!--Script de boostrap para funcionamientos del modal-->
+<!--Script de boostrap para permitir el correcto funcionamiento del modal-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class CrudController extends Controller
 {
 
-    // Función para mostrar todos los registros de las tablas de trabajadores, equipos e historico en la BDD
+    // Función para mostrar todos los registros de las tablas de trabajadores, equipos e histórico en la BDD
     public function index(){
         $trabajadores = DB::select("SELECT Trabajadores.ID_trabajador, Trabajadores.Cedula, Trabajadores.Nombre, 
                                     Expedicion.Lugar AS LugarExpedicion, 
@@ -73,7 +73,7 @@ class CrudController extends Controller
     }
     
 
-    //Funciones para las busquedas de los registros en cada tabla de la BDD
+    //Funciones para las búsquedas de los registros en cada tabla de la BDD
 
         // función para buscar registros en la tabla trabajadores en la base de datos:
 
@@ -290,7 +290,7 @@ class CrudController extends Controller
         public function buscar4(Request $request){
             // Obtener el texto de búsqueda desde la solicitud
             $texto = trim($request->get('texto'));
-        
+            
             // Consulta a la tabla de trabajadores
             $trabajadores = DB::select("SELECT Trabajadores.*, 
                                             Expedicion.Lugar AS LugarExpedicion, 
@@ -305,7 +305,7 @@ class CrudController extends Controller
                                         WHERE Trabajadores.Nombre LIKE ?
                                         ORDER BY Trabajadores.ID_trabajador DESC", 
                                         ['%'.$texto.'%']);
-        
+            
             // Verificar si se encontraron trabajadores en la búsqueda
             if (!empty($trabajadores)) {
                 // Obtener el ID del primer trabajador encontrado
@@ -331,15 +331,17 @@ class CrudController extends Controller
                         WHERE Equipos.ID_trabajador = ?
                         ORDER BY Equipos.ID_equipo DESC", 
                         [$idTrabajador]);
-
-            } else {
-                // Si no se encontraron trabajadores, establecer $equipos como vacío
-                $equipos = [];
-            }
         
+                // Consulta a la tabla de historial filtrando por el ID del equipo
+                $historico = DB::select("SELECT * FROM Historico WHERE ID_equipo = ? ORDER BY ID_historico DESC", [$equipos[0]->ID_equipo]);
+            } else {
+                // Si no se encontraron trabajadores, establecer $equipos y $historico como vacíos
+                $equipos = [];
+                $historico = [];
+            }
+            
             // Consulta a las demás tablas
             $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
-            $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
             $coordinador = DB::select("SELECT * FROM Coordinadores");
             $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
             $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
@@ -350,7 +352,7 @@ class CrudController extends Controller
             // Retornar la vista con los datos de la búsqueda y los datos originales
             return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion', 'expedicion', 'trabajadores', 'equipos'));
         }
-        
+                
         
 
 
@@ -649,7 +651,7 @@ class CrudController extends Controller
                 return new StreamedResponse($callback, 200, $headers);
         }
  
-        //función para descargar toda la BDD con toda la informacion de cada tabla 
+        //función para descargar toda la BDD con toda la información de cada tabla 
 
         public function descargarDatos4() {
             // Obtener los nombres de todas las tablas de la base de datos
