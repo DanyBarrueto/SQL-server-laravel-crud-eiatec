@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/', [CrudController::class, "index"])->name("example-app.index");
 
 
+
 //Rutas para poder poder crear nuevos registros en la base de datos en sus respectivas tablas
 
     //ruta para creaer nuevos registros en la tabla de trabajadores:
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
     //ruta para crear nuevos registros en la BDD en la tabla de historico:
     Route::post('/registrar-producto-historico', [CrudController::class, "create3"])->name("example-app.create3");
+
 
 
 //Rutas para poder modificar registros en las tablas principales de la base de datos
@@ -35,6 +37,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/modificar-producto-historico', [CrudController::class, "update3"])->name("example-app.update3");
 
 
+
 //Rutas para poder buscar registros en las tablas:
 
     //ruta para buscar registros en la tabla de trabajadores en la BDD
@@ -49,7 +52,11 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/buscar-historico', [CrudController::class, 'buscar3'])->name('example-app.buscar3');
 
+    //ruta para consultar la tablas de equipos y de trabajadores
+    
+    Route::get('/buscar-datos', [CrudController::class, 'buscar4'])->name('example-app.buscar4');
 
+    
 //Rutas para descargar la base de datos entera o para descargar solo una tabla de la BDD
 
     //ruta para descargar los registros de la tabla de trabajadores

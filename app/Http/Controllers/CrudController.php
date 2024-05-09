@@ -285,8 +285,76 @@ class CrudController extends Controller
             return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','expedicion','trabajadores','equipos'));        
         }
         
+        //función para poder consultar la tabla tanto de equipos como de trabajadores
+
+        public function buscar4(Request $request){
+            // Obtener el texto de búsqueda desde la solicitud
+            $texto = trim($request->get('texto'));
         
-    //Funciones para la creacion de nuevos registros en las diferentes tablas de la BDD
+            // Consulta a la tabla de trabajadores
+            $trabajadores = DB::select("SELECT Trabajadores.*, 
+                                            Expedicion.Lugar AS LugarExpedicion, 
+                                            Cargo.Cargo AS Cargo,
+                                            Coordinadores.Nombre AS NombreCoordinador, 
+                                            Ubicacion.Ubicacion AS Ubicacion
+                                        FROM Trabajadores
+                                        INNER JOIN Expedicion ON Trabajadores.ID_expedicion = Expedicion.ID_expedicion
+                                        INNER JOIN Cargo ON Trabajadores.ID_cargo = Cargo.ID_cargo
+                                        INNER JOIN Coordinadores ON Trabajadores.ID_coordinacion = Coordinadores.ID_coordinador
+                                        INNER JOIN Ubicacion ON Trabajadores.ID_ubicacion = Ubicacion.ID_ubicacion
+                                        WHERE Trabajadores.Nombre LIKE ?
+                                        ORDER BY Trabajadores.ID_trabajador DESC", 
+                                        ['%'.$texto.'%']);
+        
+            // Verificar si se encontraron trabajadores en la búsqueda
+            if (!empty($trabajadores)) {
+                // Obtener el ID del primer trabajador encontrado
+                $idTrabajador = $trabajadores[0]->ID_trabajador;
+        
+                // Consulta a la tabla de equipos filtrando por el ID del trabajador
+                $equipos = DB::select("SELECT Equipos.*, 
+                            Tipo.Modalidad AS Tipo,
+                            Marca.Nombre AS Marca,
+                            Licencia.Licencia AS Tipo_licencia,
+                            Ubicacion.Ubicacion AS Ubicacion,
+                            Oficinas.Oficina AS Oficina,
+                            Direccion.Direccion AS Direccion,
+                            Trabajadores.Nombre AS Nombre_trabajador
+                        FROM Equipos
+                        LEFT JOIN Tipo ON Equipos.ID_tipo = Tipo.ID_tipo
+                        LEFT JOIN Marca ON Equipos.ID_marca = Marca.ID_marca
+                        LEFT JOIN Licencia ON Equipos.ID_licencia = Licencia.ID_licencia
+                        LEFT JOIN Ubicacion ON Equipos.ID_ubicacion = Ubicacion.ID_ubicacion
+                        LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
+                        LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
+                        LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
+                        WHERE Equipos.ID_trabajador = ?
+                        ORDER BY Equipos.ID_equipo DESC", 
+                        [$idTrabajador]);
+
+            } else {
+                // Si no se encontraron trabajadores, establecer $equipos como vacío
+                $equipos = [];
+            }
+        
+            // Consulta a las demás tablas
+            $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
+            $historico = DB::select("SELECT * FROM Historico ORDER BY ID_historico DESC");
+            $coordinador = DB::select("SELECT * FROM Coordinadores");
+            $cargo = DB::select("SELECT * FROM Cargo ORDER BY ID_cargo ASC");
+            $oficina = DB::select("SELECT * FROM Oficinas ORDER BY ID_oficina ASC");
+            $licencia = DB::select("SELECT * FROM Licencia ORDER BY ID_licencia ASC");
+            $direccion = DB::select("SELECT * FROM Direccion ORDER BY ID_direccion ASC");
+            $ubicacion = DB::select("SELECT * FROM Ubicacion ORDER BY ID_ubicacion ASC");
+        
+            // Retornar la vista con los datos de la búsqueda y los datos originales
+            return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion', 'expedicion', 'trabajadores', 'equipos'));
+        }
+        
+        
+
+
+    //Funciones para la creación de nuevos registros en las diferentes tablas de la BDD
 
         // función para crear un nuevo registro en la tabla de trabajadores en la base de datos:
 
