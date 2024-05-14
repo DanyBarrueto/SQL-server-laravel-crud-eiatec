@@ -125,7 +125,7 @@ class CrudController extends Controller
                                         LEFT JOIN Oficinas ON Equipos.ID_oficina = Oficinas.ID_oficina
                                         LEFT JOIN Direccion ON Equipos.ID_direccion = Direccion.ID_direccion
                                         LEFT JOIN Trabajadores ON Equipos.ID_trabajador = Trabajadores.ID_trabajador
-                                        ORDER BY Equipos.ID_equipo");
+                                        ORDER BY Equipos.ID_equipo DESC");
             
             // Obtener datos de las demas tablas
             $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");

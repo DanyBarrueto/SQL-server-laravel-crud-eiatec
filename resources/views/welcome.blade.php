@@ -481,6 +481,7 @@
             <hr>
     </div>
 
+<br>
     <!--Consulta de las tablas de trabajadores y equipos en forma de formularios-->
         <div class="container">
 
@@ -493,7 +494,7 @@
                             <div class="form-row align-items-center">
                                 <div class="col-auto my-1">
                                     <div class="btn-group">
-                                        <select name="texto" class="form-select border-dark text-white" style="background-color: #66c2c2;">
+                                        <select name="texto" class="form-select border-dark fw-bold" style="background-color: #66c2c2;">
                                             <option value="">Selecciona un Trabajador</option>
                                             @foreach ($trabajadores as $trabajador)
                                                 <option value="{{ $trabajador->Nombre }}">{{ $trabajador->Nombre }}</option>
@@ -505,9 +506,10 @@
 
                                         <!--boton para volver a la vista anterior-->
 
-                                        <a href="{{ url()->previous() }}" class="btn btn-info fw-bold" id="boton_limpiar">
+                                        <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
                                             <i class="fa-solid fa-brush"></i>
                                         </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -676,23 +678,30 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <form action="{{route('example-app.buscar')}}" method="GET">
-                            <div class="form-row">
-                                <div class="col-sm-4 my-1">
-                                <input type="text" class="form-control" name="texto" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]*" title="Por favor, ingresa solo letras o números" value="INSERTA ID, NOMBRE O CEDULA DEL TRABAJADOR" onfocus="this.value='';">
-                                </div>
-                                <div class="col-auto my-1" >
-                                    <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
-                                    <input type="submit" class="btn btn-info fw-bold" id="boton_limpiar" style="width:27.3vh" value="Limpiar" formaction="{{ route('example-app.index') }}">
+                            <div class="form-row align-items-center">
+                
+                                <div class="col-auto my-1">
+                                    <div class="btn-group">
+                                        <input type="text" class="form-control" name="texto" value="Nombre o Cedula" onfocus="this.value='';">
+                                        
+                                        <button type="submit" class="btn btn-success fw-bold" id="boton_buscar">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                        
+                                        <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
+                                            <i class="fa-solid fa-brush"></i>
+                                        </a>
+                                    </div>
                                 </div>                                
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <!--Boton para descargar la tabla de trabajadores de la BDD-->
+                <!--Boton para descargar los registros de la tabla de trabajadores de la BDD-->
                 <div class="row">
                 <form method="GET" action="{{ route('descargar.datos') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar Tabla de los trabajadores</button>
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:47vh">Descargar Tabla trabajadores</button>
                 </form>
                 </div>
                 <br>
@@ -886,23 +895,30 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <form action="{{route('example-app.buscar2')}}" method="GET">
-                            <div class="form-row">
-                                <div class="col-sm-4 my-1">
-                                <input type="text" class="form-control" name="texto" value="INSERTA EL ID O EL CODIGO DEL EQUIPO" onfocus="this.value='';">
-                                </div>
-                                <div class="col-auto my-1" >
-                                    <input type="submit" class="btn btn-success fw-bold" id="boton_buscar" style="width:27.2vh" value="Buscar">
-                                    <input type="submit" class="btn btn-info fw-bold" id="boton_limpiar" style="width:27.3vh" value="Limpiar" formaction="{{ route('example-app.index') }}">
+                            <div class="form-row align-items-center">
+                
+                                <div class="col-auto my-1">
+                                    <div class="btn-group">
+                                        <input type="text" class="form-control" name="texto" value="Id o codigo del equipo" onfocus="this.value='';">
+                                        
+                                        <button type="submit" class="btn btn-success fw-bold" id="boton_buscar">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                        
+                                        <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
+                                            <i class="fa-solid fa-brush"></i>
+                                        </a>
+                                    </div>
                                 </div>                                
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <!--Boton para descargar la BDD-->
+                <!--Boton para descargar los registros de la tabla equipos de la BDD-->
                 <div class="row">
                 <form method="GET" action="{{ route('descargar.datos2') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar tabla de equipos</button>
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:47vh">Descargar tabla equipos</button>
                 </form>
                 </div>
                 <br>
@@ -1193,7 +1209,7 @@
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
                                         
-                                        <a href="{{ url()->previous() }}" class="btn btn-info fw-bold" id="boton_limpiar">
+                                        <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
                                             <i class="fa-solid fa-brush"></i>
                                         </a>
                                     </div>
@@ -1203,10 +1219,10 @@
                     </div>
                 </div>
 
-                <!--Boton para descargar la BDD-->
+                <!--Boton para descargar los registros de la tabla historico de la BDD-->
                 <div class="row">
                 <form method="GET" action="{{ route('descargar.datos3') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:55vh">Descargar tabla de historico</button>
+                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:47vh">Descargar tabla historico</button>
                 </form>
                 </div>
 
