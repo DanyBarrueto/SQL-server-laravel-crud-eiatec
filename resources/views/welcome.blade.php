@@ -691,6 +691,11 @@
                                         <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
                                             <i class="fa-solid fa-brush"></i>
                                         </a>
+
+                                        <a href="{{ route('descargar.datos') }}" class="btn btn-primary fw-bold" id="boton_descargar">
+                                            <i class="fa-solid fa-file-arrow-down"></i>
+                                        </a>
+
                                     </div>
                                 </div>                                
                             </div>
@@ -698,17 +703,9 @@
                     </div>
                 </div>
 
-                <!--Boton para descargar los registros de la tabla de trabajadores de la BDD-->
-                <div class="row">
-                <form method="GET" action="{{ route('descargar.datos') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:47vh">Descargar Tabla trabajadores</button>
-                </form>
-                </div>
-                <br>
-
                 <!--Encabezado de la tabla para los datos de la BDD-->
                 <div class="table-responsive overflow-auto" style="max-height:37vh;">
-                    <table class="table table-light" style="width:140vw;">
+                    <table class="table table-light" style="width:150vw;">
                         <thead class="table-success table-responsive">
                           <tr>
                             <th>#</th>
@@ -908,20 +905,17 @@
                                         <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
                                             <i class="fa-solid fa-brush"></i>
                                         </a>
+
+                                        <a href="{{ route('descargar.datos2') }}" class="btn btn-primary fw-bold" id="boton_descargar">
+                                            <i class="fa-solid fa-file-arrow-down"></i>
+                                        </a>
+
                                     </div>
                                 </div>                                
                             </div>
                         </form>
                     </div>
                 </div>
-
-                <!--Boton para descargar los registros de la tabla equipos de la BDD-->
-                <div class="row">
-                <form method="GET" action="{{ route('descargar.datos2') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:47vh">Descargar tabla equipos</button>
-                </form>
-                </div>
-                <br>
 
                 <!--Encabezado de la tabla para los datos de la BDD-->
                 <div class="table-responsive overflow-auto" style="max-height:37vh;">
@@ -1212,18 +1206,16 @@
                                         <a href="{{ route('example-app.index') }}" class="btn btn-warning fw-bold" id="boton_limpiar">
                                             <i class="fa-solid fa-brush"></i>
                                         </a>
+
+                                        <a href="{{ route('descargar.datos3') }}" class="btn btn-primary fw-bold" id="boton_descargar">
+                                            <i class="fa-solid fa-file-arrow-down"></i>
+                                        </a>
+
                                     </div>
                                 </div>                                
                             </div>
                         </form>
                     </div>
-                </div>
-
-                <!--Boton para descargar los registros de la tabla historico de la BDD-->
-                <div class="row">
-                <form method="GET" action="{{ route('descargar.datos3') }}">
-                    <button type="submit" class="btn btn-warning fw-bold" id="boton_descargar" style="width:47vh">Descargar tabla historico</button>
-                </form>
                 </div>
 
                 <br>
