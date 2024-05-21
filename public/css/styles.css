@@ -1,31 +1,133 @@
 
-/*Estilos animaciones botones
-*/
+/*Ajuste de los campos y botones para escribir en los formularios principales*/
+    
+    /*Formulario primario */
 
-#boton_enviar:hover, #boton_guardar_cambios:hover{
-    background-color: #ff5e00;
-    color: #ffffff;
-    transform: scale(1.1);
-    transition: all 0.4s linear;
-}
+        #registro_trabajador .boton_enviar{
+            background-color: #198754;
+            color: #ffffff;
+        }
 
-#boton_descargar:hover{
-    background-color: #7700ff;
-    color: #ffffff;
-    transform: scale(1.1);
-    transition: all 0.4s linear;
-}
+        #registro_trabajador input, #registro_trabajador select{
+            background-color: #aaaaa6;
+        }
 
-#boton_limpiar:hover, #boton_cerrar:hover{
-    background-color: #000000;
-    color: #ffffff;
-    transform: scale(1.1);
-    transition: all 0.4s linear;
-}
+        #registro_trabajador label{
+            color: #7ab82c;
+        }
 
-#boton_buscar:hover{
-    background-color: #0be076;
-    color: #ffffff;
-    transform: scale(1.1);
-    transition: all 0.4s linear;
-}
+    /*Formulario secundario*/
+
+        #registro_equipo .boton_enviar{
+            background-color: #198754;
+            color: #ffffff;
+        }
+
+        #registro_equipo input, #registro_equipo select{
+            background-color: #aaaaa6;
+        }
+
+        #registro_equipo label{
+            color: #7ab82c;
+        }
+
+    /*Formulario Terciario*/
+
+        #registro_historial .boton_enviar{
+            background-color: #198754;
+            color: #ffffff;
+        }
+
+        #registro_historial input, #registro_historial select, #registro_historial textarea{
+            background-color: #aaaaa6;
+        }
+
+        #registro_historial label{
+            color: #7ab82c;
+        }
+
+/*Ajuste de los campos de la consulta general*/
+
+    #Consulta_form label{
+        color: #7ab82c;
+    }
+
+    #Consulta_form input{
+        background-color: #aaaaa6;
+    }
+
+/*Estilos y animaciones de los botones de la barra de navegación*/
+
+    nav{
+        background-color: #cfcdcd;
+    }
+
+    .navbar-nav{
+        margin-right: 5vh;
+    }
+
+    .navbar-nav .nav-link{
+        color: #000000;
+        padding: 2vh;
+        background-color: #9ec4ce;
+    }
+
+    .navbar-nav .nav1{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .navbar-nav .nav4{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .navbar-nav .nav1:hover {
+        background-color: #0077ff;
+        color: #ffffff;
+    }
+
+    .navbar-nav .nav2:hover {
+        background-color: #bd0771;
+        color: #ffffff;
+    }
+
+    .navbar-nav .nav3:hover {
+        background-color: #ff7b00;
+        color: #ffffff;
+    }
+
+    .navbar-nav .nav4:hover {
+        background-color: #13ac5f;
+        color: #ffffff;
+    }
+
+/*Estilos y animaciones de los botones de los formularios*/
+
+    #boton_enviar:hover, #boton_guardar_cambios:hover{
+        background-color: #ff5e00;
+        color: #ffffff;
+        transform: scale(1.1);
+        transition: all 0.4s linear;
+    }
+
+    #boton_descargar:hover{
+        background-color: #7700ff;
+        color: #ffffff;
+        transform: scale(1.1);
+        transition: all 0.4s linear;
+    }
+
+    #boton_limpiar:hover, #boton_cerrar:hover{
+        background-color: #000000;
+        color: #ffffff;
+        transform: scale(1.1);
+        transition: all 0.4s linear;
+    }
+
+    #boton_buscar:hover{
+        background-color: #0be076;
+        color: #ffffff;
+        transform: scale(1.1);
+        transition: all 0.4s linear;
+    }

@@ -14,8 +14,8 @@
 
 <!--Menu de navegación junto con el logo de la empresa-->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="#">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand">
                 <img src="{{ asset('img/Logo_eiatec.png') }}" alt="Logo" style="width: 20%; height: auto; margin-left:15vh;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,21 +24,21 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item active">
-                        <a class="nav-link fw-bold" href="#">Registrar <span class="sr-only">(current)</span></a>
+                    <li class="nav-item active" style="width:8vw;">
+                        <a class="nav-link nav1 fw-bold" href="#">Registrar <i class="fa-solid fa-pen-clip"></i> <span class="sr-only">(current)</span></a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#consultar">Consultar</a>
+                    <li class="nav-item" style="width:8.2vw;">
+                        <a class="nav-link nav2 fw-bold" href="#consultar">Consultar <i class="fa-solid fa-magnifying-glass"></i> </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#tablas">Tablas</a>
+                    <li class="nav-item" style="width:6.3vw;">
+                        <a class="nav-link nav3 fw-bold" href="#tablas">Tablas <i class="fa-solid fa-table-list"></i> </a>
                     </li>
 
                     <!--Para descargar la base de datos junto con todos sus datos-->
-                    <li class="nav-item fw-bold" style="width:10vw;">
-                        <a class="nav-link" href="{{ route('descargar.datos4') }}">Descargar BDD</a>
+                    <li class="nav-item" style="width:11.5vw;">
+                        <a class="nav-link nav4 fw-bold" href="{{ route('descargar.datos4') }}">Descargar BDD <i class="fa-solid fa-download"></i> </a>
                     </li>
 
                 </ul>
@@ -47,7 +47,7 @@
     </header>
 
 <br><br>
-<br><br>
+<br>
 <!--Mensajes para notificar si el registro se guardo o actualizo bien o si llego a fallar durante el proceso-->
     @if (session("Correcto"))
     <div class="alert alert-success fw-bold fs-5 ">{{session("Correcto")}}</div>
@@ -67,7 +67,7 @@
 
         <h4 class="fw-bold">Datos personales del trabajador:</h4>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="registro_trabajador">
             <form class="col-md-8" action="{{route("example-app.create")}}" method="post" style="width: 200vh;">
                 @csrf
                 <div class="row">
@@ -75,15 +75,15 @@
                     <!--campo para insertar la cedula-->
 
                     <div class="col-md-2">
-                        <label for="cedula" class="form-label fw-bold" style="color: #7ab82c;">Cédula:</label>
-                        <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white" style="background-color: #aaaaa6;" pattern="[0-9]+" title="Por favor ingresa solo números" required />
+                        <label for="cedula" class="form-label fw-bold">Cédula:</label>
+                        <input type="text" id="cedula" name="cedula" class="form-control border-dark text-white"  pattern="[0-9]+" title="Por favor ingresa solo números" required />
                     </div>
 
                     <!--lista desplegable para elegir el lugar de la expedicion de la cedula-->
 
                     <div class="col-md-3">
-                        <label for="ID_expedicion" class="form-label fw-bold" style="color: #7ab82c;">Lugar de Expedición:</label>
-                        <select name="ID_expedicion" id="ID_expedicion" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                        <label for="ID_expedicion" class="form-label fw-bold">Lugar de Expedición:</label>
+                        <select name="ID_expedicion" id="ID_expedicion" class="form-select border-dark text-white" required>
                                 <option value=""></option>
                             @foreach ($expedicion as $expedicionB)
                                 <option value="{{ $expedicionB->ID_expedicion }}">{{ $expedicionB->Lugar }}</option>
@@ -94,15 +94,15 @@
                     <!--campo para insertar el nombre-->
 
                     <div class="col-md-3">
-                        <label for="nombre" class="form-label fw-bold" style="color: #7ab82c;">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control border-dark text-white" style="background-color: #aaaaa6;" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" required />
+                        <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control border-dark text-white" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜ\s]+" title="Por favor ingresa solo letras" required />
                     </div>
 
                     <!--lista desplegable para elegir a uno de los coordinadores-->
 
                     <div class="col-md-4">
-                        <label for="coordinador_id" class="form-label fw-bold" style="color: #7ab82c;">Coordinador Asignado:</label>
-                        <select name="coordinador_id" id="coordinador_id" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                        <label for="coordinador_id" class="form-label fw-bold">Coordinador Asignado:</label>
+                        <select name="coordinador_id" id="coordinador_id" class="form-select border-dark text-white" required>
                                 <option value=""></option>
                             @foreach ($coordinador as $coordinadorB)
                                 <option value="{{ $coordinadorB->ID_coordinador }}">{{ $coordinadorB->Nombre }}</option>
@@ -113,8 +113,8 @@
                     <!--lista desplegable para elegir uno de los cargos-->
 
                     <div class="col-md-8">
-                        <label for="cargo" class="form-label fw-bold" style="color: #7ab82c;">Cargo Asignado:</label>
-                        <select name="cargo" id="cargo" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                        <label for="cargo" class="form-label fw-bold">Cargo Asignado:</label>
+                        <select name="cargo" id="cargo" class="form-select border-dark text-white" required>
                                 <option value=""></option>
                             @foreach ($cargo as $cargoB)
                                 <option value="{{ $cargoB->ID_cargo }}">{{ $cargoB->Cargo }}</option>
@@ -125,29 +125,29 @@
                     <!--campo para insertar la cuenta de correo electonico-->
 
                     <div class="col-md-4">
-                        <label for="correo" class="form-label fw-bold" style="color: #7ab82c;">Correo:</label>
-                        <input type="text" id="correo" name="correo" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                        <label for="correo" class="form-label fw-bold">Correo:</label>
+                        <input type="text" id="correo" name="correo" class="form-control border-dark text-white" required />
                     </div>
 
                     <!--campo para insertar la contraseña de la cuenta-->
 
                     <div class="col-md-3">
-                        <label for="contraseña" class="form-label fw-bold" style="color: #7ab82c;">Contraseña:</label>
-                        <input type="text" id="contraseña" name="contraseña" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                        <label for="contraseña" class="form-label fw-bold">Contraseña:</label>
+                        <input type="text" id="contraseña" name="contraseña" class="form-control border-dark text-white" required />
                     </div>
 
                     <!--campo para insertar el numero de telefono-->
 
                     <div class="col-md-2">
-                        <label for="telefono" class="form-label fw-bold" style="color: #7ab82c;">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                        <label for="telefono" class="form-label fw-bold">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" class="form-control border-dark text-white" required />
                     </div>
 
                     <!--lista desplegable para elegir la ubicacion-->
 
                     <div class="col-md-3">
-                        <label for="ubicacion" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
-                        <select id="ubicacion" name="ubicacion" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                        <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
+                        <select id="ubicacion" name="ubicacion" class="form-select border-dark text-white" required>
                             <option value=""></option>
                             <option value="1">Bogotá</option>
                             <option value="2">Riohacha</option>
@@ -168,7 +168,7 @@
                 
                 <!--Boton para enviar los datos del trabajador a la base de datos-->
                 <div class="col-md-1">
-                    <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
+                    <input type="submit" name="submit" value="Enviar" class="btn btn-lg mt-2 fw-bold boton_enviar" id="boton_enviar" />
                 </div>
 
                 <hr>
@@ -177,7 +177,7 @@
 
     <!--Formulario secundario para registrar datos del equipo en la tabla Equipos-->
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" id="registro_equipo">
                         <form class="col-md-8" action="{{route("example-app.create2")}}" method="post" style="width: 200vh;">
                             @csrf
                             <div class="row">
@@ -187,8 +187,8 @@
                                 <!--lista desplegable para elegir el estado de asignacion del equipo-->
 
                                 <div class="col-md-2">
-                                    <label for="estado" class="form-label fw-bold" style="color: #7ab82c;">Estado:</label>
-                                    <select id="estado" name="estado" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="estado" class="form-label fw-bold">Estado:</label>
+                                    <select id="estado" name="estado" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="De_baja">De baja</option>
                                         <option value="Disponible">Disponible</option>
@@ -202,15 +202,15 @@
                                 <!--campo para ingresar el codigo designado al equipo-->
 
                                 <div class="col-md-2">
-                                    <label for="codigo" class="form-label fw-bold" style="color: #7ab82c;">Código:</label>
-                                    <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="codigo" class="form-label fw-bold">Código:</label>
+                                    <input type="text" id="codigo" name="codigo" class="form-control border-dark text-white" required />
                                 </div>
 
                                 <!--lista desplegable para elegir el tipo de computador (portatil,mesa,etc)-->
 
                                 <div class="col-md-2">
-                                    <label for="tipo_computador" class="form-label fw-bold" style="color: #7ab82c;">Tipo de Computador:</label>
-                                    <select id="tipo_computador" name="tipo_computador" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="tipo_computador" class="form-label fw-bold">Tipo de Computador:</label>
+                                    <select id="tipo_computador" name="tipo_computador" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="1">Mesa</option>
                                         <option value="2">Portatil</option>
@@ -222,8 +222,8 @@
                                 <!--lista desplegable para elegir la marca del equipo (HP,DELL,etc)-->
                 
                                 <div class="col-md-2">
-                                    <label for="marca" class="form-label fw-bold" style="color: #7ab82c;">Marca:</label>
-                                    <select id="marca" name="marca" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="marca" class="form-label fw-bold">Marca:</label>
+                                    <select id="marca" name="marca" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="1">Acer</option>
                                         <option value="2">Asus</option>
@@ -240,29 +240,29 @@
                                 <!--campo para ingresar el modelo del equipo-->
 
                                 <div class="col-md-4">
-                                    <label for="modelo" class="form-label fw-bold" style="color: #7ab82c;">Modelo:</label>
-                                    <input type="text" id="modelo" name="modelo" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="modelo" class="form-label fw-bold">Modelo:</label>
+                                    <input type="text" id="modelo" name="modelo" class="form-control border-dark text-white" required />
                                 </div>
 
                                 <!--campo para ingresar el numero de serie del equipo-->
 
                                 <div class="col-md-3">
-                                    <label for="numero_serie" class="form-label fw-bold" style="color: #7ab82c;">Numero de Serie:</label>
-                                    <input type="text" id="numero_serie" name="numero_serie" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="numero_serie" class="form-label fw-bold">Numero de Serie:</label>
+                                    <input type="text" id="numero_serie" name="numero_serie" class="form-control border-dark text-white" required />
                                 </div>
 
                                 <!--campo para ingresar el id del producto-->
 
                                 <div class="col-md-3">
-                                    <label for="id_producto" class="form-label fw-bold" style="color: #7ab82c;">Id Producto:</label>
-                                    <input type="text" id="id_producto" name="id_producto" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="id_producto" class="form-label fw-bold">Id Producto:</label>
+                                    <input type="text" id="id_producto" name="id_producto" class="form-control border-dark text-white" required />
                                 </div>
 
                                 <!--lista desplegable para ingresar el sistema operativo-->
 
                                 <div class="col-md-2">
-                                    <label for="tipo_sistema" class="form-label fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
-                                    <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="tipo_sistema" class="form-label fw-bold">Sistema Operativo:</label>
+                                    <select id="tipo_sistema" name="tipo_sistema" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="Windows10">Windows 10</option>
                                         <option value="Windows11">Windows 11</option>
@@ -273,8 +273,8 @@
                                 <!--lista desplegable para ingresar la licencia (osea si tiene windows home, pro, etc)-->
 
                                 <div class="col-md-3">
-                                    <label for="licencia" class="form-label fw-bold" style="color: #7ab82c;">Licencia:</label>
-                                    <select name="licencia" id="licencia" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="licencia" class="form-label fw-bold">Licencia:</label>
+                                    <select name="licencia" id="licencia" class="form-select border-dark text-white" required>
                                             <option value=""></option>
                                         @foreach ($licencia as $licenciaB)
                                             <option value="{{ $licenciaB->ID_licencia }}">{{ $licenciaB->Licencia }}</option>
@@ -285,8 +285,8 @@
                                 <!--lista deplegable para elegir la capacidad de la Ram-->
 
                                 <div class="col-md-1">
-                                    <label for="ram" class="form-label fw-bold" style="color: #7ab82c;">Ram:</label>
-                                    <select id="ram" name="ram" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="ram" class="form-label fw-bold">Ram:</label>
+                                    <select id="ram" name="ram" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="4GB">4GB</option>
                                         <option value="8GB">8GB</option>
@@ -302,22 +302,22 @@
                                 <!--campo para ingresar cual es el procesador-->
 
                                 <div class="col-md-6">
-                                    <label for="procesador" class="form-label fw-bold" style="color: #7ab82c;">Procesador:</label>
-                                    <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="procesador" class="form-label fw-bold">Procesador:</label>
+                                    <input type="text" id="procesador" name="procesador" class="form-control text-center border-dark text-white" required />
                                 </div>
 
                                 <!--campo para ingresar la grafica o controlador grafico del equipo-->
 
                                 <div class="col-md-6">
-                                    <label for="gpu" class="form-label fw-bold" style="color: #7ab82c;">Gpu/Apu:</label>
-                                    <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="gpu" class="form-label fw-bold">Gpu/Apu:</label>
+                                    <input type="text" id="gpu" name="gpu" class="form-control text-center border-dark text-white" required />
                                 </div>
 
                                 <!--lista desplegable para elegir la pantalla del equipo-->
 
                                 <div class="col-md-2">
-                                    <label for="display" class="form-label fw-bold" style="color: #7ab82c;">Display:</label>
-                                    <select id="display" name="display" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="display" class="form-label fw-bold">Display:</label>
+                                    <select id="display" name="display" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="16  FHD">16 FHD</option>
                                         <option value="14  HD">14 HD</option>
@@ -340,8 +340,8 @@
                                 <!--lista desplegable para elegir la cantidad de almacenamiento del disco duro-->
 
                                 <div class="col-md-2">
-                                    <label for="disco_duro" class="form-label fw-bold" style="color: #7ab82c;">Disco duro:</label>
-                                    <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="disco_duro" class="form-label fw-bold">Disco duro:</label>
+                                    <select id="disco_duro" name="disco_duro" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="128GB">128 GB</option>
                                         <option value="250GB">250 GB</option>
@@ -358,15 +358,15 @@
                                 <!--campo para ingresar el codigo del anydesk para conectarse-->
 
                                 <div class="col-md-2">
-                                    <label for="anydesk" class="form-label fw-bold" style="color: #7ab82c;">Anydesk:</label>
-                                    <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="anydesk" class="form-label fw-bold">Anydesk:</label>
+                                    <input type="text" id="anydesk" name="anydesk" class="form-control text-center border-dark text-white"  required />
                                 </div>
 
                                 <!--lista desplegable para elegir la ubicacion de donde se encuentra el equipo-->
 
                                 <div class="col-md-2">
-                                    <label for="ubicacion" class="form-label fw-bold" style="color: #7ab82c;">Ubicación:</label>
-                                    <select id="ubicacion" name="ubicacion" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
+                                    <select id="ubicacion" name="ubicacion" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="1">Bogotá</option>
                                         <option value="2">Riohacha</option>
@@ -386,8 +386,8 @@
                                 <!--lista desplegable para elegir la oficina donde se encuentra-->
 
                                 <div class="col-md-2">
-                                    <label for="oficina" class="form-label fw-bold" style="color: #7ab82c;">Oficina:</label>
-                                    <select id="oficina" name="oficina" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="oficina" class="form-label fw-bold">Oficina:</label>
+                                    <select id="oficina" name="oficina" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="1">Adm</option>
                                         <option value="2">Rio</option>
@@ -402,8 +402,8 @@
                                 <!--lista desplegable para elegir la direccion de la oficina (norte,sur,centro,local)-->
 
                                 <div class="col-md-2">
-                                    <label for="direccion" class="form-label fw-bold" style="color: #7ab82c;">Dirección:</label>
-                                    <select id="direccion" name="direccion" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="direccion" class="form-label fw-bold">Dirección:</label>
+                                    <select id="direccion" name="direccion" class="form-select border-dark text-white" required>
                                         <option value=""></option>
                                         <option value="1">Norte</option>
                                         <option value="2">Centro</option>
@@ -415,15 +415,15 @@
                                 <!--campo para la clave del equipo asignado-->
 
                                 <div class="col-md-2">
-                                    <label for="clave_equipo" class="form-label fw-bold" style="color: #7ab82c;">Clave:</label>
-                                    <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="clave_equipo" class="form-label fw-bold">Clave:</label>
+                                    <input type="text" id="clave_equipo" name="clave_equipo" class="form-control text-center border-dark text-white" required />
                                 </div>
 
                                 <!--campo para seleccionar el trabajador al cual esta asignado el equipo-->
 
                                 <div class="col-md-4">
-                                    <label for="trabajador_id" class="form-label fw-bold" style="color: #7ab82c;">Trabajador asignado:</label>
-                                    <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="trabajador_id" class="form-label fw-bold">Trabajador asignado:</label>
+                                    <select name="trabajador_id" id="trabajador_id" class="form-select border-dark text-white" required>
                                             <option value=""></option>
                                         @foreach ($trabajadores as $trabajador)
                                             <option value="{{ $trabajador->ID_trabajador }}">{{ $trabajador->Nombre }}</option>
@@ -434,7 +434,7 @@
                                 <!--Boton para enviar los datos-->
 
                                 <div>
-                                    <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
+                                    <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold boton_enviar" id="boton_enviar" />
                                 </div>
 
                                 <br><br><br>
@@ -447,7 +447,7 @@
     <!--Formulario terciario para registrar datos del historico del equipo en la tabla Historico-->
 
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" id="registro_historial">
                         <form class="col-md-1" action="{{route("example-app.create3")}}" method="post" style="width: 200vh;">
                             @csrf
                             <div class="row">
@@ -457,8 +457,8 @@
                                 <!--campo para elegir el equipo al que se le va a poner un historial-->
 
                                 <div class="col-md-2">
-                                    <label for="id_equipo" class="form-label fw-bold" style="color: #7ab82c;">Código del equipo:</label>
-                                    <select name="id_equipo" id="id_equipo" class="form-select border-dark text-white" style="background-color: #aaaaa6;" required>
+                                    <label for="id_equipo" class="form-label fw-bold">Código del equipo:</label>
+                                    <select name="id_equipo" id="id_equipo" class="form-select border-dark text-white" required>
                                             <option value=""></option>
                                         @foreach ($equipos as $equipo)
                                             <option value="{{ $equipo->ID_equipo }}">Codigo: {{ $equipo->Codigo }}</option>
@@ -469,22 +469,22 @@
                                 <!--campo para ingresar el historial de asignacion-->
 
                                 <div class="col-md-12">
-                                    <label for="historial_asignacion" class="form-label fw-bold" style="color: #7ab82c;">Historial asignación:</label>
-                                    <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="historial_asignacion" class="form-label fw-bold">Historial asignación:</label>
+                                    <input type="text" id="historial_asignacion" name="historial_asignacion" class="form-control border-dark text-white" required />
                                 </div>
 
                                 <!--campo para ingresar los procesos a ejecutar del equipo-->
 
                                 <div class="col-md-12">
-                                    <label for="procesos_ejecutar" class="form-label fw-bold" style="color: #7ab82c;">Procesos a ejecutar:</label>
-                                    <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" style="background-color: #aaaaa6;" required />
+                                    <label for="procesos_ejecutar" class="form-label fw-bold">Procesos a ejecutar:</label>
+                                    <input type="text" id="procesos_ejecutar" name="procesos_ejecutar" class="form-control border-dark text-white" required />
                                 </div>
 
                                 <!--campo para inbgresar las anotaciones del equipo-->
 
                                 <div class="col-md-12">
-                                    <label for="anotaciones" class="form-label fw-bold" style="color: #7ab82c;">Anotaciones:</label>
-                                    <textarea name="anotaciones" rows="3" class="form-control border-dark text-white" style="background-color: #aaaaa6;" ></textarea>
+                                    <label for="anotaciones" class="form-label fw-bold">Anotaciones:</label>
+                                    <textarea name="anotaciones" rows="3" class="form-control border-dark text-white"></textarea>
                                 </div>
 
                                 <!--Para redirigir a las consultas al usar la barra de navegación-->
@@ -497,7 +497,7 @@
                             <!--boton para enviar los datos del historial-->
 
                             <div>
-                                <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold" id="boton_enviar" />
+                                <input type="submit" name="submit" value="Enviar" class="btn btn-lg btn-success mt-2 fw-bold boton_enviar" id="boton_enviar" />
                             </div>
 
                         </form>
@@ -543,67 +543,67 @@
                     </div>
                 </div>
                                   
-            <br><br>
+            <br>
 
             <div class="container">
-                <div class="row">
+                <div class="row" id="Consulta_form">
         
                 <!--Campos de consulta del formulario con los datos del trabajador -->
                     <div class="col-md-6">
                         <h3 class="fw-bold">Datos del trabajador:</h3>
                         <div class="form-group">
-                            <label for="input1" class="fw-bold" style="color: #7ab82c;">Nombre:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input1" name="nombre" value="{{ isset($trabajador) ? $trabajador->Nombre : '' }}" readonly>
+                            <label for="input1" class="fw-bold">Nombre:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input1" name="nombre" value="{{ isset($trabajador) ? $trabajador->Nombre : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input2" class="fw-bold" style="color: #7ab82c;">Cédula:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input2" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cedula : '' }}" readonly>
+                            <label for="input2" class="fw-bold">Cédula:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input2" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cedula : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input3" class="fw-bold" style="color: #7ab82c;">Lugar de expedición:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input3" name="cedula" value="{{ isset($trabajador) ? $trabajador->LugarExpedicion : '' }}" readonly>
+                            <label for="input3" class="fw-bold">Lugar de expedición:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input3" name="cedula" value="{{ isset($trabajador) ? $trabajador->LugarExpedicion : '' }}" readonly>
                         </div>
                         
                         <div class="form-group">
-                            <label for="input4" class="fw-bold" style="color: #7ab82c;">Cargo:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input4" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cargo : '' }}" readonly>
+                            <label for="input4" class="fw-bold">Cargo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input4" name="cedula" value="{{ isset($trabajador) ? $trabajador->Cargo : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input5" class="fw-bold" style="color: #7ab82c;">Correo:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input5" name="cedula" value="{{ isset($trabajador) ? $trabajador->Correo : '' }}" readonly>
+                            <label for="input5" class="fw-bold">Correo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input5" name="cedula" value="{{ isset($trabajador) ? $trabajador->Correo : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input6" class="fw-bold" style="color: #7ab82c;">Contraseña:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input6" name="cedula" value="{{ isset($trabajador) ? $trabajador->Contraseña : '' }}" readonly>
+                            <label for="input6" class="fw-bold">Contraseña:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input6" name="cedula" value="{{ isset($trabajador) ? $trabajador->Contraseña : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input7" class="fw-bold" style="color: #7ab82c;">Ubicación:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input7" name="cedula" value="{{ isset($trabajador) ? $trabajador->Ubicacion : '' }}" readonly>
+                            <label for="input7" class="fw-bold">Ubicación:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input7" name="cedula" value="{{ isset($trabajador) ? $trabajador->Ubicacion : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input8" class="fw-bold" style="color: #7ab82c;">Teléfono:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input8" name="cedula" value="{{ isset($trabajador) ? $trabajador->Telefono : '' }}" readonly>
+                            <label for="input8" class="fw-bold">Teléfono:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input8" name="cedula" value="{{ isset($trabajador) ? $trabajador->Telefono : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input9" class="fw-bold" style="color: #7ab82c;">Código:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input9" name="cedula" value="{{ isset($equipo) ? $equipo->Codigo : '' }}" readonly>
+                            <label for="input9" class="fw-bold">Código:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input9" name="cedula" value="{{ isset($equipo) ? $equipo->Codigo : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input10" class="fw-bold" style="color: #7ab82c;">Oficina:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input10" name="cedula" value="{{ isset($equipo) ? $equipo->Oficina : '' }}" readonly>
+                            <label for="input10" class="fw-bold">Oficina:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input10" name="cedula" value="{{ isset($equipo) ? $equipo->Oficina : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input11" class="fw-bold" style="color: #7ab82c;">Direción:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input11" name="cedula" value="{{ isset($equipo) ? $equipo->Direccion : '' }}" readonly>
+                            <label for="input11" class="fw-bold">Direción:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input11" name="cedula" value="{{ isset($equipo) ? $equipo->Direccion : '' }}" readonly>
                         </div>
 
                     </div>
@@ -613,73 +613,73 @@
                         <h3 class="fw-bold">Datos del equipo:</h3>
 
                         <div class="form-group">
-                            <label for="input12" class="fw-bold" style="color: #7ab82c;">Estado:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input12" name="marca" value="{{ isset($equipo) ? $equipo->Estado : '' }}" readonly>
+                            <label for="input12" class="fw-bold">Estado:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input12" name="marca" value="{{ isset($equipo) ? $equipo->Estado : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input13" class="fw-bold" style="color: #7ab82c;">Tipo:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input13" name="tipo" value="{{ isset($equipo) ? $equipo->Tipo : '' }}" readonly>
+                            <label for="input13" class="fw-bold">Tipo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input13" name="tipo" value="{{ isset($equipo) ? $equipo->Tipo : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input14" class="fw-bold" style="color: #7ab82c;">Marca:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input14" name="marca" value="{{ isset($equipo) ? $equipo->Marca : '' }}" readonly>
+                            <label for="input14" class="fw-bold">Marca:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input14" name="marca" value="{{ isset($equipo) ? $equipo->Marca : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input15" class="fw-bold" style="color: #7ab82c;">Modelo:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input15" name="marca" value="{{ isset($equipo) ? $equipo->Modelo : '' }}" readonly>
+                            <label for="input15" class="fw-bold">Modelo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input15" name="marca" value="{{ isset($equipo) ? $equipo->Modelo : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input16" class="fw-bold" style="color: #7ab82c;">Numero de Serie:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input16" name="marca" value="{{ isset($equipo) ? $equipo->Num_serie : '' }}" readonly>
+                            <label for="input16" class="fw-bold">Numero de Serie:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input16" name="marca" value="{{ isset($equipo) ? $equipo->Num_serie : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input17" class="fw-bold" style="color: #7ab82c;">ID Producto:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input17" name="marca" value="{{ isset($equipo) ? $equipo->Id_producto : '' }}" readonly>
+                            <label for="input17" class="fw-bold">ID Producto:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input17" name="marca" value="{{ isset($equipo) ? $equipo->Id_producto : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input18" class="fw-bold" style="color: #7ab82c;">Procesador:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input18" name="marca" value="{{ isset($equipo) ? $equipo->Procesador : '' }}" readonly>
+                            <label for="input18" class="fw-bold">Procesador:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input18" name="marca" value="{{ isset($equipo) ? $equipo->Procesador : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input19" class="fw-bold" style="color: #7ab82c;">Ram:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input19" name="marca" value="{{ isset($equipo) ? $equipo->Ram : '' }}" readonly>
+                            <label for="input19" class="fw-bold">Ram:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input19" name="marca" value="{{ isset($equipo) ? $equipo->Ram : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input20" class="fw-bold" style="color: #7ab82c;">Disco:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input20" name="marca" value="{{ isset($equipo) ? $equipo->Disco : '' }}" readonly>
+                            <label for="input20" class="fw-bold">Disco:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input20" name="marca" value="{{ isset($equipo) ? $equipo->Disco : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input21" class="fw-bold" style="color: #7ab82c;">GPU/APU:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input21" name="marca" value="{{ isset($equipo) ? $equipo->GPU_APU : '' }}" readonly>
+                            <label for="input21" class="fw-bold">GPU/APU:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input21" name="marca" value="{{ isset($equipo) ? $equipo->GPU_APU : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input22" class="fw-bold" style="color: #7ab82c;">Sistema Operativo:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input22" name="marca" value="{{ isset($equipo) ? $equipo->Sistema_operativo : '' }}" readonly>
+                            <label for="input22" class="fw-bold">Sistema Operativo:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input22" name="marca" value="{{ isset($equipo) ? $equipo->Sistema_operativo : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input23" class="fw-bold" style="color: #7ab82c;">Licencia:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input23" name="marca" value="{{ isset($equipo) ? $equipo->Tipo_licencia : '' }}" readonly>
+                            <label for="input23" class="fw-bold">Licencia:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input23" name="marca" value="{{ isset($equipo) ? $equipo->Tipo_licencia : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input24" class="fw-bold" style="color: #7ab82c;">Display:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input24" name="marca" value="{{ isset($equipo) ? $equipo->Display : '' }}" readonly>
+                            <label for="input24" class="fw-bold">Display:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input24" name="marca" value="{{ isset($equipo) ? $equipo->Display : '' }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="input25" class="fw-bold" style="color: #7ab82c;">Anydesk:</label>
-                            <input type="text" class="form-control border-dark text-center fw-bold" style="background-color: #aaaaa6;" id="input25" name="marca" value="{{ isset($equipo) ? $equipo->Anydesk : '' }}" readonly>
+                            <label for="input25" class="fw-bold">Anydesk:</label>
+                            <input type="text" class="form-control border-dark text-center fw-bold" id="input25" name="marca" value="{{ isset($equipo) ? $equipo->Anydesk : '' }}" readonly>
                         </div>
 
                         <!--Para redirigir a las tablas con los registros de la Base de datos-->

@@ -73,6 +73,7 @@ class CrudController extends Controller
     }
     
 
+
     //Funciones para las búsquedas de los registros en cada tabla de la BDD
 
         // función para buscar registros en la tabla trabajadores en la base de datos:
@@ -355,7 +356,6 @@ class CrudController extends Controller
                 
         
 
-
     //Funciones para la creación de nuevos registros en las diferentes tablas de la BDD
 
         // función para crear un nuevo registro en la tabla de trabajadores en la base de datos:
@@ -464,6 +464,7 @@ class CrudController extends Controller
         }
         
 
+        
     // Funciones para actualizar un registro en las diferentes tablas de la BDD:
 
         //función para actualizar un registro de la tabla trabajadores en la base de datos
