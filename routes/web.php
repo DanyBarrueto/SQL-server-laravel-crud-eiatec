@@ -56,6 +56,7 @@ use Illuminate\Support\Facades\Route;
     
     Route::get('/buscar-datos', [CrudController::class, 'buscar4'])->name('example-app.buscar4');
 
+
     
 //Rutas para descargar la base de datos entera o para descargar solo una tabla de la BDD
 

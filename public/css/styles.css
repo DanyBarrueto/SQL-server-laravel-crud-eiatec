@@ -1,59 +1,103 @@
+/*Probando para poder poner una ventana emergente*/
 
+    .disabled-link {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .window-notice {
+        background: rgb(0, 0, 0);
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        display: flex;
+        position: fixed;
+        z-index: 999;
+    }
+
+    .window-notice .content {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgb(0, 0, 0);
+        box-sizing: content-box;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        padding: 2rem;
+        font-size: 1.3rem;
+    }
+
+/*Fuente de google para todos los textos*/
+
+    .solitreo-regular{
+        font-family: "Solitreo", cursive;
+        font-weight: 400;
+        font-style: normal;
+    }
+  
 /*Ajuste de los campos y botones para escribir en los formularios principales*/
     
-    /*Formulario primario */
+    /*Formulario primario de los trabajadores */
 
-        #registro_trabajador .boton_enviar{
-            background-color: #198754;
-            color: #ffffff;
-        }
+    #registro_trabajador .boton_enviar{
+        background-color: #198754;
+        color: #ffffff;
+    }
 
-        #registro_trabajador input, #registro_trabajador select{
-            background-color: #aaaaa6;
-        }
+    #registro_trabajador input, #registro_trabajador select{
+        background-color: #aaaaa6;
+    }
 
         #registro_trabajador label{
-            color: #7ab82c;
-        }
-
-    /*Formulario secundario*/
-
-        #registro_equipo .boton_enviar{
-            background-color: #198754;
-            color: #ffffff;
-        }
-
-        #registro_equipo input, #registro_equipo select{
-            background-color: #aaaaa6;
-        }
-
-        #registro_equipo label{
-            color: #7ab82c;
-        }
-
-    /*Formulario Terciario*/
-
-        #registro_historial .boton_enviar{
-            background-color: #198754;
-            color: #ffffff;
-        }
-
-        #registro_historial input, #registro_historial select, #registro_historial textarea{
-            background-color: #aaaaa6;
-        }
-
-        #registro_historial label{
-            color: #7ab82c;
-        }
-
-/*Ajuste de los campos de la consulta general*/
-
-    #Consulta_form label{
         color: #7ab82c;
     }
 
-    #Consulta_form input{
+    /*Formulario secundario de los equipos*/
+
+    #registro_equipo .boton_enviar{
+        background-color: #198754;
+        color: #ffffff;
+    }
+
+    #registro_equipo input, #registro_equipo select{
         background-color: #aaaaa6;
+    }
+
+    #registro_equipo label{
+        color: #7ab82c;
+    }
+
+    /*Formulario Terciario del histórico*/
+
+    #registro_historial .boton_enviar{
+        background-color: #198754;
+        color: #ffffff;
+    }
+
+    #registro_historial input, #registro_historial select, #registro_historial textarea{
+        background-color: #aaaaa6;
+    }
+
+    #registro_historial label{
+        color: #7ab82c;
+    }
+
+/*Ajuste de los campos de las tablas de la consulta general*/
+
+    #tablas h3, #tablas h4{
+        color: #ffffff;
+    }
+
+    #Consulta_form label{
+        color: #ffffff;
+    }
+
+    #Consulta_form input{
+        background-color: #8f8f8e;
+        color: #ffffff;
     }
 
 /*Estilos y animaciones de los botones de la barra de navegación*/
@@ -102,7 +146,7 @@
         color: #ffffff;
     }
 
-/*Estilos y animaciones de los botones de los formularios*/
+/*Estilos y animaciones de los botones de los formularios y los modales*/
 
     #boton_enviar:hover, #boton_guardar_cambios:hover{
         background-color: #ff5e00;
