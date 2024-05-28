@@ -286,7 +286,7 @@ class CrudController extends Controller
             return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion','expedicion','trabajadores','equipos'));        
         }
         
-        //función para poder consultar la tabla tanto de equipos como de trabajadores
+        //función para poder consultar a nivel general todas las tablas principales
 
         public function buscar4(Request $request){
             // Obtener el texto de búsqueda desde la solicitud
@@ -306,6 +306,10 @@ class CrudController extends Controller
                                         WHERE Trabajadores.Nombre LIKE ?
                                         ORDER BY Trabajadores.ID_trabajador DESC", 
                                         ['%'.$texto.'%']);
+            
+            // Inicializar $equipos y $historico como arreglos vacíos
+            $equipos = [];
+            $historico = [];
             
             // Verificar si se encontraron trabajadores en la búsqueda
             if (!empty($trabajadores)) {
@@ -333,14 +337,13 @@ class CrudController extends Controller
                         ORDER BY Equipos.ID_equipo DESC", 
                         [$idTrabajador]);
         
-                // Consulta a la tabla de historial filtrando por el ID del equipo
-                $historico = DB::select("SELECT * FROM Historico WHERE ID_equipo = ? ORDER BY ID_historico DESC", [$equipos[0]->ID_equipo]);
-            } else {
-                // Si no se encontraron trabajadores, establecer $equipos y $historico como vacíos
-                $equipos = [];
-                $historico = [];
+                // Verificar si se encontraron equipos antes de consultar el historial
+                if (!empty($equipos)) {
+                    // Consulta a la tabla de historial filtrando por el ID del equipo
+                    $historico = DB::select("SELECT * FROM Historico WHERE ID_equipo = ? ORDER BY ID_historico DESC", [$equipos[0]->ID_equipo]);
+                }
             }
-            
+        
             // Consulta a las demás tablas
             $expedicion = DB::select("SELECT * FROM Expedicion ORDER BY ID_expedicion ASC");
             $coordinador = DB::select("SELECT * FROM Coordinadores");
@@ -352,7 +355,7 @@ class CrudController extends Controller
         
             // Retornar la vista con los datos de la búsqueda y los datos originales
             return view('Welcome', compact('historico', 'coordinador', 'cargo', 'oficina', 'licencia', 'direccion', 'ubicacion', 'expedicion', 'trabajadores', 'equipos'));
-        }
+        }        
                 
         
 

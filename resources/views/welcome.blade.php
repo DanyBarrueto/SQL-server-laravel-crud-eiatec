@@ -55,7 +55,23 @@
         <div class="window-notice" id="window-notice">
             <div class="content">
                 <h4>Bienvenido al sistema de registro y consulta de Eiatec</h4>
-                <div class="content-buttons"><a href="#" id="close-button">Aceptar</a></div>
+
+                <!--campo para insertar la cuenta de correo electonico-->
+
+                <div class="col-md-7">
+                    <label for="correo" class="form-label fw-bold">Correo:</label>
+                    <input type="text" id="correo" name="correo" class="form-control border-dark" required />
+                </div>
+
+                <!--campo para insertar la contraseña de la cuenta-->
+
+                <div class="col-md-7">
+                    <label for="contraseña" class="form-label fw-bold">Contraseña:</label>
+                    <input type="text" id="contraseña" name="contraseña" class="form-control border-dark" required />
+                </div>
+
+                <div class="content-buttons"><a href="#" id="close-button">Ingresar</a></div>
+
             </div>
         </div>
         
@@ -753,8 +769,8 @@
                     </div>
 
                     <!--Encabezado de la tabla para los datos de la BDD-->
-                    <div class="table-responsive overflow-auto" style="max-height:37vh;">
-                        <table class="table table-light" style="width:150vw;">
+                    <div class="table-responsive overflow-auto" id="tabla_usuarios">
+                        <table class="table table-light">
                             <thead class="table-success table-responsive">
                             <tr>
                                 <th>#</th>
@@ -967,8 +983,8 @@
                     </div>
 
                     <!--Encabezado de la tabla para los datos de la BDD-->
-                    <div class="table-responsive overflow-auto" style="max-height:37vh;">
-                        <table class="table table-light" style="width:280vw;">
+                    <div class="table-responsive overflow-auto" id="tabla_equipo">
+                        <table class="table table-light">
                             <thead class="table-success table-responsive ">
                             <tr>
                                 <th>#</th>
@@ -1268,7 +1284,7 @@
                     </div>
 
                     <!--Encabezado de la tabla para los datos de la BDD-->
-                    <div class="table-responsive overflow-auto" style="max-height:35vh;">
+                    <div class="table-responsive overflow-auto" id="tabla_historico">
                         <table class="table table-light">
                             <thead class="table-success table-responsive ">
                             <tr>

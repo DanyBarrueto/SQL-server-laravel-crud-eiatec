@@ -1,10 +1,14 @@
 /*Probando para poder poner una ventana emergente*/
 
+    /*Para bloquear los botones de las secciones y la descarga de la base de datos*/
+
     .disabled-link {
         pointer-events: none;
         opacity: 0.5;
     }
 
+    /*Para modificar la parte de alrededor de la ventana emergente*/
+    
     .window-notice {
         background: rgb(0, 0, 0);
         left: 0;
@@ -15,6 +19,8 @@
         position: fixed;
         z-index: 999;
     }
+
+    /*Para modificar el contenido que va dentro de la ventana emergente*/
 
     .window-notice .content {
     background: #fff;
@@ -31,7 +37,7 @@
     width: 100%;
     padding: 2rem;
     font-size: 1.3rem;
-}
+    }
 
 /*Fuente de google para todos los textos*/
 
@@ -54,8 +60,17 @@
         background-color: #aaaaa6;
     }
 
-        #registro_trabajador label{
+    #registro_trabajador label{
         color: #7ab82c;
+    }
+
+    #tabla_usuarios{
+        border-radius: 10px;
+        max-height: 37vh;
+    }
+
+    #tabla_usuarios table{
+        width: 150vw;
     }
 
     /*Formulario secundario de los equipos*/
@@ -73,6 +88,15 @@
         color: #7ab82c;
     }
 
+    #tabla_equipo{
+        border-radius: 10px;
+        max-height: 37vh;
+    }
+
+    #tabla_equipo table{
+        width: 280vw;
+    }
+
     /*Formulario Terciario del histórico*/
 
     #registro_historial .boton_enviar{
@@ -80,12 +104,18 @@
         color: #ffffff;
     }
 
-    #registro_historial input, #registro_historial select, #registro_historial textarea{
+    #registro_historial input, #registro_historial select,
+     #registro_historial textarea{
         background-color: #aaaaa6;
     }
 
     #registro_historial label{
         color: #7ab82c;
+    }
+
+    #tabla_historico{
+        border-radius: 10px;
+        max-height: 35vh;
     }
 
 /*Ajuste de los campos de las tablas de la consulta general*/
@@ -128,6 +158,8 @@
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
     }
+
+    /*Efecto de colores en los botones de las secciones y de la descarga */
 
     .navbar-nav .nav1:hover {
         background-color: #0077ff;
